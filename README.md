@@ -1,5 +1,8 @@
 # Dokumentasi PBO
 
-## Pembuatan Class Diagram (13/4/25)
+## Pembuatan Class Diagram
 
-![muka orang ganteng](https://www.google.com/imgres?q=monkey%20image&imgurl=https%3A%2F%2Fmedia.npr.org%2Fassets%2Fimg%2F2015%2F09%2F23%2Fap_836720500193_wide-1be0cfc508ffc714e17caf318ec5103ae1e6d2f4.jpg%3Fs%3D1400%26c%3D100%26f%3Djpeg&imgrefurl=https%3A%2F%2Fwww.npr.org%2Fsections%2F13.7%2F2015%2F09%2F23%2F442860957%2Fshould-a-monkey-own-a-copyright&docid=ULFymmMPlIHUpM&tbnid=wp7SD7gKopcLDM&vet=12ahUKEwjft9aVmN6MAxVhxTgGHcGsMbMQM3oECHoQAA..i&w=1400&h=787&hcb=2&ved=2ahUKEwjft9aVmN6MAxVhxTgGHcGsMbMQM3oECHoQAA)
+Class Diagram dibuat dan diselesaikan pada tanggal 13 April 2025.
+
+Dikerjakan dengan menggunakan <a href="https://lucid.app/lucidchart/fe1c40fd-2cca-44a6-a529-89c9b5cdf79b/edit?viewport_loc=-417%2C-1704%2C4051%2C2060%2C0_0&invitationId=inv_8b67e2cc-3c1c-467d-8595-391c4d7f47f0
+">"lucid"</a>.
