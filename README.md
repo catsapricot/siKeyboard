@@ -7,11 +7,11 @@ Tugas besar PBO kelompok 3 kelas IF-47-04 yang beranggotakan:
 4. Muhammad Nazriel Ihram (103012300269)
 5. Muhammad Zaini (103012300313)
 
-## :dizzy: Judul Tugas Besar
+## :dizzy: Judul Proyek
 siKeyboard
 
-## :dizzy: Deskripsi Tugas Besar
-<p>siKeyboard adalah brand kami yang menjual berbagai mechanical keyboard dan aksesorisnya (keycaps, switches, case, dsb). Kami berperan sebagai retailer yang menyediakan produk dari berbagai brand.</p>
+## :dizzy: Deskripsi Proyek
+<p>siKeyboard merupakan brand kami yang menjual berbagai mechanical keyboard dan aksesorisnya (keycaps, switches, case, dsb). Kami berperan sebagai retailer yang menyediakan produk dari berbagai brand.</p>
 
 <p>Kami menggunakan web aplikasi sebagai media penjualan kami.</p>
 
@@ -28,7 +28,7 @@ Berikut ini adalah gambar berserta <a href="https://lucid.app/lucidchart/fe1c40f
 <img src="https://github.com/user-attachments/assets/5aab6741-aa7a-456c-9a8b-f531e435d969" width ="300"/>
 
 ## Perubahan Model Class Diagram
-Terjadi perubahan model Class Diagram setelah berkonsultasi dengan asprak
+Terjadi perubahan model Class Diagram setelah berkonsultasi dengan asprak.
 
 <br />
 
