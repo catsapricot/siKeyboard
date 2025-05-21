@@ -33,3 +33,10 @@ Terjadi perubahan model Class Diagram setelah berkonsultasi dengan asprak.
 <br />
 
 <img src="https://github.com/user-attachments/assets/dc6fb485-b79d-47f4-aa90-38bb52e26701" width ="300"/>
+
+## Pembuatan Struktur Folder
+Struktur folder mengikuti pola arsitektur MVC, dengan servlet sebagai controller, JSP sebagai view, dan JDBC untuk koneksi ke database.
+
+<br />
+
+<img src="https://github.com/user-attachments/assets/4b8369cc-8b53-48ba-95dd-8ee8c83cbbe4" width ="300"/>
