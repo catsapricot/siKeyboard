@@ -1,6 +1,6 @@
 package model;
 
-public class Admin extends Role{
+public class Admin extends Role {
     private String security;
 
     public Admin(String nama, String id, String security) {
