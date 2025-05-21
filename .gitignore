@@ -1,2 +1,3 @@
 *.class
 /WebContent/Web-INF/classes/
+/WebContent/Web-INF/lib/
