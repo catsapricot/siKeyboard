@@ -7,6 +7,7 @@ public class Admin extends Role {
         super(nama, id);
         this.security = security;
     }
+
     public void setSecurity(String security) {
         this.security = security;
     }
