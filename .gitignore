@@ -1,3 +1,4 @@
 *.class
-/WebContent/Web-INF/classes/
-/WebContent/Web-INF/lib/
+/web/WEB-INF/classes/
+/nbproject/private/
+/build/
