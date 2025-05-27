@@ -1,4 +1,4 @@
-package model;
+package Models;
 
 public abstract class Role {
     private String nama;
@@ -6,17 +6,10 @@ public abstract class Role {
     private String username;
     private String password;
 
-    public Role(String nama, String id, String username, String password) {
-        this.nama = nama;
-        this.id = id;
+    public Role(String username, String password) {
         this.username = username;
         this.password = password;
     }
-    public Role(String nama, String id) {
-        this.nama = nama;
-        this.id = id;
-    }
-
     public void setNama(String nama) {
         this.nama = nama;
     }
