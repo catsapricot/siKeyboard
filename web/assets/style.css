@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", Helvetica;
+    -webkit-font-smoothing: antialiased;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background: url("../assets/images/login-bg.jpg") no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.login-form {
+    background: rgba(255, 255, 255, 0);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+/* Heading */
+.login-form h1 {
+    color: white;
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+/* Inputs */
+.login-form input {
+    display: block;
+    width: 280px;
+    padding: 14px 16px;
+    margin: 10px auto;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.65);
+    color: black;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.login-form input::placeholder {
+    color: #000000da;
+}
+
+/* Submit Button */
+.login-form button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    font-size: 16px;
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.login-form button:hover {
+    transform: scale(1.1);
+    background-color: #4b4a4a;
+    color: white;
+}
