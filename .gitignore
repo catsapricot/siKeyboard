@@ -1,4 +1,4 @@
 *.class
 /web/WEB-INF/classes/
-/nbproject/private/
 /build/
+/dist/
