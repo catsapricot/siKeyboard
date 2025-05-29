@@ -7,8 +7,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Services.DBConnection;
+import Services.ValidationHelper;
+import java.net.Authenticator;
 
 @WebServlet(name = "LoginController", urlPatterns = { "/login" })
 public class LoginController extends HttpServlet {
@@ -24,19 +27,7 @@ public class LoginController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet LoginController</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet LoginController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the
@@ -52,6 +43,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         processRequest(request, response);
     }
 
@@ -66,7 +58,22 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        HttpSession session = request.getSession();
+
+        if (email == null || email.isEmpty() || password == null || password.isEmpty()) {
+            request.setAttribute("error", "Email dan password tidak boleh kosong!");
+            request.getRequestDispatcher("web/WEB-INF/views/login.jsp").forward(request, response);
+        }
+
+        if (!ValidationHelper.isValidEmail(email)) {
+            request.setAttribute("error", "Email tidak valid!");
+            request.getRequestDispatcher("web/WEB-INF/views/login.jsp").forward(request, response);
+        }
+
+        
     }
 
     /**

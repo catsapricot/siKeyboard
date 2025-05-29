@@ -13,12 +13,11 @@
     <property name="src.dir" value="src/java"/>
     <property name="build.dir" value="build/classes"/>
     <property name="lib.dir" value="web/WEB-INF/lib"/>
-    <property name="lib.dir" value="web/WEB-INF/lib/tomcat"/>
     <property name="tomcat.dir" value="C:\Users\daisa\Desktop\Isaaq Vault\Coding\Semester4\PBO\TugasPendahuluan\Server\xampp\tomcat"/>
 
     <!-- ================ Classpath JAR ================ -->
-    <path id="classpath">
-        <fileset dir="${lib.dir}" includes="**/*.jar"/>
+    <path id="compile.classpath">
+        <fileset dir="web/WEB-INF/lib" includes="**/*.jar"/>
     </path>
 
     <!-- ================ Clean Target ================ -->
@@ -37,7 +36,7 @@
             srcdir="${src.dir}" 
             destdir="${build.dir}" 
             includeantruntime="false" 
-            classpathref="classpath"
+            classpathref="compile.classpath"
         />
     </target>
 

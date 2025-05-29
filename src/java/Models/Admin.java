@@ -1,6 +1,7 @@
 package Models;
 
 import Services.*;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class Admin extends Role {
 
