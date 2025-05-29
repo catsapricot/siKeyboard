@@ -1,3 +1,5 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,11 +9,11 @@
   </head>
   <body>
     <div class="container">
-      <form class="login-form" action="">
+      <form class="login-form" action="login?action=login">
         <h1>Login</h1>
-        <input type="text" placeholder="Username" required />
-        <input type="password" placeholder="Password" required />
-        <button type="submit">Submit</button>
+        <input type="text" id="input-email" name="email"  placeholder="Email" required />
+        <input type="password" id="input-password" name="password"  placeholder="Password" required />
+        <button type="submit">Masuk</button>
       </form>
     </div>
   </body>
