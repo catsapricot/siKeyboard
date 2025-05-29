@@ -1,16 +1,17 @@
-class Pengguna {
-    private String nama;
-    private String email;
-    private String password;
+package Models;
 
-    public Pengguna(String nama, String email, String password) {
+public class Pengguna extends Role {
+    private katalog[] keranjang;
+
+    public Pengguna(String nama, String id, String password) {
+        super(nama, password);
         this.nama = nama;
         this.email = email;
         this.password = password;
     }
 
     public String getNama() {
-        return nama;
+        return this.nama;
     }
 
     public void setNama(String nama) {
