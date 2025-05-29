@@ -46,4 +46,4 @@ Migrasi ke Java with Ant
 
 <br />
 
-<img src="https://github.com/user-attachments/assets/b84ce56e-2311-408b-80b9-60ea03ec942b" width ="300" />
+<img src="https://github.com/user-attachments/assets/f78204c9-b4eb-4117-9078-04999a0d919e" width ="300" />
