@@ -15,42 +15,41 @@ siKeyboard merupakan brand kami yang menjual berbagai mechanical keyboard dan ak
 
 Kami menggunakan web aplikasi sebagai media penjualan kami.
 
-## :dizzy: Cara menjalankan aplikasi
+## :dizzy: Cara Menjalankan Aplikasi
 
 ### Prasyarat
 - XAMPP
 - Apache Ant
 - JDK
 
-### Menjalankan aplikasi
-1. Clone repositori<br />
+### Menjalankan Aplikasi
+1. Clone Repository<br />
    ```
    git clone https://github.com/catsapricot/siKeyboard.git
    ```
 
-2. Masuk ke dalam folder<br />
+2. Masuk ke dalam Folder<br />
    ```
    cd siKeyboard
    ```
 
-3. Build aplikasi<br />
+3. Build Aplikasi<br />
    ```
    ant build
    ```
 
-4. Deploy aplikasi<br />
-   Sebelum mendeploy, set lokasi tujuan pendeployan.
+4. Deploy Aplikasi<br />
 
-   Buka build.xml, ubah None di baris 10 (```<property name="tomcat.dir" value="None/siKeyboard"/>```) menjadi direktori dimana folder webapps tomcat berada (ex: ```C:\xampp\tomcat\webapps```).
+   Buka file build.xml, ubah None di baris 10 (```<property name="tomcat.dir" value="None/siKeyboard"/>```) menjadi direktori dimana folder webapps tomcat berada (ex: ```C:\xampp\tomcat\webapps```).
 
    Lalu lakukan deploy.
    ```
    ant deploy
    ```
 
-5. Start tomcat melalui XAMPP
+5. Start Tomcat melalui XAMPP.
 
-6. Buka browser dan kunjungi ``` http://localhost:8080/siKeyboard ```.
+6. Buka Browser dan Kunjungi ``` http://localhost:8080/siKeyboard ```.
 
 
 <br />
