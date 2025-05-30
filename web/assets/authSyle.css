@@ -1,3 +1,6 @@
+
+/* INI STYLE BUAT LOGIN SAMA REGISTER DOANG */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -50,16 +53,8 @@ body {
 }
 
 .logo {
-    width: 90px;
     height: 44px;
     margin-right: 13px;
-}
-
-.logo-text {
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 25px;
-    color: #000000;
 }
 
 .welcome-section {

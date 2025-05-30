@@ -1,20 +1,14 @@
-class Pengguna {
-    private String nama;
+package Models;
+
+public class Pengguna extends Role {
     private String email;
-    private String password;
 
-    public Pengguna(String nama, String email, String password) {
-        this.nama = nama;
+    public Pengguna(String username, String password, String email) {
+        super(username, password);
         this.email = email;
-        this.password = password;
     }
-
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
+    public Pengguna(String username, String password) {
+        super(username, password);
     }
 
     public String getEmail() {
@@ -24,12 +18,9 @@ class Pengguna {
     public void setEmail(String email) {
         this.email = email;
     }
+    @Override
+    public boolean login() {
+        return true;
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }

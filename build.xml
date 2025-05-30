@@ -25,7 +25,6 @@
         <mkdir dir="${build.dir}"/>
     </target>
 
-
     <!-- Build target -->
     <target name="build" depends="init">
         <javac 
@@ -36,7 +35,6 @@
         />
     </target>
 
-
     <!-- Deploy target -->
     <target name="deploy" depends="build">
         <!-- Salin semua isi web -->
@@ -44,7 +42,6 @@
         <copy todir="${tomcat.dir}">
             <fileset dir="web"/>
         </copy>
-
 
         <!-- Salin hasil compile ke WEB-INF/classes -->
         <mkdir dir="${tomcat.dir}/WEB-INF/classes"/>

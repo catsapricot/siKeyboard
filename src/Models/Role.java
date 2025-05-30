@@ -43,5 +43,5 @@ public abstract class Role {
         return password;
     }
 
-    public abstract void login();
+    public abstract boolean login();
 }

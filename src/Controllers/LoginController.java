@@ -8,81 +8,84 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.sql.*;
 
-import Services.DBConnection;
-import Services.ValidationService;
-import java.net.Authenticator;
+import Services.*;
+import Models.*;
 
-@WebServlet(name = "LoginController", urlPatterns = { "/login" })
+@WebServlet("/login")
 public class LoginController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request  servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the
-    // + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request  servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        processRequest(request, response);
+        String action = request.getParameter("action");
+        if ("logout".equals(action)) {
+            HttpSession session = request.getSession(false);
+            if (session != null) {
+                session.invalidate();
+            }
+            response.sendRedirect("views/login.jsp");
+        }
+        request.getRequestDispatcher("views/login.jsp").forward(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request  servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String email = request.getParameter("email");
+        String username = request.getParameter("username");
         String password = request.getParameter("password");
+        /* 
+        Pengguna user = new Pengguna(username, password);
+
+        if (user.login()) {
+
+        }
+        */
+        
         HttpSession session = request.getSession();
 
-        if (email == null || email.isEmpty() || password == null || password.isEmpty()) {
-            request.setAttribute("error", "Email dan password tidak boleh kosong!");
-            request.getRequestDispatcher("web/views/login.jsp").forward(request, response);
+        if (username == null || username.isEmpty() || password == null || password.isEmpty()) {
+            request.setAttribute("error", "Username dan password tidak boleh kosong!");
+            request.getRequestDispatcher("/views/login.jsp").forward(request, response);
         }
 
-        if (!ValidationService.isValidEmail(email)) {
-            request.setAttribute("error", "Email tidak valid!");
-            request.getRequestDispatcher("web/views/login.jsp").forward(request, response);
-        }
+        DBConnection db = new DBConnection();
+        try {
+            db.connect();
+            String sql = "SELECT * FROM user WHERE username =" + username;
 
+            ResultSet rsUser = db.getData(sql);
+
+            if (rsUser.next()) {
+                String hashedPassword = rsUser.getString("password");
+
+                if (PasswordService.verifyPassword(password, hashedPassword)) {
+                    int userId = rsUser.getInt("user_id");
+                    String name = rsUser.getString("nama");
+
+                    session.setAttribute("user_id", userId);
+                    session.setAttribute("username", username);
+                    session.setAttribute("name", name);
+                    session.setMaxInactiveInterval(60 * 60);// ngeset waktu timeout kalo ga ada aktifitas oleh user
+
+                    response.sendRedirect("../views/dashboard.jsp");
+                    return;
+                } else {
+                    request.setAttribute("error", "Username atau password salah!");
+                }
+            } else {
+                request.setAttribute("error", "Username atau password tidak ada!");
+            }
+            request.getRequestDispatcher("/views/login.jsp").forward(request, response);
+        } catch (SQLException e) {
+            request.setAttribute("error", "Terjadi kesalahan pada SQL!");
+            request.getRequestDispatcher("/views/login.jsp").forward(request, response);
+        } catch (Exception e) {
+            request.setAttribute("error", "Terjadi kesalahan pada Sistem!");
+            request.getRequestDispatcher("/views/login.jsp").forward(request, response);
+        }    
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }
