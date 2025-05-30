@@ -11,9 +11,48 @@ Tugas besar PBO kelompok 3 kelas IF-47-04 yang beranggotakan:
 siKeyboard
 
 ## :dizzy: Deskripsi Proyek
-<p>siKeyboard merupakan brand kami yang menjual berbagai mechanical keyboard dan aksesorisnya (keycaps, switches, case, dsb). Kami berperan sebagai retailer yang menyediakan produk dari berbagai brand.</p>
+siKeyboard merupakan brand kami yang menjual berbagai mechanical keyboard dan aksesorisnya (keycaps, switches, case, dsb). Kami berperan sebagai retailer yang menyediakan produk dari berbagai brand.
 
-<p>Kami menggunakan web aplikasi sebagai media penjualan kami.</p>
+Kami menggunakan web aplikasi sebagai media penjualan kami.
+
+## :dizzy: Cara Menjalankan Aplikasi
+
+### Prasyarat
+- XAMPP
+- Apache Ant
+- JDK
+
+### Menjalankan Aplikasi
+1. Clone Repository<br />
+   ```
+   git clone https://github.com/catsapricot/siKeyboard.git
+   ```
+
+2. Masuk ke dalam Folder<br />
+   ```
+   cd siKeyboard
+   ```
+
+3. Build Aplikasi<br />
+   ```
+   ant build
+   ```
+
+4. Deploy Aplikasi<br />
+
+   Buka file build.xml, ubah None di baris 10 (```<property name="tomcat.dir" value="None/siKeyboard"/>```) menjadi direktori dimana folder webapps tomcat berada (ex: ```C:\xampp\tomcat\webapps```).
+
+   Lalu lakukan deploy.
+   ```
+   ant deploy
+   ```
+
+5. Start Tomcat melalui XAMPP.
+
+6. Buka Browser dan Kunjungi ``` http://localhost:8080/siKeyboard ```.
+
+
+<br />
 
 # Dokumentasi PBO
 
@@ -40,3 +79,10 @@ Struktur folder mengikuti pola arsitektur MVC, dengan servlet sebagai controller
 <br />
 
 <img src="https://github.com/user-attachments/assets/4b8369cc-8b53-48ba-95dd-8ee8c83cbbe4" width ="300"/>
+
+## Perubahan Struktur Folder
+Migrasi ke Java with Ant
+
+<br />
+
+<img src="https://github.com/user-attachments/assets/f78204c9-b4eb-4117-9078-04999a0d919e" width ="300" />

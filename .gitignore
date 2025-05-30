@@ -1,5 +1,9 @@
 *.class
 /web/WEB-INF/classes/
+<<<<<<< HEAD
 /nbproject/private/
 /build/
 /dist/
+=======
+/.vscode/
+>>>>>>> 256fe8f19d4d519a16bab2e238dec687690b8d50

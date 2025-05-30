@@ -1,0 +1,117 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000000;
+  background-color: #faf7f0;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.login-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.registrasi-form {
+  width: 100%;
+  max-width: 422px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.logo {
+  width: 91px;
+  height: 44px;
+  object-fit: cover;
+}
+
+.brand-name {
+  font-weight: 700;
+  font-size: 20px;
+  margin-left: 12px;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #8e8e93;
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #c7c7cc;
+  border-radius: 4px;
+  background-color: #faf7f0;
+  font-size: 1rem;
+}
+
+
+
+.registrasi-button {
+  width: 100%;
+  padding: 1rem;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.register-prompt {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.register-prompt a {
+  color: #000000;
+  text-decoration: underline;
+}
+
+.image-section {
+  flex: 1;
+  background-image: url("../assets/Gambar siKeyboard/Akko Mod005 x Akko ASA/jan-loyde-cabrera-7E1jeiMondg-unsplash.jpg"); /* Pastikan path gambar ini benar */
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .image-section {
+    display: none;
+  }
+}

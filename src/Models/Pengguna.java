@@ -6,7 +6,6 @@ public class Pengguna extends Role {
     public Pengguna(String nama, String id, String password) {
         super(nama, password);
         this.nama = nama;
-        this.email = email;
         this.password = password;
     }
 
@@ -16,10 +15,6 @@ public class Pengguna extends Role {
 
     public void setNama(String nama) {
         this.nama = nama;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     public void setEmail(String email) {
