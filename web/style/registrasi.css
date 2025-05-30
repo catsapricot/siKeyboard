@@ -1,21 +1,22 @@
 body,
-html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  font-family: "Montserrat", sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #000000;
-  background-color: #faf7f0;
-}
+        html {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          font-family: 'Queensides', "Montserrat", sans-serif;
+          font-size: 16px;
+          line-height: 1.5;
+          color: #000000;
+          background-color: #faf7f0;
+          position: relative;
+        }
 
 .container {
   display: flex;
   height: 100vh;
 }
 
-.login-section {
+.registrasi-section {
   flex: 1;
   display: flex;
   justify-content: center;
@@ -29,21 +30,27 @@ html {
 }
 
 .logo-container {
-  display: flex;
-  align-items: center;
+position: absolute;
+top: 20px; /* Jarak dari atas viewport */
+left: 20px; /* Jarak dari kiri viewport */
+display: flex;
+align-items: center;
+z-index: 1000; /* Pastikan logo di atas konten lain */
   margin-bottom: 2rem;
 }
 
 .logo {
-  width: 91px;
-  height: 44px;
-  object-fit: cover;
+    width: 60px;   /* Ukuran lebih kecil, sebelumnya 100px */
+    height: 54px;  /* Ukuran lebih kecil, sebelumnya 90px (menjaga rasio aspek kira-kira) */
+    object-fit: cover;
 }
 
 .brand-name {
-  font-weight: 700;
-  font-size: 20px;
-  margin-left: 12px;
+    font-family: 'Queensides', "Montserrat", sans-serif; /* Menegaskan penggunaan font Queensides */
+    font-weight: 700;
+    font-size: 25px;   /* Ukuran font lebih kecil, sebelumnya 20px */
+    margin-left: 8px; /* Sedikit dikurangi dari 12px, sesuaikan sesuai selera */
+    color: #000000; /* Memastikan warna teks, jika belum diatur spesifik */
 }
 
 h1 {
@@ -76,8 +83,6 @@ input[type="password"] {
   font-size: 1rem;
 }
 
-
-
 .registrasi-button {
   width: 100%;
   padding: 1rem;
@@ -89,12 +94,12 @@ input[type="password"] {
   cursor: pointer;
 }
 
-.register-prompt {
+.registrasi-prompt {
   text-align: center;
   margin-top: 1rem;
 }
 
-.register-prompt a {
+.registrasi-prompt a {
   color: #000000;
   text-decoration: underline;
 }
@@ -115,3 +120,4 @@ input[type="password"] {
     display: none;
   }
 }
+

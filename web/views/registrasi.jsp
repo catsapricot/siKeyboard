@@ -3,15 +3,15 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>siKeyboard Login</title>
+    <title>siKeyboard registrasi</title>
     <link rel="stylesheet" href="../style/registrasi.css" />
     </head>
   <body>
     <div class="container">
-      <main class="login-section">
-        <div class="login-form">
+      <main class="registrasi-section">
+        <div class="registrasi-form">
           <header class="logo-container">
-            <img src="../assets/Gambar siKeyboard/Group 34.png" alt="siKeyboard Logo" class="logo" />
+            <img src="../assets/Gambar siKeyboard/LOGOOO.png" alt="siKeyboard Logo" class="logo" />
             <span class="brand-name">siKeyboard</span>
           </header>
           <h1>Selamat datang</h1>
@@ -31,7 +31,7 @@
             </div>
             <button type="submit" class="registrasi-button">Registrasi</button>
           </form>
-          <p class="register-prompt">sudah punya akun? <a href="login.jsp">Login</a></p>
+          <p class="registrasi-prompt">sudah punya akun? <a href="login.jsp">Login</a></p>
         </div>
       </main>
       <aside class="image-section" role="img" aria-label="Close-up of a keyboard"></aside>

@@ -11,7 +11,7 @@
       <main class="login-section">
         <div class="login-form">
           <header class="logo-container">
-            <img src="../assets/Gambar siKeyboard/Group 34.png" alt="siKeyboard Logo" class="logo" />
+            <img src="../assets/Gambar siKeyboard/LOGOOO.png" alt="siKeyboard Logo" class="logo" />
             <span class="brand-name">siKeyboard</span>
           </header>
           <h1>Selamat datang</h1>
@@ -27,7 +27,7 @@
             </div>
             <button type="submit" class="login-button">Login</button>
           </form>
-          <p class="register-prompt">Tidak punya akun? <a href="registrasi.jsp">Register</a></p>
+          <p class="login-prompt">Tidak punya akun? <a href="registrasi.jsp">Register</a></p>
         </div>
       </main>
       <aside class="image-section" role="img" aria-label="Close-up of a keyboard"></aside>
