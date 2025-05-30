@@ -1,6 +1,6 @@
 package Models;
 
-public abstract class Role {
+public abstract class Role implements loginable {
     private String nama;
     private String id;
     private String username;
@@ -43,5 +43,5 @@ public abstract class Role {
         return password;
     }
 
-    public abstract void login();
+    public abstract boolean login();
 }
