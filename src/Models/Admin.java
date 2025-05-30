@@ -1,7 +1,11 @@
 package Models;
 
+<<<<<<< HEAD:src/java/Models/Admin.java
+import Services.DBConnection;
+=======
 import Services.*;
 import org.mindrot.jbcrypt.BCrypt;
+>>>>>>> 256fe8f19d4d519a16bab2e238dec687690b8d50:src/Models/Admin.java
 
 public class Admin extends Role {
 
