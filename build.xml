@@ -1,52 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- You may freely edit this file. See commented blocks below for -->
-<!-- some examples of how to customize the build. -->
-<!-- (If you delete it and reopen the project it will be recreated.) -->
-<!-- By default, only the Clean and Build commands use this build script. -->
-<!-- Commands such as Run, Debug, and Test only use this build script if -->
-<!-- the Compile on Save feature is turned off for the project. -->
-<!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
-<!-- in the project's Project Properties dialog box.-->
+
 <project name="siKeyboard" default="deploy" basedir=".">
 
-    <!-- =================== Properties =================== -->
-    <property name="src.dir" value="src/java"/>
-    <property name="build.dir" value="build/classes"/>
+    <!-- Property-->
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="web/WEB-INF/classes"/>
     <property name="lib.dir" value="web/WEB-INF/lib"/>
-    <property name="tomcat.dir" value="C:\Users\daisa\Desktop\Isaaq Vault\Coding\Semester4\PBO\TugasPendahuluan\Server\xampp\tomcat"/>
+    <!-- Isi value (None) dengan direktori tomcat webapps -->
+    <property name="tomcat.dir" value="C:\Users\daisa\Desktop\Isaaq Vault\Coding\Semester4\PBO\TugasPendahuluan\Server\xampp\tomcat\webapps\sikeyboard"/>
 
-    <!-- ================ Classpath JAR ================ -->
-    <path id="compile.classpath">
-        <fileset dir="web/WEB-INF/lib" includes="**/*.jar"/>
+    <!-- Classpath jar -->
+    <path id="classpath">
+        <fileset dir="${lib.dir}" includes="**/*.jar"/>
     </path>
 
-    <!-- ================ Clean Target ================ -->
+    <!-- Clean target -->
     <target name="clean">
         <delete dir="${build.dir}"/>
     </target>
 
-    <!-- ================ Init Target ================ -->
+
+    <!-- Init target -->
     <target name="init">
         <mkdir dir="${build.dir}"/>
     </target>
 
-    <!-- ================ Build Target ================ -->
+
+    <!-- Build target -->
     <target name="build" depends="init">
         <javac 
             srcdir="${src.dir}" 
             destdir="${build.dir}" 
             includeantruntime="false" 
-            classpathref="compile.classpath"
+            classpathref="classpath"
         />
     </target>
 
-    <!-- ================ Deploy Target ================ -->
+
+    <!-- Deploy target -->
     <target name="deploy" depends="build">
-        <!-- Salin semua isi web (html, jsp, dll) -->
+        <!-- Salin semua isi web -->
         <mkdir dir="${tomcat.dir}"/>
         <copy todir="${tomcat.dir}">
             <fileset dir="web"/>
         </copy>
+
 
         <!-- Salin hasil compile ke WEB-INF/classes -->
         <mkdir dir="${tomcat.dir}/WEB-INF/classes"/>

@@ -1,20 +1,72 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Login</title>
-    <link rel="stylesheet" href="../assets/style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <form class="login-form" action="login?action=login">
-        <h1>Login</h1>
-        <input type="text" id="input-email" name="email"  placeholder="Email" required />
-        <input type="password" id="input-password" name="password"  placeholder="Password" required />
-        <button type="submit">Masuk</button>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>siKeyboard - Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/authSyle.css" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="left-section">
+      <!-- Logo Section -->
+      <div class="logo-section">
+        <img src="../assets/images/img_logo.png" alt="siKeyboard Logo" class="logo" />
+        <span class="logo-text">siKeyboard</span>
+      </div>
+
+      <!-- Welcome Section -->
+      <div class="welcome-section">
+        <h1 class="welcome-title">Selamat datang</h1>
+        <p class="welcome-subtitle">Masukkan detail anda</p>
+      </div>
+
+      <!-- Login Form -->
+      <form class="form-section" id="loginForm" action="login?action=login">
+        <div class="input-group">
+          <label for="username" class="input-label">Username</label>
+          <input type="text" id="username" name="username" class="input-field" required />
+          <div class="error-message" id="usernameError">
+            Username is required
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="password" class="input-label">Password</label>
+          <input type="password" id="password" name="password" class="input-field" required />
+          <div class="error-message" id="passwordError">
+            Password is required
+          </div>
+        </div>
+
+        <button type="submit" class="login-button" id="loginButton">
+          Login
+        </button>
+
+        <div class="success-message" id="successMessage">
+          Login successful! Redirecting...
+        </div>
       </form>
+
+      <!-- Register Section -->
+      <div class="register-section">
+        <p class="register-text">
+          <span class="no-account">Tidak punya akun?</span>
+          <span class="register-link" id="registerLink"> Register</span>
+        </p>
+      </div>
     </div>
-  </body>
+
+    <div class="right-section">
+      <img src="../assets/images/img_janloydecabrera7e1jeimondgunsplash_1.png" alt="Keyboard Close-up"
+        class="keyboard-image" />
+    </div>
+  </div>
+</body>
+
 </html>

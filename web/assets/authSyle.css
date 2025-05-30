@@ -1,0 +1,285 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    background-color: #faf7f0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+.left-section {
+    width: 640px;
+    background-color: #faf7f0;
+    padding: 24px 129px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+}
+
+.right-section {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.keyboard-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 155px;
+}
+
+.logo {
+    width: 90px;
+    height: 44px;
+    margin-right: 13px;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 25px;
+    color: #000000;
+}
+
+.welcome-section {
+    margin-bottom: 52px;
+}
+
+.welcome-title {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 40px;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.welcome-subtitle {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #8e8e93;
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group {
+    margin-bottom: 26px;
+}
+
+.input-label {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #000000;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.input-field {
+    width: 418px;
+    height: 58px;
+    background-color: #faf7f0;
+    border: 1px solid #c7c7cc;
+    border-radius: 4px;
+    padding: 19px 16px;
+    font-size: 16px;
+    font-family: "Montserrat", sans-serif;
+    color: #000000;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #000000;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.input-field:hover {
+    border-color: #8e8e93;
+}
+
+.forgot-password {
+    text-align: right;
+    margin-bottom: 50px;
+    margin-top: 30px;
+}
+
+.forgot-password a {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #000000;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.forgot-password a:hover {
+    color: #8e8e93;
+}
+
+.login-button {
+    width: 418px;
+    height: 58px;
+    background-color: #000000;
+    border: none;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    font-family: "Montserrat", sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-bottom: 30px;
+}
+
+.login-button:hover {
+    background-color: #333333;
+    transform: translateY(-1px);
+}
+
+.login-button:active {
+    transform: translateY(0);
+}
+
+.login-button:disabled {
+    background-color: #8e8e93;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.register-section {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.register-text {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.register-text .no-account {
+    color: #8e8e93;
+}
+
+.register-text .register-link {
+    color: #000000;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.register-text .register-link:hover {
+    color: #8e8e93;
+}
+
+.error-message {
+    color: #ff3b30;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none;
+}
+
+.success-message {
+    color: #34c759;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none;
+}
+
+.loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.loading::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.3),
+            transparent);
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left-section {
+        width: 100%;
+        padding: 20px;
+        height: auto;
+    }
+
+    .right-section {
+        height: 300px;
+    }
+
+    .input-field,
+    .login-button {
+        width: 100%;
+    }
+
+    .logo-section {
+        margin-bottom: 40px;
+    }
+
+    .welcome-section {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .left-section {
+        padding: 15px;
+    }
+
+    .welcome-title {
+        font-size: 28px;
+    }
+
+    .right-section {
+        height: 200px;
+    }
+}
