@@ -11,9 +11,49 @@ Tugas besar PBO kelompok 3 kelas IF-47-04 yang beranggotakan:
 siKeyboard
 
 ## :dizzy: Deskripsi Proyek
-<p>siKeyboard merupakan brand kami yang menjual berbagai mechanical keyboard dan aksesorisnya (keycaps, switches, case, dsb). Kami berperan sebagai retailer yang menyediakan produk dari berbagai brand.</p>
+siKeyboard merupakan brand kami yang menjual berbagai mechanical keyboard dan aksesorisnya (keycaps, switches, case, dsb). Kami berperan sebagai retailer yang menyediakan produk dari berbagai brand.
 
-<p>Kami menggunakan web aplikasi sebagai media penjualan kami.</p>
+Kami menggunakan web aplikasi sebagai media penjualan kami.
+
+## :dizzy: Cara menjalankan aplikasi
+
+### Prasyarat
+- XAMPP
+- Apache Ant
+- JDK
+
+### Menjalankan aplikasi
+1. Clone repositori<br />
+   ```
+   git clone https://github.com/catsapricot/siKeyboard.git
+   ```
+
+2. Masuk ke dalam folder<br />
+   ```
+   cd siKeyboard
+   ```
+
+3. Build aplikasi<br />
+   ```
+   ant build
+   ```
+
+4. Deploy aplikasi<br />
+   Sebelum mendeploy, set lokasi tujuan pendeployan.
+
+   Buka build.xml, ubah None di baris 10 (```<property name="tomcat.dir" value="None/siKeyboard"/>```) menjadi direktori dimana folder webapps tomcat berada (ex: ```C:\xampp\tomcat\webapps```).
+
+   Lalu lakukan deploy.
+   ```
+   ant deploy
+   ```
+
+5. Start tomcat melalui XAMPP
+
+6. Buka browser dan kunjungi ``` http://localhost:8080/siKeyboard ```.
+
+
+<br />
 
 # Dokumentasi PBO
 
