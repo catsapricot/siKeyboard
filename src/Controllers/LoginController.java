@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import java.sql.*;
 import java.util.Optional;
 
-import Services.*;
 import DAO.RoleDAO;
 import Models.*;
 
@@ -53,15 +52,14 @@ public class LoginController extends HttpServlet {
                 Role userRole = roleOpt.get();
                 String hashedPassword = userRole.getPassword();
 
-                if (PasswordService.verifyPassword(password, hashedPassword)) {
+                if (userRole.login(password, hashedPassword)) {
                     session.setAttribute("user", userRole);
                     session.setAttribute("user_id", userRole.getId());
                     session.setAttribute("username", userRole.getUsername());
                     session.setAttribute("name", userRole.getNama());
                     session.setMaxInactiveInterval(60 * 60);// ngeset waktu timeout kalo ga ada aktifitas oleh user
 
-                    response.sendRedirect(request.getContextPath() + "/views/dashboard.jsp"); // masi ga tau bener apa
-                                                                                              // nggak
+                    response.sendRedirect(request.getContextPath() + "/views/dashboard.jsp"); // masi ga tau bener ap                                                       // nggak
                     return;
                 } else {
                     request.setAttribute("error", "Username atau password salah!");

@@ -22,8 +22,8 @@ public class Admin extends Role {
     }
 
     @Override
-    public boolean login(String username, String Password) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public boolean login(String passwordInp, String hashedPassword) {
+        return true;
     }
 
 }

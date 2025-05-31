@@ -1,5 +1,6 @@
 package Models;
 
+import Services.PasswordService;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +24,10 @@ public class Pengguna extends Role {
     }
 
     @Override
-    public boolean login(String username, String password) {
+    public boolean login(String passwordInp, String hashedPassword) {
         boolean isValid = false;
 
-        if (username.equals(getUsername()) && password.equals(getPassword())) {
+        if (PasswordService.verifyPassword(passwordInp, hashedPassword)) {
             isValid = true;
         }
         return isValid;
