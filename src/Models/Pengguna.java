@@ -1,31 +1,35 @@
 package Models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Pengguna extends Role {
-    private katalog[] keranjang;
+    private List<Katalog> keranjang;
 
-    public Pengguna(String nama, String id, String password) {
-        super(nama, password);
-        this.nama = nama;
-        this.password = password;
+    public Pengguna(int id, String nama, String username, String password) {
+        super(id, nama, username, password);
     }
 
-    public String getNama() {
-        return this.nama;
+    public Pengguna(int id, String username, String password) {
+        super(username, password);
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public Pengguna() {
+        this.keranjang = new ArrayList<>();
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public List<Katalog> getKeranjang() {
+        return this.keranjang;
     }
 
-    public String getPassword() {
-        return password;
+    @Override
+    public boolean login(String username, String password) {
+        boolean isValid = false;
+
+        if (username.equals(getUsername()) && password.equals(getPassword())) {
+            isValid = true;
+        }
+        return isValid;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

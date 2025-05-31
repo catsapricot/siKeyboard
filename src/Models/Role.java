@@ -1,21 +1,34 @@
 package Models;
 
-public abstract class Role implements loginable {
+public abstract class Role {
     private String nama;
-    private String id;
+    private int id;
     private String username;
     private String password;
+
+    public Role(int id, String nama, String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public Role(int id, String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public Role(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
+    public Role() {
+    }
+
     public void setNama(String nama) {
         this.nama = nama;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -28,24 +41,21 @@ public abstract class Role implements loginable {
     }
 
     public String getNama() {
-        return nama;
+        return this.nama;
     }
 
-    public String getId() {
-        return id;
+    public int getId() {
+        return this.id;
     }
 
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
-<<<<<<< HEAD:src/java/Models/Role.java
-    public abstract boolean login();
-=======
-    public abstract void login();
->>>>>>> 256fe8f19d4d519a16bab2e238dec687690b8d50:src/Models/Role.java
+    public abstract boolean login(String username, String Password);
+
 }
