@@ -3,7 +3,7 @@ package Models;
 public class Pengguna extends Role {
     private katalog[] keranjang;
 
-    public Pengguna(String nama, String id, String password) {
+    public Pengguna(int i, String nama, String id, String password) {
         super(nama, password);
         this.nama = nama;
         this.password = password;

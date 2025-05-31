@@ -42,10 +42,6 @@ public abstract class Role implements loginable {
     public String getPassword() {
         return password;
     }
-
-<<<<<<< HEAD:src/java/Models/Role.java
-    public abstract boolean login();
-=======
     public abstract void login();
->>>>>>> 256fe8f19d4d519a16bab2e238dec687690b8d50:src/Models/Role.java
+
 }
