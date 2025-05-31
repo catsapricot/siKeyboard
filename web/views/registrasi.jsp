@@ -10,7 +10,7 @@
   <title>siKeyboard - Login</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.cdnfonts.com/css/queensides" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/authSyle.css" />
+  <link rel="stylesheet" href="../assets/style/authSyle.css" />
 </head>
 
 <body>
@@ -18,7 +18,7 @@
     <div class="left-section">
       <!-- Logo Section -->
       <div class="logo-section">
-        <img src="../assets/images/img-logo-sikeyboard.png" alt="siKeyboard Logo" class="logo" />
+        <img src="../assets/images/img-logo-dark.png" alt="siKeyboard Logo" class="logo" />
       </div>
 
       <!-- Welcome Section -->
@@ -27,7 +27,7 @@
         <p class="welcome-subtitle">Masukkan detail anda</p>
       </div>
 
-      <!-- Login Form -->
+      <!-- Register Form -->
       <form method="POST" class="form-section" id="loginForm" action="<%= request.getContextPath() %>/login">
       <div class="input-group">
           <label for="name" class="input-label">Name</label>
@@ -48,14 +48,14 @@
             <%=error%>
         </div>
         <button type="submit" class="login-button" id="loginButton">
-          Login
+          Registrasi
         </button>
 
       <!-- Register Section -->
       <div class="register-section">
         <p class="register-text">
-          <span class="no-account">Tidak punya akun?</span>
-          <a href="../views/register.jsp" class="register-link"> Register</a>
+          <span class="no-account">Sudah punya akun?</span>
+          <a href="../views/login.jsp" class="auth-link"> Login</a>
         </p>
       </div>
     </div>

@@ -9,12 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.sql.*;
+import java.util.Optional;
 
 import Services.*;
+import DAO.RoleDAO;
 import Models.*;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
+    private RoleDAO roleDao = new RoleDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -37,14 +40,6 @@ public class LoginController extends HttpServlet {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        /* 
-        Pengguna user = new Pengguna(username, password);
-
-        if (user.login()) {
-
-        }
-        */
-        
         HttpSession session = request.getSession();
 
         if (username == null || username.isEmpty() || password == null || password.isEmpty()) {
@@ -52,40 +47,31 @@ public class LoginController extends HttpServlet {
             request.getRequestDispatcher("/views/login.jsp").forward(request, response);
         }
 
-        DBConnection db = new DBConnection();
         try {
-            db.connect();
-            String sql = "SELECT * FROM user WHERE username =" + username;
-
-            ResultSet rsUser = db.getData(sql);
-
-            if (rsUser.next()) {
-                String hashedPassword = rsUser.getString("password");
+            Optional<Role> roleOpt = roleDao.findByUsername(username);
+            if (!roleOpt.isEmpty()) {
+                Role userRole = roleOpt.get();
+                String hashedPassword = userRole.getPassword();
 
                 if (PasswordService.verifyPassword(password, hashedPassword)) {
-                    int userId = rsUser.getInt("user_id");
-                    String name = rsUser.getString("nama");
-
-                    session.setAttribute("user_id", userId);
-                    session.setAttribute("username", username);
-                    session.setAttribute("name", name);
+                    session.setAttribute("user", userRole);
+                    session.setAttribute("user_id", userRole.getId());
+                    session.setAttribute("username", userRole.getUsername());
+                    session.setAttribute("name", userRole.getNama());
                     session.setMaxInactiveInterval(60 * 60);// ngeset waktu timeout kalo ga ada aktifitas oleh user
 
-                    response.sendRedirect("../views/dashboard.jsp");
+                    response.sendRedirect(request.getContextPath() + "/views/dashboard.jsp"); // masi ga tau bener apa
+                                                                                              // nggak
                     return;
                 } else {
                     request.setAttribute("error", "Username atau password salah!");
                 }
             } else {
-                request.setAttribute("error", "Username atau password tidak ada!");
+                request.getRequestDispatcher("/views/login.jsp").forward(request, response);
             }
-            request.getRequestDispatcher("/views/login.jsp").forward(request, response);
-        } catch (SQLException e) {
-            request.setAttribute("error", "Terjadi kesalahan pada SQL!");
-            request.getRequestDispatcher("/views/login.jsp").forward(request, response);
         } catch (Exception e) {
             request.setAttribute("error", "Terjadi kesalahan pada Sistem!");
-            request.getRequestDispatcher("/views/login.jsp").forward(request, response);
-        }    
+        }
+        request.getRequestDispatcher("/views/login.jsp").forward(request, response);
     }
 }

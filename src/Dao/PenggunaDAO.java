@@ -1,4 +1,5 @@
-package Dao;
+package DAO;
+
 import Models.Pengguna;
 import Services.DBConnection;
 
@@ -8,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class PenggunaDAO {
+    
     public Pengguna login(String username, String password){
         String sql = "SELECT id, name, username FROM users WHERE username = ? AND password = ?";
         Pengguna user = null;

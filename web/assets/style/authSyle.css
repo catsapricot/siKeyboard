@@ -8,7 +8,7 @@
 }
 
 body {
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Queensides', "Montserrat", sans-serif;
     background-color: #faf7f0;
     height: 100vh;
     overflow: hidden;
@@ -167,41 +167,34 @@ body {
     transform: none;
 }
 
-.register-section {
+.auth-section {
     text-align: center;
     margin-top: 30px;
 }
 
-.register-text {
+.auth-text {
     font-size: 16px;
     font-weight: 500;
     line-height: 20px;
 }
 
-.register-text .no-account {
+.auth-text .no-account {
     color: #8e8e93;
 }
 
-.register-text .register-link {
+.auth-text .auth-link {
     color: #000000;
     text-decoration: underline;
     cursor: pointer;
     transition: color 0.3s ease;
 }
 
-.register-text .register-link:hover {
+.auth-text .auth-link:hover {
     color: #8e8e93;
 }
 
 .error-message {
     color: #ff3b30;
-    font-size: 14px;
-    margin-top: 5px;
-    display: none;
-}
-
-.success-message {
-    color: #34c759;
     font-size: 14px;
     margin-top: 5px;
     display: none;
