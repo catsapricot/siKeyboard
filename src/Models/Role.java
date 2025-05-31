@@ -41,19 +41,19 @@ public abstract class Role {
     }
 
     public String getNama() {
-        return nama;
+        return this.nama;
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public abstract boolean login(String username, String Password);
