@@ -1,5 +1,5 @@
 package Models;
-
+/* 
 public class Keyboard extends Katalog {
     private String layout;
     private String switchType;
@@ -17,3 +17,4 @@ public class Keyboard extends Katalog {
     }
 
 }
+*/

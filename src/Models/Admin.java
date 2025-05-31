@@ -1,16 +1,14 @@
 package Models;
 
-
-import Services.DBConnection;
-
-import org.mindrot.jbcrypt.BCrypt;
-
-
 public class Admin extends Role {
 
     private String security;
 
-    public Admin(int username, String password, String security) {
+    public Admin(int id, String username, String password) {
+        super(id, username, password);
+    }
+
+    public Admin(String username, String password, String security) {
         super(username, password);
         this.security = security;
     }
@@ -24,17 +22,8 @@ public class Admin extends Role {
     }
 
     @Override
-    public void login() {
-        DBConnection db = new DBConnection();
-        db.connect();
-        try {
-            // Admin gk perlu dihashing
-            // String query = "SELECT password FROM role WHERE username = admin";
-            // ResultSet rs = db.getData(query);
-
-        } catch (Exception e) {
-            System.err.println(db.getMessage());
-        }
-
+    public boolean login(String passwordInp, String hashedPassword) {
+        return true;
     }
+
 }

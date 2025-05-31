@@ -7,14 +7,12 @@
     <property name="build.dir" value="web/WEB-INF/classes"/>
     <property name="lib.dir" value="web/WEB-INF/lib"/>
     <!-- Isi value (None) dengan direktori tomcat webapps -->
-    <property name="tomcat.dir" value="None/siKeyboard"/>
-
+    <property name="tomcat.dir" value="C:\Users\daisa\Desktop\Isaaq Vault\Coding\Semester4\PBO\TugasPendahuluan\Server\xampp\tomcat\webapps\sikeyboard"/>
 
     <!-- Classpath jar -->
     <path id="classpath">
         <fileset dir="${lib.dir}" includes="**/*.jar"/>
     </path>
-
 
     <!-- Clean target -->
     <target name="clean">
@@ -27,7 +25,6 @@
         <mkdir dir="${build.dir}"/>
     </target>
 
-
     <!-- Build target -->
     <target name="build" depends="init">
         <javac 
@@ -38,7 +35,6 @@
         />
     </target>
 
-
     <!-- Deploy target -->
     <target name="deploy" depends="build">
         <!-- Salin semua isi web -->
@@ -46,7 +42,6 @@
         <copy todir="${tomcat.dir}">
             <fileset dir="web"/>
         </copy>
-
 
         <!-- Salin hasil compile ke WEB-INF/classes -->
         <mkdir dir="${tomcat.dir}/WEB-INF/classes"/>

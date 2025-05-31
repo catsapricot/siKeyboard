@@ -4,9 +4,12 @@ import Models.*;
 import Services.DBConnection;
 import java.sql.*;
 import java.util.Optional;
+<<<<<<< HEAD
 import java.sql.resultset;
 import Models.Admin;
 import Models.Pengguna;
+=======
+>>>>>>> 46e8c0cfe58d9ea5d74e433b26a0cf481d2bc564
 
 public class RoleDAO {
     
@@ -40,4 +43,8 @@ public class RoleDAO {
         return Optional.empty();
     }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 46e8c0cfe58d9ea5d74e433b26a0cf481d2bc564
