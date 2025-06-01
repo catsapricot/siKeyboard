@@ -56,7 +56,7 @@
             <div class="auth-section">
                 <p class="auth-text">
                     <span class="no-account">Tidak punya akun?</span>
-                    <a href="../views/registrasi.jsp" class="register-link"> Register</a>
+                    <a href="<%= request.getContextPath() %>/views/registrasi.jsp" class="register-link"> Register</a>
                 </p>
             </div>
         </div> 
