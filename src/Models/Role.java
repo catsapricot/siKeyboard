@@ -12,6 +12,13 @@ public abstract class Role {
     }
 
     public Role(int id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
+
+    public Role(String nama, String username, String password) {
+        this.nama = nama;
         this.username = username;
         this.password = password;
     }
@@ -59,7 +66,11 @@ public abstract class Role {
     public abstract void login();
 =======
 
+<<<<<<< HEAD
     public abstract boolean login(String username, String Password);
 >>>>>>> 46e8c0cfe58d9ea5d74e433b26a0cf481d2bc564
+=======
+    public abstract boolean login(String username, String Password, String securityKey);
+>>>>>>> 762ba234eee86ad9b5baec1a41babacf81010e3c
 
 }

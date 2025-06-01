@@ -14,10 +14,10 @@
 </head>
 
 <body>
-    <div class="container">
+      <div class="container">
         <div class="left-section">
             <div class="logo-section">
-                <img src="../assets/images/img-logo-dark.png" alt="siKeyboard Logo" class="logo" />
+                <img src="../assets/images/img-logo-sikeyboard-dark.png" alt="siKeyboard Logo" class="logo" />
             </div>
 
             <div class="welcome-section">
@@ -25,9 +25,9 @@
                 <p class="welcome-subtitle">Masukkan detail anda</p>
             </div>
 
-            <form method="POST" class="form-section" id="registrasiform" action="<%= request.getContextPath()%>/register">
+            <form method="POST" class="form-section" id="loginForm" action="<%= request.getContextPath()%>/auth">
                 <div class="input-group">
-                    <label for="name" class="input-label">Name</label>
+                    <label for="name" class="input-label">Nama</label>
                     <input type="text" id="name" name="name" class="input-field" required />
                 </div>
                 <div class="input-group">
@@ -41,27 +41,47 @@
                 <div class="error-message">
                     <%
                         String error = request.getParameter("error");
-                        // Tampilkan error jika ada, jika tidak tampilkan string kosong
-                        if (error != null) {
-                            out.print(error);
+                        String status = request.getParameter("status");
+                        if ("1".equals(error)) {
+                    %>
+                    Data tidak boleh kosong!
+                    <%
+                        } else if ("2".equals(error)) {
+                    %>
+                    Password minimal 8 karakter!
+                    <%
+                        } else if ("3".equals(error)) {
+                    %>
+                        Username sudah digunakan!
+                    <%
+                        } else if ("4".equals(error)) {
+                    %>
+                        Terjadi kesalah pada sistem
+                    <%
+                        }
+                        if ("sukses".equals(status)) {
+                    %>
+                        Registrasi berhasil silahkan Login
+                    <%
                         }
                     %>
                 </div>
                 <button type="submit" class="login-button" id="loginButton">
-                    Registrasi
+                    Register
                 </button>
-            </form> <div class="register-section">
-                <p class="register-text">
+            </form>
+
+            <div class="auth-section">
+                <p class="auth-text">
                     <span class="no-account">Sudah punya akun?</span>
-                    <a href="<%= request.getContextPath()%> /views/login.jsp" class="auth-link"> Login</a>
+                    <a href="../views/login.jsp" class="register-link"> Login</a>
                 </p>
             </div>
-        </div>
-
+        </div> 
         <div class="right-section">
             <img src="../assets/images/img_janloydecabrera7e1jeimondgunsplash_1.png" alt="Keyboard Close-up" class="keyboard-image" />
         </div>
-    </div>
-</body>
+      </div>
+    </body>
 
 </html>

@@ -4,21 +4,20 @@ import Models.*;
 import Services.DBConnection;
 import java.sql.*;
 import java.util.Optional;
-<<<<<<< HEAD
 import java.sql.resultset;
 import Models.Admin;
 import Models.Pengguna;
-=======
->>>>>>> 46e8c0cfe58d9ea5d74e433b26a0cf481d2bc564
 
 public class RoleDAO {
-    
+
     public Optional<Role> findByUsername(String username) {
         DBConnection db = new DBConnection();
         try {
-            String sql = "SELECT * FROM users WHERE username =" + username;
-
-            ResultSet rs = db.getData(sql);
+            db.connect();
+            Connection con = db.getConnection();
+            PreparedStatement stmt = con.prepareStatement("SELECT * FROM users WHERE username = ?");
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
                 int isAdmin = rs.getInt("is_admin");
@@ -27,6 +26,8 @@ public class RoleDAO {
                             rs.getInt("id_user"),
                             rs.getString("username"),
                             rs.getString("password"));
+
+                    admin.setSecurity(rs.getString("security_key"));
                     return Optional.of(admin);
                 } else if (isAdmin == 0) {
                     Pengguna user = new Pengguna(
@@ -43,8 +44,22 @@ public class RoleDAO {
         return Optional.empty();
     }
 
-<<<<<<< HEAD
+    public void simpanNewUser(Pengguna user) throws SQLException {
+        String nama = user.getNama();
+        String username = user.getUsername();
+        String password = user.getPassword();
+        DBConnection db = new DBConnection();
+        try {
+            String sql = "INSERT INTO users (nama, username, password, is_admin) VALUES ("
+                    + nama + ", "
+                    + username + ", "
+                    + password + ", "
+                    + 0
+                    + ")";
+            db.runQuery(sql);
+        } catch (Exception e) {
+            System.err.println("Terjadi kesalahan saat menambahkan user!");
+        }
+    }
 }
-=======
-}
->>>>>>> 46e8c0cfe58d9ea5d74e433b26a0cf481d2bc564
+
