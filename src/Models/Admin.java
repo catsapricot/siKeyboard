@@ -1,5 +1,8 @@
 package Models;
 
+// import Services.PasswordService; // Import ini jika Anda akan menggunakan PasswordService di sini
+// (di kode Anda sebelumnya tidak ada, jadi saya hapus untuk sementara)
+
 public class Admin extends Role {
 
     private String security;
@@ -13,6 +16,11 @@ public class Admin extends Role {
         this.security = security;
     }
 
+    // Konstruktor default juga baik untuk ditambahkan jika sering dibuat tanpa parameter
+    public Admin() {
+        super(); // Panggil konstruktor default Role
+    }
+
     public void setSecurity(String security) {
         this.security = security;
     }
@@ -21,13 +29,24 @@ public class Admin extends Role {
         return this.security;
     }
 
-    @Override
+    @Override // Implementasi untuk login(String, String, String)
     public boolean login(String passwordInp, String hashedPassword, String securityKey) {
         boolean isValid = false;
+        // Perhatian: passwordInp.equals(hashedPassword) ini biasanya tidak aman untuk password
+        // Seharusnya Anda menggunakan PasswordService.verifyPassword di sini juga
         if (passwordInp.equals(hashedPassword) && securityKey.equals(this.security)) {
             isValid = true;
         }
         return isValid;
     }
 
+    @Override // WAJIB: Implementasi untuk login(String, String)
+    public boolean login(String username, String password) {
+        // Logika login untuk Admin tanpa securityKey.
+        // Anda perlu menggunakan username dan password untuk otentikasi.
+        // Contoh:
+        // return username.equals("admin") && PasswordService.verifyPassword(password, "hashed_password_from_db");
+        System.out.println("Admin " + username + " mencoba login dengan 2 parameter.");
+        return false; // Ganti ini dengan logika sebenarnya
+    }
 }

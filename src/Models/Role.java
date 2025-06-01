@@ -9,6 +9,8 @@ public abstract class Role {
     public Role(int id, String nama, String username, String password) {
         this.username = username;
         this.password = password;
+        this.id = id; // Pastikan id juga diinisialisasi
+        this.nama = nama; // Pastikan nama juga diinisialisasi
     }
 
     public Role(int id, String username, String password) {
@@ -62,7 +64,10 @@ public abstract class Role {
     public String getPassword() {
         return this.password;
     }
-    public abstract boolean login(String username, String Password);
 
-    public abstract boolean login(String username, String Password, String securityKey);
+    // Metode abstract 1 (2 parameter) - ini yang menyebabkan error di Pengguna dan Admin
+    public abstract boolean login(String username, String password);
+
+    // Metode abstract 2 (3 parameter)
+    public abstract boolean login(String username, String password, String securityKey);
 }
