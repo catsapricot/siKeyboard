@@ -62,11 +62,7 @@ public abstract class Role {
     public String getPassword() {
         return this.password;
     }
-
-
     public abstract boolean login(String username, String Password);
 
     public abstract boolean login(String username, String Password, String securityKey);
-
-
 }
