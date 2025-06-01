@@ -22,8 +22,12 @@ public class Admin extends Role {
     }
 
     @Override
-    public boolean login(String passwordInp, String hashedPassword) {
-        return true;
+    public boolean login(String passwordInp, String hashedPassword, String securityKey) {
+        boolean isValid = false;
+        if (passwordInp.equals(hashedPassword) && securityKey.equals(this.security)) {
+            isValid = true;
+        }
+        return isValid;
     }
 
 }
