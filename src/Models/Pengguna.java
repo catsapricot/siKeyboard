@@ -1,5 +1,6 @@
 package Models;
 
+import Services.PasswordService;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +11,9 @@ public class Pengguna extends Role {
         super(id, nama, username, password);
     }
 
-    public Pengguna(int id, String username, String password) {
-        super(username, password);
+    public Pengguna(String nama, String username, String password) {
+        super(nama, username, password);
+        this.keranjang = new ArrayList<>();
     }
 
     public Pengguna() {
@@ -23,10 +25,11 @@ public class Pengguna extends Role {
     }
 
     @Override
-    public boolean login(String username, String password) {
+    public boolean login(String passwordInp, String hashedPassword, String securityKey) {
         boolean isValid = false;
+        
 
-        if (username.equals(getUsername()) && password.equals(getPassword())) {
+        if (PasswordService.verifyPassword(passwordInp, hashedPassword)) {
             isValid = true;
         }
         return isValid;

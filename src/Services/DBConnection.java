@@ -49,9 +49,7 @@ public class DBConnection {
     }
 
     public void runQuery(String query) {
-        if (!isConnected) {
-            connect();
-        }
+        connect();
         if (isConnected) {
             try {
                 int result = stmt.executeUpdate(query);
@@ -71,9 +69,7 @@ public class DBConnection {
 
     public ResultSet getData(String query) {
         ResultSet rs = null;
-        if (!isConnected) {
-            connect();
-        }
+        connect();
         if (isConnected) {
             try {
                 rs = stmt.executeQuery(query);
