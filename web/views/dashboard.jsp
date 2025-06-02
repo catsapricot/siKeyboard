@@ -2,223 +2,97 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Keyboard Shop</title>
-    <style>
-        /* Inject original CSS here */
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: "Inter", sans-serif;
-            -webkit-font-smoothing: antialiased;
-            box-sizing: border-box;
-            background-color: #faf7f0;
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        header {
-            background-color: #000000;
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-        }
-
-        .logo img {
-            width: 136px;
-            height: 48px;
-        }
-
-        .search-bar {
-            display: flex;
-            align-items: center;
-            background-color: #ebebeb;
-            border-radius: 38px;
-            padding: 0.5rem 1rem;
-        }
-
-        .search-bar input {
-            border: none;
-            background: transparent;
-            margin-right: 1rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 1.25rem;
-        }
-
-        .auth-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .auth-buttons button {
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-        }
-
-        .sign-up {
-            background-color: #d9d9d9;
-            color: #000000;
-        }
-
-        .sign-in {
-            background-color: #878787;
-            color: #ffffff;
-        }
-
-        .hero {
-            display: flex;
-            height: 100vh;
-            align-items: center;
-        }
-
-        .hero-content {
-            flex: 1;
-            padding: 2rem;
-        }
-
-        .hero-image {
-            flex: 1;
-            background: linear-gradient(180deg,
-                    rgba(217, 217, 217, 0.75) 0%,
-                    rgba(166, 166, 166, 0.5) 50%,
-                    rgba(217, 217, 217, 0.75) 100%);
-            height: 100%;
-        }
-
-        h1 {
-            font-family: "Queensides", sans-serif;
-            font-size: 6rem;
-            line-height: 1.2;
-            margin-bottom: 2rem;
-        }
-
-        .hero p {
-            font-size: 0.75rem;
-            color: rgba(60, 60, 67, 0.6);
-            max-width: 452px;
-        }
-
-        .layout-section {
-            padding: 4rem 0;
-            text-align: center;
-        }
-
-        .layout-section h2 {
-            font-family: "Queensides", sans-serif;
-            font-size: 4rem;
-            margin-bottom: 2rem;
-        }
-
-        .layout-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            padding: 0 2rem;
-        }
-
-        .layout-card {
-            background-color: #ffffff;
-            border-radius: 5px;
-            box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
-            padding: 1rem;
-            text-align: center;
-        }
-
-        .layout-card img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        footer {
-            background-color: #000000;
-            color: #ffffff;
-            text-align: center;
-            padding: 2rem 0;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>siKeyboard - Keranjang</title>
+    <%-- Menghubungkan ke file CSS. Pastikan path-nya benar sesuai struktur proyek Anda. --%>
+    <link rel="stylesheet" href="../assets/style/keranjangStyle.css">
+    <link rel="stylesheet" href="../assets/style/dashboardStyle.css">
+    <%-- Menghubungkan ke FontAwesome untuk ikon --%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.cdnfonts.com/css/queensides" rel="stylesheet">
 </head>
 
 <body>
-    <header>
-        <nav class="container">
-            <div class="logo">
-                <img src="img/ujung-kiri.png" alt="Logo" />
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="header-logo">
+                <img src="../assets/images/img-logo-sikeyboard-light.png" alt="siKeyboard Logo">
+            </a>
+            <form class="search-bar" action="<%= request.getContextPath() %>/cart" method="POST">
+                <input type="hidden" name="action" value="search"/>
+                <input type="text" name="query" placeholder="Search" aria-label="Search"/>
+                <button type="submit" aria-label="Submit search">
+                    <img src="../assets/images/img-icon-search.png" alt="Search" width="28" height="28" />
+                </button>
+            </form>
+
+            <nav class="navigation">
+                <ul class="nav-list">
+                    <li><a href="dashboard.jsp">Home</a></li>
+                    <li class="nav-shop">
+                        <a href="#" id="shop-link">Shop <i class="fa-solid fa-caret-down"></i></a>
+                        <div class="dropdown-menu" id="shop-dropdown">
+                            <a href="keyboard.jsp">Keyboard</a>
+                            <a href="accessories.jsp">Accessories</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="header-icons">
+                <a href="profile.jsp"><i class="fa-regular fa-user"></i></a>
+                <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
             </div>
-            <div class="search-bar">
-                <input type="text" placeholder="Search" />
-                <img src="img/ic-outline-search.svg" alt="Search" />
-            </div>
-            <div class="nav-links">
-                <a href="#">Home</a>
-                <a href="#">Shop</a>
-            </div>
-            <div class="auth-buttons">
-                <button class="sign-up">Sign Up</button>
-                <button class="sign-in">Sign In</button>
-            </div>
-        </nav>
+        </div>
     </header>
-    <main>
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Rancang<br />Rakit<br />Rasakan</h1>
-                <p>
-                    Disini keyboard bukan sekadar alat, jadikan keyboard bagian dari dirimu! Rancang keyboard sesuai
-                    seleramu,
-                    rakit dengan tanganmu sendiri, dan rasakan hasilnya.
-                </p>
-            </div>
-            <div class="hero-image"></div>
-        </section>
-        <section class="layout-section">
-            <h2>Pilih Layoutmu</h2>
-            <div class="layout-grid">
-                <div class="layout-card">
-                    <h3>65</h3>
-                    <img src="img/andrey-matveev-emsdr1g6l10-unsplash-1.png" alt="65% Keyboard" />
-                </div>
-                <div class="layout-card">
-                    <h3>75</h3>
-                    <img src="img/andrey-matveev-rctpvyipgws-unsplash-1.png" alt="75% Keyboard" />
-                </div>
-                <div class="layout-card">
-                    <h3>TKL</h3>
-                    <img src="img/plain-jane-1.png" alt="TKL Keyboard" />
-                </div>
-                <div class="layout-card">
-                    <h3>Lainnya</h3>
-                </div>
-            </div>
-        </section>
+    <main class="ctn">
+        <div class="bgr">
+            <section class="is">
+            <img src="../assets/images/gambarDashboard.png" alt="Decorative background image" />
+            </section>
+            <section class="cs">
+            <h1 class="mh">
+                Rancang<br />
+                Rakit<br />
+                Rasakan
+            </h1>
+            <p class="description">
+                Disini keyboard bukan sekadar alat, jadikan keyboard bagian dari dirimu!<br />
+                Rancang keyboard sesuai seleramu, rakit dengan tanganmu sendiri, dan rasakan hasilnya.
+            </p>
+            </section>
+        </div>
     </main>
-    <footer>
-        <p>Directed by Nazriel Mie</p>
-    </footer>
 </body>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-column">
+            <h4>Contact Person</h4>
+            <ul>
+                <li><a href="https://www.instagram.com/gaanip" target="_blank"><i class="fa-brands fa-instagram"></i> @gaaanip</a></li>
+                <li><a href="https://www.instagram.com/daisaq_ha" target="_blank"><i class="fa-brands fa-instagram"></i> @daisaq_ha</a></li>
+                <li><a href="https://www.instagram.com/tar4k4" target="_blank"><i class="fa-brands fa-instagram"></i> @tar4k4</a></li>
+                <li><a href="https://www.instagram.com/nazriel005" target="_blank"><i class="fa-brands fa-instagram"></i> @nazriel005</a></li>
+                <li><a href="https://www.instagram.com/muhzaiii" target="_blank"><i class="fa-brands fa-instagram"></i> @muhzaiii</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h4>Schedule</h4>
+            <p>Senin - Sabtu: 9AM - 5PM WIB</p>
+            <p>Sabtu: 9AM - 3PM WIB</p>
+            <p>Slow response untuk hari libur.</p>
+        </div>
+        <div class="footer-column">
+            <h4>Quick Links</h4>
+            <div class="quick-links">
+                <a href="https://youtu.be/xvFZjo5PgG0?si=zrmxh0VI-_pa8Rxm" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://github.com/catsapricot/siKeyboard/tree/main" target="_blank"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
 
 </html>
