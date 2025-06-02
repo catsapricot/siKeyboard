@@ -307,7 +307,7 @@ body {
     cursor: pointer;
 }
 
-.payment-option input[type="radio"]{
+.payment-option input[type="radio"] {
     border-bottom: 1px solid #c7c7cc;
     margin-bottom: 8px;
     margin-right: 10px;
@@ -411,6 +411,7 @@ body {
 /* ================= FOOTER ================= */
 .footer {
     background-color: var(--footer-bg);
+    position: fixed;
     margin-top: 125px;
     color: var(--white-color);
     padding: 30px;
