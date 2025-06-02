@@ -36,7 +36,7 @@
           </div>
 
           <a href="path-to-profile"><img src="../assets/images/account_circle.png" alt="Account" /></a>
-          <a href="path-to-cart"><img src="../assets/images/Icon.png" alt="Cart" /></a>
+          <a href="keranjang.jsp"><img src="../assets/images/Icon.png" alt="Cart" /></a>
         </div>
       </nav>
     </header>
@@ -84,11 +84,13 @@
       <div class="container footer-content">
         <div class="footer-section">
           <h3>Contact Person</h3>
-          <p>@gaanip</p>
-          <p>@daisaq-ha</p>
-          <p>@tar4k4</p>
-          <p>@nazriel005</p>
-          <p>@muhzaiii</p>
+        <ul>
+                <li><a href="https://www.instagram.com/gaanip" target="_blank"><i class="fa-brands fa-instagram"></i> @gaaanip</a></li>
+                <li><a href="https://www.instagram.com/daisaq_ha" target="_blank"><i class="fa-brands fa-instagram"></i> @daisaq_ha</a></li>
+                <li><a href="https://www.instagram.com/tar4k4" target="_blank"><i class="fa-brands fa-instagram"></i> @tar4k4</a></li>
+                <li><a href="https://www.instagram.com/nazriel005" target="_blank"><i class="fa-brands fa-instagram"></i> @nazriel005</a></li>
+                <li><a href="https://www.instagram.com/muhzaiii" target="_blank"><i class="fa-brands fa-instagram"></i> @muhzaiii</a></li>
+            </ul>
         </div>
         <div class="footer-section">
           <h3>Schedule</h3>
@@ -99,7 +101,7 @@
         <div class="footer-section">
           <h3>Quick Links</h3>
           <div class="social-links">
-            <a href="#"><img src="../assets/images/Github.png" alt="GitHub" /></a>
+            <a href="https://github.com/catsapricot"><img src="../assets/images/Github.png" alt="GitHub" /></a>
             <a href="#"><img src="../assets/images/Youtube.png" alt="YouTube" /></a>
           </div>
         </div>
