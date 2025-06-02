@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>siKeyboard - Product Information</title>
     <link rel="stylesheet" href="../assets/style/tampilanProduk.css" />
+<!DOCTYPE html>
+<html lang="en">
     <!-- Jika menggunakan JSP, gunakan:
          <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css" />
     -->
@@ -42,7 +44,7 @@
       <h1>Informasi Produk</h1>
       <div class="product-info">
         <div class="product-image">
-          <img src="img/voyager68-v2-1.jpg" alt="Voyager68 Wireless Mechanical Keyboard" />
+          <img src="../assets/images/keyboard.png" alt="Voyager68 Wireless Mechanical Keyboard" />
         </div>
         <div class="product-details">
           <h2 class="product-title">Voyager68 Wireless Mechanical Keyboard by Press Play</h2>
@@ -51,22 +53,27 @@
             <span>4.9 (246 Rating)</span>
           </div>
           <div class="product-price">869.999 IDR</div>
-          <div class="product-options">
+          <div class=
             <p class="option-title">Color</p>
             <div class="option-buttons">
-              <button class="option-button active">Smokey Black</button>
-              <button class="option-button">Retro Purple</button>
-              <button class="option-button">Milky Purple</button>
+              <button class="option-button active" type="button" onclick="selectColor(this)">Smokey Black</button>
+              <button class="option-button" type="button" onclick="selectColor(this)">Retro Purple</button>
+              <button class="option-button" type="button" onclick="selectColor(this)">Milky Purple</button>
             </div>
           </div>
-          <div class="product-options">
-            <p class="option-title">Switch</p>
-            <div class="option-buttons">
-              <button class="option-button active">KTT Kang White</button>
-              <button class="option-button">JWK Black T1</button>
-              <button class="option-button">JWK Black</button>
-            </div>
-          </div>
+          <script>
+            function selectColor(btn) {
+              const buttons = document.querySelectorAll('.option-buttons .option-button');
+              buttons.forEach(b => b.classList.remove('active'));
+              btn.classList.add('active');
+            }
+          </script>
+          <style>
+            .option-button.active {
+              background-color: #000;
+              color: #fff;
+            }
+          </style>
         <a href="ISI DENGNA PATH KE CAR" class="add-to-cart-link">
             <button type="submit" class="add-to-cart">Tambah ke keranjang</button>
         </a>
@@ -92,8 +99,8 @@
         <div class="footer-section">
           <h3>Quick Links</h3>
           <div class="social-links">
-            <a href="#"><img src="img/github.svg" alt="GitHub" /></a>
-            <a href="#"><img src="img/youtube.svg" alt="YouTube" /></a>
+            <a href="#"><img src="../assets/images/Github.png" alt="GitHub" /></a>
+            <a href="#"><img src="../assets/images/Youtube.png" alt="YouTube" /></a>
           </div>
         </div>
       </div>
