@@ -6,7 +6,7 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-
+/* 
 import models.Accessoris;
 import java.util.ArrayList;
 @WebServlet("/accessoris")
@@ -77,3 +77,4 @@ public class accessorisController extends HttpServlet {
         response.sendRedirect("accessoris?menu=view");
     }
 }
+    */

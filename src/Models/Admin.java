@@ -1,7 +1,5 @@
 package Models;
 
-import Models.Katalog;
-
 public class Admin extends Role {
 
     private String security;
@@ -31,7 +29,7 @@ public class Admin extends Role {
         }
         return isValid;
     }
-
+    /* 
     public void editKatalogDB(java.sql.Connection conn, int katalogId, String namaProduk, String deskripsi, double harga, int stok, String gambarUrl, String rating) throws java.sql.SQLException {
         String sql = "UPDATE katalog SET nama_produk=?, deskripsi=?, harga=?, stok=?, gambar_url=?, rating=? WHERE id=?";
         try (java.sql.PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -79,4 +77,5 @@ public class Admin extends Role {
         }
         return null;
     }
+        */
 }
