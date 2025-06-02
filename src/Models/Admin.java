@@ -32,23 +32,49 @@ public class Admin extends Role {
         return isValid;
     }
 
-    public void editKatalog(Katalog katalog, String namaProduk, String deskripsi, double harga, int stok, String gambarUrl, String rating) {
-        katalog.setNamaProduk(namaProduk);
-        katalog.setDeskripsi(deskripsi);
-        katalog.setHarga(harga);
-        katalog.setStok(stok);
-        katalog.setGambarUrl(gambarUrl);
-        katalog.setRating(rating);
+    public void editKatalogDB(java.sql.Connection conn, int katalogId, String namaProduk, String deskripsi, double harga, int stok, String gambarUrl, String rating) throws java.sql.SQLException {
+        String sql = "UPDATE katalog SET nama_produk=?, deskripsi=?, harga=?, stok=?, gambar_url=?, rating=? WHERE id=?";
+        try (java.sql.PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, namaProduk);
+            stmt.setString(2, deskripsi);
+            stmt.setDouble(3, harga);
+            stmt.setInt(4, stok);
+            stmt.setString(5, gambarUrl);
+            stmt.setString(6, rating);
+            stmt.setInt(7, katalogId);
+            stmt.executeUpdate();
+        }
     }
 
-    public void tambahKatalog(Toko etalase, Katalog katalogBaru) {
-        getEtalase().add(katalogBaru);
+    public void tambahKatalogDB(java.sql.Connection conn, String namaProduk, String deskripsi, double harga, int stok, String gambarUrl, String rating) throws java.sql.SQLException {
+        String sql = "INSERT INTO katalog (nama_produk, deskripsi, harga, stok, gambar_url, rating) VALUES (?, ?, ?, ?, ?, ?)";
+        try (java.sql.PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, namaProduk);
+            stmt.setString(2, deskripsi);
+            stmt.setDouble(3, harga);
+            stmt.setInt(4, stok);
+            stmt.setString(5, gambarUrl);
+            stmt.setString(6, rating);
+            stmt.executeUpdate();
+        }
     }
 
-    public Katalog cariKatalog(Toko etalase, String namaProduk) {
-        for (Katalog katalog : getEtalase()) {
-            if (katalog.getNamaProduk().equalsIgnoreCase(namaProduk)) {
-                return katalog;
+    public Katalog cariKatalogDB(java.sql.Connection conn, String namaProduk) throws java.sql.SQLException {
+        String sql = "SELECT * FROM katalog WHERE LOWER(nama_produk) = LOWER(?)";
+        try (java.sql.PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, namaProduk);
+            try (java.sql.ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return new Katalog(
+                        rs.getInt("id"),
+                        rs.getString("nama_produk"),
+                        rs.getString("deskripsi"),
+                        rs.getDouble("harga"),
+                        rs.getInt("stok"),
+                        rs.getString("gambar_url"),
+                        rs.getString("rating")
+                    );
+                }
             }
         }
         return null;
