@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>siKeyboard - Keranjang</title>
+    <title>siKeyboard</title>
     <%-- Menghubungkan ke file CSS. Pastikan path-nya benar sesuai struktur proyek Anda. --%>
     <link rel="stylesheet" href="../assets/style/keranjangStyle.css">
     <link rel="stylesheet" href="../assets/style/dashboardStyle.css">
@@ -49,9 +49,7 @@
     </header>
     <main class="ctn">
         <div class="bgr">
-            <section class="is">
-            <img src="../assets/images/gambarDashboard.png" alt="Decorative background image" />
-            </section>
+            
             <section class="cs">
             <h1 class="mh">
                 Rancang<br />
@@ -63,11 +61,12 @@
                 Rancang keyboard sesuai seleramu, rakit dengan tanganmu sendiri, dan rasakan hasilnya.
             </p>
             </section>
+            <section class="is">
+            <img src="../assets/images/gambarDashboard.png" alt="Decorative background image" />
+            </section>
         </div>
     </main>
-</body>
-
-<footer class="footer">
+    <footer class="footer">
     <div class="footer-container">
         <div class="footer-column">
             <h4>Contact Person</h4>
@@ -93,6 +92,25 @@
             </div>
         </div>
     </div>
-</footer>
+    </footer>
+    <script>
+        const shopLink = document.getElementById('shop-link');
+        const shopDropdown = document.getElementById('shop-dropdown');
+        const navShopContainer = shopLink.parentElement; 
 
+        if (shopLink && shopDropdown) {
+            shopLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                navShopContainer.classList.toggle('active');
+            });
+
+            window.addEventListener('click', function(event) {
+                if (!navShopContainer.contains(event.target)) {
+                    navShopContainer.classList.remove('active');
+                }
+            });
+        };   
+    
+    </script>
+</body>
 </html>
