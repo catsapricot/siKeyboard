@@ -42,19 +42,16 @@
         </div>
     </header>
     <main class="container">
-        <div class="container">
-            <header class="title-desc">
-                <h1 class="main-title">Keyboard? Get on Board King</h1>
-                <p class="subtitle">Pilih keyboard dan jadikkan milikmu sendiri!</p>
-            </header>
-        </div>
-        <section class="sort-section">
-        <span class="sort-label">Sort by:</span>
-        <div class="sort-select">
-          Price
-          <img src="img/arrow-drop-down.svg" alt="Dropdown arrow" width="9" height="9" />
-        </div>
-      </section>
+      <div class="container">
+          <header class="title-desc">
+              <h1 class="main-title">Keyboard? Get on Board King</h1>
+              <p class="subtitle">Pilih keyboard dan jadikkan milikmu sendiri!</p>
+          </header>
+      </div>
+      
+      <br />
+      <br />
+
       <section class="product-grid">
         <article class="product-card">
           <img src="img/5qan43j5-2-2.png" alt="Tiger 80 with PBTFans WoB" class="product-image" />
