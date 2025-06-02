@@ -18,6 +18,10 @@ public abstract class Katalog {
         this.gambarUrl = gambarUrl;
         this.rating = rating;
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1a02cbd933741699570c99fb13b1a5cbe97e8721
     public String getIdProduk() {
         return idProduk;
     }
@@ -73,6 +77,9 @@ public abstract class Katalog {
     public void setRating(String rating) {
         this.rating = rating;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1a02cbd933741699570c99fb13b1a5cbe97e8721
 }
 

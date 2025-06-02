@@ -1,3 +1,5 @@
+import Models.Katalog;
+
 package Models;
 
 // import Services.PasswordService; // Import ini jika Anda akan menggunakan PasswordService di sini
@@ -40,6 +42,7 @@ public class Admin extends Role {
         return isValid;
     }
 
+<<<<<<< HEAD
     @Override // WAJIB: Implementasi untuk login(String, String)
     public boolean login(String username, String password) {
         // Logika login untuk Admin tanpa securityKey.
@@ -48,5 +51,27 @@ public class Admin extends Role {
         // return username.equals("admin") && PasswordService.verifyPassword(password, "hashed_password_from_db");
         System.out.println("Admin " + username + " mencoba login dengan 2 parameter.");
         return false; // Ganti ini dengan logika sebenarnya
+=======
+    public void editKatalog(Katalog katalog, String namaProduk, String deskripsi, double harga, int stok, String gambarUrl, String rating) {
+        katalog.setNamaProduk(namaProduk);
+        katalog.setDeskripsi(deskripsi);
+        katalog.setHarga(harga);
+        katalog.setStok(stok);
+        katalog.setGambarUrl(gambarUrl);
+        katalog.setRating(rating);
+    }
+
+    public void tambahKatalog(Toko etalase, Katalog katalogBaru) {
+        getEtalase().add(katalogBaru);
+    }
+
+    public Katalog cariKatalog(Toko etalase, String namaProduk) {
+        for (Katalog katalog : getEtalase()) {
+            if (katalog.getNamaProduk().equalsIgnoreCase(namaProduk)) {
+                return katalog;
+            }
+        }
+        return null;
+>>>>>>> 1a02cbd933741699570c99fb13b1a5cbe97e8721
     }
 }
