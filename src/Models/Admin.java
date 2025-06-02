@@ -32,11 +32,6 @@ public class Admin extends Role {
         return isValid;
     }
 
-    // Menghubungkan dengan Katalog.java
-    // Pastikan Anda sudah mengimport Katalog jika berada di package berbeda
-    // import Models.Katalog;
-
-    // Method untuk mengedit katalog
     public void editKatalog(Katalog katalog, String namaProduk, String deskripsi, double harga, int stok, String gambarUrl, String rating) {
         katalog.setNamaProduk(namaProduk);
         katalog.setDeskripsi(deskripsi);
@@ -46,12 +41,12 @@ public class Admin extends Role {
         katalog.setRating(rating);
     }
 
-    public void tambahKatalog(java.util.List<Katalog> daftarKatalog, Katalog katalogBaru) {
-        daftarKatalog.add(katalogBaru);
+    public void tambahKatalog(Toko etalase, Katalog katalogBaru) {
+        getEtalase().add(katalogBaru);
     }
 
-    public Katalog cariKatalog(java.util.List<Katalog> daftarKatalog, String namaProduk) {
-        for (Katalog katalog : daftarKatalog) {
+    public Katalog cariKatalog(Toko etalase, String namaProduk) {
+        for (Katalog katalog : getEtalase()) {
             if (katalog.getNamaProduk().equalsIgnoreCase(namaProduk)) {
                 return katalog;
             }
