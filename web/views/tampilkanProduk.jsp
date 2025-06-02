@@ -20,7 +20,7 @@
         </div>
         <div class="search-bar">
           <input type="text" placeholder="Search" />
-          <button><img src="../assets/images/group 75.png" alt="Search" /></button>
+          <button><img src="../assets/images/img-icon-search.png" alt="Search" /></button>
         </div>
         <div class="nav-links">
           <a href="#">Home</a>
