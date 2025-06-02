@@ -1,6 +1,6 @@
-import Models.Katalog;
-
 package Models;
+
+import Models.Katalog;
 
 public class Admin extends Role {
 
