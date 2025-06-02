@@ -23,7 +23,7 @@
             <a href="#" class="header-logo">
                 <img src="../assets/images/img-logo-sikeyboard-light.png" alt="siKeyboard Logo">
             </a>
-            <form class="search-bar" action="<%= request.getContextPath() %>/cart" method="POST">
+            <form class="search-bar" action="<%= request.getContextPath() %>/jawa" method="POST">
                 <input type="hidden" name="action" value="search"/>
                 <input type="text" name="query" placeholder="Search" aria-label="Search"/>
                 <button type="submit" aria-label="Submit search">
@@ -45,7 +45,7 @@
             </nav>
 
             <div class="header-icons">
-                <a href="profile.jsp"><i class="fa-regular fa-user"></i></a>
+                <a href="login.jsp"><i class="fa-regular fa-user"></i></a>
                 <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
             </div>
         </div>

@@ -91,10 +91,16 @@ body {
     cursor: pointer;
 }
 
+.navigation {
+    display: flex;
+    justify-content: center;
+}
+
 .navigation .nav-list {
     display: flex;
     list-style: none;
     gap: 30px;
+    padding: 0;
 }
 
 .navigation .nav-list a {
@@ -411,7 +417,6 @@ body {
 /* ================= FOOTER ================= */
 .footer {
     background-color: var(--footer-bg);
-    position: fixed;
     margin-top: 125px;
     color: var(--white-color);
     padding: 30px;

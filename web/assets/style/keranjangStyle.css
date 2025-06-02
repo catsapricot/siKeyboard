@@ -374,8 +374,6 @@ input[type=number] {
 /* ================= FOOTER ================= */
 .footer {
     background-color: var(--footer-bg);
-    position: fixed;
-    margin-top: 125px;
     color: var(--white-color);
     padding: 30px;
     width: 100%;

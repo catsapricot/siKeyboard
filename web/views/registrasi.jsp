@@ -25,18 +25,19 @@
                 <p class="welcome-subtitle">Masukkan detail anda</p>
             </div>
 
-            <form method="POST" class="form-section" id="loginForm" action="<%= request.getContextPath()%>/auth">
+            <form method="POST" class="form-section" action="<%= request.getContextPath()%>/auth">
+                <input type="hidden" name="action" value="register"/>
                 <div class="input-group">
                     <label for="name" class="input-label">Nama</label>
-                    <input type="text" id="name" name="name" class="input-field" required />
+                    <input type="text" id="nama" name="nama" class="input-field" required />
                 </div>
                 <div class="input-group">
                     <label for="username" class="input-label">Username</label>
-                    <input type="text" id="username" name="username" class="input-field" required />
+                    <input type="text" id="user" name="user" class="input-field" required />
                 </div>
                 <div class="input-group">
                     <label for="password" class="input-label">Password</label>
-                    <input type="password" id="password" name="password" class="input-field" required />
+                    <input type="password" id="pass" name="pass" class="input-field" required />
                 </div>
                 <div class="error-message">
                     <%
