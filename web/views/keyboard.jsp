@@ -21,6 +21,7 @@
                 <img src="../assets/images/img-logo-sikeyboard-light.png" alt="siKeyboard Logo">
             </a>
 
+
             <nav class="navigation">
                 <ul class="nav-list">
                     <li><a href="dashboard.jsp">Home</a></li>
@@ -35,7 +36,7 @@
             </nav>
 
             <div class="header-icons">
-                <a href="profile.jsp"><i class="fa-regular fa-user"></i></a>
+                <a href="login.jsp"><i class="fa-regular fa-user"></i></a>
                 <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
             </div>
         </div>

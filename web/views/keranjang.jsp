@@ -34,7 +34,7 @@
             <a href="#" class="header-logo">
                 <img src="../assets/images/img-logo-sikeyboard-light.png" alt="siKeyboard Logo">
             </a>
-            <form class="search-bar" action="<%= request.getContextPath() %>/cart" method="POST">
+            <form class="search-bar" action="<%= request.getContextPath() %>/keranjang" method="POST">
                 <input type="hidden" name="action" value="search"/>
                 <input type="text" name="query" placeholder="Search" aria-label="Search"/>
                 <button type="submit" aria-label="Submit search">
@@ -56,7 +56,7 @@
             </nav>
 
             <div class="header-icons">
-                <a href="profile.jsp"><i class="fa-regular fa-user"></i></a>
+                <a href="login.jsp"><i class="fa-regular fa-user"></i></a>
                 <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
             </div>
         </div>
@@ -65,12 +65,8 @@
     <main class="main-content">
         <div class="cart-container">
             <% 
-                Pengguna pengguna = (Pengguna) session.getAttribute("user");
-                List<Katalog> keranjang = null;
-                // Kodingan lainnya 
-                if (pengguna != null) {
-                    keranjang = pengguna.getKeranjang(); 
-                }
+
+                List<Katalog> keranjang = request.getParameter("keranjang");
                 if (keranjang != null && !keranjang.isEmpty()) { 
             %>
                     <h1>Your cart</h1>
@@ -87,38 +83,33 @@
                         %>
                                 <div class="cart-item" data-price="<%= katalogItem.getHarga() %>">
                                     <div class="product-details">
-                                        <img src="<%= request.getContextPath() + katalogItem.getImageUrl() %>" alt="<%= katalogItem.getNama() %>">
+                                        <img src="<%= request.getContextPath() + katalogItem.getGambarUrl() %>" alt="<%= katalogItem.getNamaProduk() %>">
                                         <div class="product-info">
-                                            <p class="product-name"><%= katalogItem.getNama() %></p>
+                                            <p class="product-name"><%= katalogItem.getNamaProduk() %></p>
                                             <p class="product-price">IDR <%= katalogItem.getHarga() %></p>
-                                            <%-- 
-                                                Jika Katalog punya info warna/switch, tambahkan di sini:
-                                                String warna = katalogItem.getWarna(); // Contoh
-                                                if (warna != null && !warna.isEmpty()) { 
+                                            <%
+                                                if (katalogitem instanceof Keyboard) {
+                                                    Keyboard itemKeybord = (Keyboard) katalogItem;
                                             %>
-                                                <p class="product-spec">Color: <%= warna %></p>
-                                            <% } %>
-                                            --%>
-                                            <% if (katalogItem instanceof Models.Keyboard) { %>
-                                                <% Models.Keyboard keyboard = (Models.Keyboard) katalogItem; %>
-                                                <p class="product-spec">Switch: <%= keyboard.getSwitchType() %></p> 
-                                            <% }%>
+                                                    <p class="product-spec">Switch: <%= itemKeyboard.getSwitch() %></p>
+                                            <%  }%>        
+        
                                         </div>
                                     </div>
 
                                     <div class="product-quantity">
-                                        <form action="<%= request.getContextPath() %>/cart" method="POST" class="quantity-form">
+                                        <form action="<%= request.getContextPath() %>/keranjang" method="POST" class="quantity-form">
                                             <input type="hidden" name="action" value="update">
-                                            <input type="hidden" name="productId" value="<%= katalogItem.getId() %>">
+                                            <input type="hidden" name="productId" value="<%= katalogItem.getIdProduk() %>">
                                             <div class="quantity-control">
                                                 <button type="submit" name="quantity" value="<%= katalogItem.getKuantitas() - 1 %>" class="quantity-btn minus-btn">-</button>
                                                 <input type="text" class="quantity-input" value="<%= katalogItem.getKuantitas() %>" readonly>
                                                 <button type="submit" name="quantity" value="<%= katalogItem.getKuantitas() + 1 %>" class="quantity-btn plus-btn">+</button>
                                             </div>
                                         </form>
-                                        <form action="<%= request.getContextPath() %>/cart" method="POST">
+                                        <form action="<%= request.getContextPath() %>/keranjang" method="POST">
                                             <input type="hidden" name="action" value="remove">
-                                            <input type="hidden" name="productId" value="<%= katalogItem.getId() %>">
+                                            <input type="hidden" name="productId" value="<%= katalogItem.getIdProduk() %>">
                                             <button type="submit" class="remove-item-btn"><i class="fa-regular fa-trash-can"></i></button>
                                         </form>
                                     </div>
@@ -133,14 +124,9 @@
                         <div class="grand-total">
                             <span>Total</span>
                             <%
-                                double grandTotal = 0.0;
-                                if (keranjang != null) { 
-                                    for (Katalog katalogItem : keranjang) {
-                                        grandTotal += katalogItem.getHarga() * katalogItem.getKuantitas();
-                                    }
-                                }
+                                double totalharga = request.getAttribute("totalHarga");
                             %>
-                            <span id="grand-total-price">IDR <%= grandTotal %></span>
+                            <span id="grand-total-price">IDR <%= totalHarga %></span>
                         </div>
                         <a href="<%= request.getContextPath() %>/checkout.jsp" class="checkout-button">Checkout</a>
                     </div>

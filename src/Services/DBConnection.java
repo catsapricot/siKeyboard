@@ -20,7 +20,7 @@ public class DBConnection {
     }
 
     public void connect() {
-        String DB_URL = "jdbc:mysql://localhost:3306/sikeyboard";
+        String DB_URL = "jdbc:mysql://localhost:3306/sikeyboard/";
         String DB_USERNAME = "root";
         String DB_PASSWORD = "";
 
@@ -50,21 +50,17 @@ public class DBConnection {
 
     public void runQuery(String query) {
         connect();
-        if (isConnected) {
-            try {
-                int result = stmt.executeUpdate(query);
-                message = "Query berhasil dijalankan. " + result + " baris terpengaruh.";
-                System.out.println(message);
-            } catch (SQLException e) {
-                message = "Terjadi kesalahan saat mejalankan query: " + e.getMessage();
-                System.err.println(message);
-            } finally {
-                disconnect();
-            }
-        } else {
-            message = "Terjadi kesalahan saat menjalankan query. Koneksi dengan database terputus/gagal.";
+        try {
+            int result = stmt.executeUpdate(query);
+            message = "Query berhasil dijalankan. " + result + " baris terpengaruh.";
+            System.out.println(message);
+        } catch (SQLException e) {
+            message = "Terjadi kesalahan saat mejalankan query: " + e.getMessage();
             System.err.println(message);
+        } finally {
+            disconnect();
         }
+
     }
 
     public ResultSet getData(String query) {
