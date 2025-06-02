@@ -1,6 +1,8 @@
 .is {
-    flex: 0 0 40%;
-    position: relative;
+    flex: 0 0 63.4375%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
 }
 
 .cs {
@@ -21,7 +23,7 @@
     font-family: "Queensides-Bold", Helvetica, sans-serif;
     font-weight: 900;
     color: #000000;
-    font-size: 50px;
+    font-size: 70px;
     line-height: 1.15;
     margin-bottom: 2rem;
 }
@@ -30,7 +32,7 @@
     font-family: "Montserrat-SemiBold", Helvetica, sans-serif;
     font-weight: 600;
     color: rgba(60, 60, 67, 0.6);
-    font-size: 0.75rem;
+    font-size: 12px;
     line-height: 1.25;
     max-width: 28.25rem;
 }
