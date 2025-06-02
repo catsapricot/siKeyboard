@@ -7,7 +7,7 @@
     <property name="build.dir" value="web/WEB-INF/classes"/>
     <property name="lib.dir" value="web/WEB-INF/lib"/>
     <!-- Isi value (None) dengan direktori tomcat webapps -->
-    <property name="tomcat.dir" value="C:\Users\daisa\Desktop\Isaaq Vault\Coding\Semester4\PBO\TugasPendahuluan\Server\xampp\tomcat\webapps\sikeyboard"/>
+    <property name="tomcat.dir" value="None\sikeyboard"/>
 
     <!-- Classpath jar -->
     <path id="classpath">
