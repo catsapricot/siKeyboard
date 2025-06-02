@@ -47,13 +47,10 @@
                 <p class="subtitle">Hias keyboardmu sampai dunia tahu itu milikimu!</p>
             </header>
         </div>
-        <section class="sort-section">
-        <span class="sort-label">Sort by:</span>
-        <div class="sort-select">
-          Price
-          <img src="img/arrow-drop-down.svg" alt="Dropdown arrow" width="9" height="9" />
-        </div>
-      </section>
+
+      <br />
+      <br />
+
       <section class="product-grid">
         <article class="product-card">
           <img src="img/5qan43j5-2-2.png" alt="Tiger 80 with PBTFans WoB" class="product-image" />
