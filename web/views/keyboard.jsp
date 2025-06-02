@@ -36,7 +36,7 @@
             </nav>
 
             <div class="header-icons">
-                <a href="login.jsp"><i class="fa-regular fa-user"></i></a>
+                <a href="profile.jsp"><i class="fa-regular fa-user"></i></a>
                 <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
             </div>
         </div>
