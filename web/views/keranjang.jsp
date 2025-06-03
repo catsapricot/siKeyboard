@@ -3,6 +3,7 @@
 <%@ page import="Models.Katalog" %>
 <%@ page import="Models.Keyboard" %>
 <%@ page import="Models.Accessories" %>
+<%@ page import="java.util.List" %>
 
 <%-- 
     CATATAN PENTING:
@@ -34,13 +35,6 @@
             <a href="#" class="header-logo">
                 <img src="../assets/images/img-logo-sikeyboard-light.png" alt="siKeyboard Logo">
             </a>
-            <form class="search-bar" action="<%= request.getContextPath() %>/keranjang" method="POST">
-                <input type="hidden" name="action" value="search"/>
-                <input type="text" name="query" placeholder="Search" aria-label="Search"/>
-                <button type="submit" aria-label="Submit search">
-                    <img src="../assets/images/img-icon-search.png" alt="Search" width="28" height="28" />
-                </button>
-            </form>
 
             <nav class="navigation">
                 <ul class="nav-list">
@@ -56,7 +50,7 @@
             </nav>
 
             <div class="header-icons">
-                <a href="login.jsp"><i class="fa-regular fa-user"></i></a>
+                <a href="profile.jsp"><i class="fa-regular fa-user"></i></a>
                 <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
             </div>
         </div>
@@ -66,7 +60,7 @@
         <div class="cart-container">
             <% 
 
-                List<Katalog> keranjang = request.getParameter("keranjang");
+                List<Katalog> keranjang = (List<Katalog>) request.getAttribute("keranjang");
                 if (keranjang != null && !keranjang.isEmpty()) { 
             %>
                     <h1>Your cart</h1>
@@ -88,8 +82,8 @@
                                             <p class="product-name"><%= katalogItem.getNamaProduk() %></p>
                                             <p class="product-price">IDR <%= katalogItem.getHarga() %></p>
                                             <%
-                                                if (katalogitem instanceof Keyboard) {
-                                                    Keyboard itemKeybord = (Keyboard) katalogItem;
+                                                if (katalogItem instanceof Keyboard) {
+                                                    Keyboard itemKeyboard = (Keyboard) katalogItem;
                                             %>
                                                     <p class="product-spec">Switch: <%= itemKeyboard.getSwitch() %></p>
                                             <%  }%>        
@@ -124,7 +118,7 @@
                         <div class="grand-total">
                             <span>Total</span>
                             <%
-                                double totalharga = request.getAttribute("totalHarga");
+                                double totalHarga = (double) request.getAttribute("totalHarga");
                             %>
                             <span id="grand-total-price">IDR <%= totalHarga %></span>
                         </div>

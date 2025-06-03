@@ -25,19 +25,19 @@
                 <p class="welcome-subtitle">Masukkan detail anda</p>
             </div>
 
-            <form method="POST" class="form-section" action="<%= request.getContextPath()%>/auth">
+            <form method="post" class="form-section" action="<%= request.getContextPath()%>/auth">
                 <input type="hidden" name="action" value="register"/>
                 <div class="input-group">
                     <label for="name" class="input-label">Nama</label>
-                    <input type="text" id="nama" name="nama" class="input-field" required />
+                    <input type="text" id="nama" name="nama" class="input-field" />
                 </div>
                 <div class="input-group">
                     <label for="username" class="input-label">Username</label>
-                    <input type="text" id="user" name="user" class="input-field" required />
+                    <input type="text" id="user" name="user" class="input-field" />
                 </div>
                 <div class="input-group">
                     <label for="password" class="input-label">Password</label>
-                    <input type="password" id="pass" name="pass" class="input-field" required />
+                    <input type="password" id="pass" name="pass" class="input-field" />
                 </div>
                 <div class="error-message">
                     <%
@@ -45,11 +45,11 @@
                         String status = request.getParameter("status");
                         if ("1".equals(error)) {
                     %>
-                    Data tidak boleh kosong!
+                        Data tidak boleh kosong!
                     <%
                         } else if ("2".equals(error)) {
                     %>
-                    Password minimal 8 karakter!
+                        Password minimal 8 karakter!
                     <%
                         } else if ("3".equals(error)) {
                     %>
@@ -67,7 +67,7 @@
                         }
                     %>
                 </div>
-                <button type="submit" class="login-button" id="loginButton">
+                <button type="submit" class="login-button">
                     Register
                 </button>
             </form>
@@ -75,7 +75,7 @@
             <div class="auth-section">
                 <p class="auth-text">
                     <span class="no-account">Sudah punya akun?</span>
-                    <a href="../views/login.jsp" class="register-link"> Login</a>
+                    <a href="../views/login.jsp" class="register-li nk"> Login</a>
                 </p>
             </div>
         </div> 
