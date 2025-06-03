@@ -67,7 +67,7 @@ public class AuthController extends HttpServlet {
             Optional<Role> roleOpt = roleDao.findByUsername(username);
             if (roleOpt.isPresent()) {
                 Role userRole = roleOpt.get();
-                String hashedPassword = userRole.getPassword();
+                String storedPassword = userRole.getPassword();
 
                 if (userRole instanceof Admin) {
                     session.setAttribute("pending_admin_username", username);
@@ -76,12 +76,11 @@ public class AuthController extends HttpServlet {
                     return;
                 }
 
-                if (userRole.login(password, hashedPassword, "")) {
+                if (userRole.login(password, storedPassword, "")) {
                     session.setAttribute("user", userRole);
-                    session.setMaxInactiveInterval(60 * 60);// ngeset waktu timeout kalo ga ada aktifitas oleh user
+                    session.setMaxInactiveInterval(60 * 60);
 
-                    response.sendRedirect(request.getContextPath() + "/views/dashboard.jsp"); // masi ga tau bener ap
-                                                                                              // //// nggak
+                    response.sendRedirect(request.getContextPath() + "/views/dashboard.jsp");
                     return;
                 }
             }
@@ -122,11 +121,12 @@ public class AuthController extends HttpServlet {
         String nama = request.getParameter("nama");
         String username = request.getParameter("user");
         String password = request.getParameter("pass");
-        System.out.println("NAMA: " + nama);
-        System.out.println("USERNAME: " + username);
-        System.out.println("PASSWORD: " + password);
-        try {
 
+        System.out.println("Nama: " + nama);
+        System.out.println("Username: " + username);
+        System.out.println("Password: " + password);
+
+        try {
             if (nama == null || nama.isEmpty() || username == null || username.isEmpty() || password == null
                     || password.isEmpty()) {
                 response.sendRedirect(request.getContextPath() + "/views/registrasi.jsp?error=1");
@@ -142,8 +142,7 @@ public class AuthController extends HttpServlet {
                 return;
             }
 
-            String hashedPassword = PasswordService.hashPassword(password);
-            Pengguna user = new Pengguna(nama, username, hashedPassword);
+            Pengguna user = new Pengguna(nama, username, password);
             roleDao.simpanNewUser(user);
             response.sendRedirect(request.getContextPath() + "/views/registrasi.jsp?status=sukses");
         } catch (SQLException e) {
@@ -151,4 +150,5 @@ public class AuthController extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/views/registrasi.jsp?error=4");
         }
     }
+
 }
