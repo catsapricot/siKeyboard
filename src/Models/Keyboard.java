@@ -5,6 +5,9 @@ public class Keyboard extends Katalog {
     private String switchType;
     private String warna;
 
+    public Keyboard() {
+        super();
+    }
     public Keyboard(int idProduk, String namaProduk, String deskripsi, double harga, int stok, String gambarUrl,
             String layout, String switchType, String warna) {
         super(idProduk, namaProduk, deskripsi, harga, stok, gambarUrl);
