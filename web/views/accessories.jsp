@@ -44,6 +44,7 @@
             <div class="header-icons">
                 <a href="profile.jsp"><i class="fa-regular fa-user"></i></a>
                 <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="<%= request.getContextPath() %>/auth?action=logout"><i class="fa-solid fa-right-from-bracket"></i></a>
             </div>
         </div>
     </header>
@@ -75,7 +76,7 @@
 
                     String sql = "SELECT * FROM katalog WHERE jenis = ?";
                     PreparedStatement stmt = con.prepareStatement(sql);
-                    stmt.setString(1, "Keyboard");
+                    stmt.setString(1, "Accessories");
                     ResultSet rs = stmt.executeQuery();
 
                     while (rs.next()) {
