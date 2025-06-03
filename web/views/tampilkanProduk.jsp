@@ -40,8 +40,8 @@
         </header>
 
         <div class="main-content">
-            <main class="container-tampil">
-                <h1>Informasi Produk</h1>
+            <main class="container_tampilan">
+                <h1 style="margin-left: 140px; ">Informasi Produk</h1>
                 <div class="product-info">
                     <div class="product-image">
                     <img
@@ -50,30 +50,30 @@
                     />
                     </div>
                     <div class="product-details">
-                    <h2 class="product-title">Voyager68 Wireless Mechanical Keyboard by Press Play</h2>
-                    <br />
-                    <div class="product-meta">
-                        <span>Terjual 2rb+</span>
-                        <span>4.9 (246 Rating)</span>
-                    </div>
-                    <div class="product-price">869.999 IDR</div>
-                    <div class="product-options">
-                        <p class="option-title">Color</p>
-                        <div class="option-buttons">
-                        <button class="option-button active">Smokey Black</button>
-                        <button class="option-button">Retro Purple</button>
-                        <button class="option-button">Milky Purple</button>
+                    <div>
+                        <div>
+                            <h2 class="product-title">Voyager68 Wireless Mechanical Keyboard by Press Play</h2>
+                            <span>Stock 238</span>
                         </div>
-                    </div>
-                    <div class="product-options">
-                        <p class="option-title">Switch</p>
-                        <div class="option-buttons">
-                        <button class="option-button active">KTT Kang White</button>
-                        <button class="option-button">JWK Black T1</button>
-                        <button class="option-button">JWK Black</button>
+                        <div class="product-price">869.999 IDR</div>
+                        <div class="product-options">
+                            <p class="option-title">Color</p>
+                            <div class="option-buttons">
+                            <button class="option-button active">Smokey Black</button>
+                            <button class="option-button">Retro Purple</button>
+                            <button class="option-button">Milky Purple</button>
+                            </div>
                         </div>
-                    </div>
-                    <button class="add-to-cart">Tambah ke keranjang</button>
+                        <div class="product-options">
+                            <p class="option-title">Switch</p>
+                            <div class="option-buttons">
+                            <button class="option-button active">KTT Kang White</button>
+                            <button class="option-button">JWK Black T1</button>
+                            <button class="option-button">JWK Black</button>
+                            </div>
+                            <button class="add-to-cart">Tambah ke keranjang</button>
+                        </div>
+                        </div>
                     </div>
                 </div>
             </main>
