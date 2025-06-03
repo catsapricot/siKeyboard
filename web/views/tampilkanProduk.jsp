@@ -1,120 +1,112 @@
-<form action="/keranjang/tambah" method="post">
-    <!-- ...opsi produk di sini jika perlu sebagai input tersembunyi... -->
-    
-</form>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>siKeyboard - Product Information</title>
-    <link rel="stylesheet" href="../assets/style/tampilanProduk.css" />
-    <!-- Jika menggunakan JSP, gunakan:
-         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css" />
-    -->
-  </head>
-  <body>
-    <header>
-      <nav class="container">
-        <div class="logo">
-          <img src="../assets/images/Group 130.png" alt="siKeyboard Logo" />
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>siKeyboard - Keranjang</title>
+        <%-- Menghubungkan ke file CSS. Pastikan path-nya benar sesuai struktur proyek Anda. --%>
+        <link rel="stylesheet" href="../assets/style/keranjangStyle.css">
+        <link rel="stylesheet" href="../assets/style/tampilkanProduk.css">
+        <%-- Menghubungkan ke FontAwesome untuk ikon --%>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.cdnfonts.com/css/queensides" rel="stylesheet">
+    </head>
+	<body>
+		<header class="header">
+            <div class="header-container">
+                <a href="#" class="header-logo">
+                    <img src="../assets/images/img-logo-sikeyboard-light.png" alt="siKeyboard Logo">
+                </a>
 
-        </div>
-        <div class="search-bar">
-          <input type="text" placeholder="Search" />
-          <button><img src="../assets/images/group 75.png" alt="Search" /></button>
-        </div>
-        <div class="nav-links">
-          <a href="#">Home</a>
-          <!-- Shop Dropdown -->
-          <div class="dropdown">
-            <button class="dropdown-button" onclick="toggleShopDropdown(event)">
-              Shop<i class="fas fa-chevron-down"></i>
-            </button>
-            <div id="shopDropdown" class="dropdown-content">
-              <a href="keyboard.jsp">Keyboard</a>
-              <a href="accessories.jsp">Accessories</a>
             </div>
-          </div>
+        </header>
 
-          <a href="path-to-profile"><img src="../assets/images/account_circle.png" alt="Account" /></a>
-          <a href="path-to-cart"><img src="../assets/images/Icon.png" alt="Cart" /></a>
+        <div class="main-content">
+            <main class="container-tampil">
+                <h1>Informasi Produk</h1>
+                <div class="product-info">
+                    <div class="product-image">
+                    <img
+                        src="https://c.animaapp.com/mbfrcz398g0GN5/img/group-83.png"
+                        alt="Voyager68 Wireless Mechanical Keyboard"
+                    />
+                    </div>
+                    <div class="product-details">
+                    <h2 class="product-title">Voyager68 Wireless Mechanical Keyboard by Press Play</h2>
+                    <br />
+                    <div class="product-meta">
+                        <span>Terjual 2rb+</span>
+                        <span>4.9 (246 Rating)</span>
+                    </div>
+                    <div class="product-price">869.999 IDR</div>
+                    <div class="product-options">
+                        <p class="option-title">Color</p>
+                        <div class="option-buttons">
+                        <button class="option-button active">Smokey Black</button>
+                        <button class="option-button">Retro Purple</button>
+                        <button class="option-button">Milky Purple</button>
+                        </div>
+                    </div>
+                    <div class="product-options">
+                        <p class="option-title">Switch</p>
+                        <div class="option-buttons">
+                        <button class="option-button active">KTT Kang White</button>
+                        <button class="option-button">JWK Black T1</button>
+                        <button class="option-button">JWK Black</button>
+                        </div>
+                    </div>
+                    <button class="add-to-cart">Tambah ke keranjang</button>
+                    </div>
+                </div>
+            </main>
         </div>
-      </nav>
-    </header>
-    <main class="container">
-      <h1>Informasi Produk</h1>
-      <div class="product-info">
-        <div class="product-image">
-          <img src="img/voyager68-v2-1.jpg" alt="Voyager68 Wireless Mechanical Keyboard" />
-        </div>
-        <div class="product-details">
-          <h2 class="product-title">Voyager68 Wireless Mechanical Keyboard by Press Play</h2>
-          <div class="product-meta">
-            <span>Terjual 2rb+</span>
-            <span>4.9 (246 Rating)</span>
-          </div>
-          <div class="product-price">869.999 IDR</div>
-          <div class="product-options">
-            <p class="option-title">Color</p>
-            <div class="option-buttons">
-              <button class="option-button active">Smokey Black</button>
-              <button class="option-button">Retro Purple</button>
-              <button class="option-button">Milky Purple</button>
-            </div>
-          </div>
-          <div class="product-options">
-            <p class="option-title">Switch</p>
-            <div class="option-buttons">
-              <button class="option-button active">KTT Kang White</button>
-              <button class="option-button">JWK Black T1</button>
-              <button class="option-button">JWK Black</button>
-            </div>
-          </div>
-        <a href="ISI DENGNA PATH KE CAR" class="add-to-cart-link">
-            <button type="submit" class="add-to-cart">Tambah ke keranjang</button>
-        </a>
-        </div>
-      </div>
-    </main>
-    <footer style="Margin-top: 20px;">
-      <div class="container footer-content">
-        <div class="footer-section">
-          <h3>Contact Person</h3>
-          <p>@gaanip</p>
-          <p>@daisaq-ha</p>
-          <p>@tar4k4</p>
-          <p>@nazriel005</p>
-          <p>@muhzaiii</p>
-        </div>
-        <div class="footer-section">
-          <h3>Schedule</h3>
-          <p>Senin - Sabtu: 9AM - 5PM WIB</p>
-          <p>Sabtu: 9AM - 1PM WIB</p>
-          <p>Slow response untuk hari libur.</p>
-        </div>
-        <div class="footer-section">
-          <h3>Quick Links</h3>
-          <div class="social-links">
-            <a href="#"><img src="img/github.svg" alt="GitHub" /></a>
-            <a href="#"><img src="img/youtube.svg" alt="YouTube" /></a>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <script>
-      /* JavaScript for Dropdown */
-      function toggleShopDropdown(event) {
-        event.stopPropagation();
-        const dropdownMenu = document.getElementById("shopDropdown");
-        dropdownMenu.classList.toggle("show");
-      }
 
-      // Close dropdown if clicked outside
-      window.onclick = function (event) {
-        if (!event.target.matches('.dropdown-button') && !event.target.matches('.dropdown-button i')) {
-          var dropdownMenu = document.getElementById("shopDropdown");
-          if (dropdownMenu.classList.contains('show')) {
-            dropdownMenu.classList.remove('show');
-          }
-        }
-      }
-    </script>
-  </body>
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>Contact Person</h4>
+                    <ul>
+                        <li><a href="https://www.instagram.com/gaanip" target="_blank"><i class="fa-brands fa-instagram"></i> @gaaanip</a></li>
+                        <li><a href="https://www.instagram.com/daisaq_ha" target="_blank"><i class="fa-brands fa-instagram"></i> @daisaq_ha</a></li>
+                        <li><a href="https://www.instagram.com/tar4k4" target="_blank"><i class="fa-brands fa-instagram"></i> @tar4k4</a></li>
+                        <li><a href="https://www.instagram.com/nazriel005" target="_blank"><i class="fa-brands fa-instagram"></i> @nazriel005</a></li>
+                        <li><a href="https://www.instagram.com/muhzaiii" target="_blank"><i class="fa-brands fa-instagram"></i> @muhzaiii</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Schedule</h4>
+                    <p>Senin - Sabtu: 9AM - 5PM WIB</p>
+                    <p>Sabtu: 9AM - 3PM WIB</p>
+                    <p>Slow response untuk hari libur.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <div class="quick-links">
+                        <a href="https://youtu.be/xvFZjo5PgG0?si=zrmxh0VI-_pa8Rxm" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://github.com/catsapricot/siKeyboard/tree/main" target="_blank"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            const shopLink = document.getElementById('shop-link');
+            const shopDropdown = document.getElementById('shop-dropdown');
+            const navShopContainer = shopLink.parentElement; 
+
+            if (shopLink && shopDropdown) {
+                shopLink.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    navShopContainer.classList.toggle('active');
+                });
+
+                window.addEventListener('click', function(event) {
+                    if (!navShopContainer.contains(event.target)) {
+                        navShopContainer.classList.remove('active');
+                    }
+                });
+            };   
+        </script>
+	</body>
 </html>
