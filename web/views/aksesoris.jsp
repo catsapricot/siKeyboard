@@ -1,3 +1,9 @@
+<%@ page import="Models.Accessories" %>
+<%@ page import="Services.DBConnection" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.sql.*" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,103 +68,73 @@
         </div>
       </section>
       <section class="product-grid">
-        <article class="product-card">
-          <img src="img/5qan43j5-2-2.png" alt="Tiger 80 with PBTFans WoB" class="product-image" />
-          <h2 class="product-title">Tiger 80 with PBTFans WoB</h2>
-          <p class="product-price">3.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img src="img/voyager68-v2-1-3.png" alt="NK87 Aluminum Edition Nebula Pink x GMK WoB" class="product-image" />
-          <h2 class="product-title">NK87 Aluminum Edition Nebula Pink x GMK WoB</h2>
-          <p class="product-price">5.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img
-            src="img/jan-loyde-cabrera-stonbjkc-qy-unsplash-1-3.png"
-            alt="NK87 Aluminum Edition Nebula Pink x GMK WoB"
-            class="product-image"
-          />
-          <h2 class="product-title">NK87 Aluminum Edition Nebula Pink x GMK WoB</h2>
-          <p class="product-price">5.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img src="img/y2nrik6z-1-3.png" alt="MK870 x Akko Psittacus" class="product-image" />
-          <h2 class="product-title">MK870 x Akko Psittacus</h2>
-          <p class="product-price">10.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img src="img/image.png" alt="Tiger 80 with PBTFans WoB" class="product-image" />
-          <h2 class="product-title">Tiger 80 with PBTFans WoB</h2>
-          <p class="product-price">3.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img src="img/voyager68-v2-1-2.png" alt="NK87 Aluminum Edition Nebula Pink x GMK WoB" class="product-image" />
-          <h2 class="product-title">NK87 Aluminum Edition Nebula Pink x GMK WoB</h2>
-          <p class="product-price">5.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img
-            src="img/jan-loyde-cabrera-stonbjkc-qy-unsplash-1-2.png"
-            alt="NK87 Aluminum Edition Nebula Pink x GMK WoB"
-            class="product-image"
-          />
-          <h2 class="product-title">NK87 Aluminum Edition Nebula Pink x GMK WoB</h2>
-          <p class="product-price">5.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img src="img/y2nrik6z-1-2.png" alt="MK870 x Akko Psittacus" class="product-image" />
-          <h2 class="product-title">MK870 x Akko Psittacus</h2>
-          <p class="product-price">10.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img src="img/5qan43j5-2.png" alt="Tiger 80 with PBTFans WoB" class="product-image" />
-          <h2 class="product-title">Tiger 80 with PBTFans WoB</h2>
-          <p class="product-price">3.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img src="img/voyager68-v2-1-4.png" alt="NK87 Aluminum Edition Nebula Pink x GMK WoB" class="product-image" />
-          <h2 class="product-title">NK87 Aluminum Edition Nebula Pink x GMK WoB</h2>
-          <p class="product-price">5.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img
-            src="img/jan-loyde-cabrera-stonbjkc-qy-unsplash-1.png"
-            alt="NK87 Aluminum Edition Nebula Pink x GMK WoB"
-            class="product-image"
-          />
-          <h2 class="product-title">NK87 Aluminum Edition Nebula Pink x GMK WoB</h2>
-          <p class="product-price">5.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img src="img/y2nrik6z-1.png" alt="MK870 x Akko Psittacus" class="product-image" />
-          <h2 class="product-title">MK870 x Akko Psittacus</h2>
-          <p class="product-price">10.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img src="img/5qan43j5-2-3.png" alt="Tiger 80 with PBTFans WoB" class="product-image" />
-          <h2 class="product-title">Tiger 80 with PBTFans WoB</h2>
-          <p class="product-price">3.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img src="img/voyager68-v2-1.png" alt="NK87 Aluminum Edition Nebula Pink x GMK WoB" class="product-image" />
-          <h2 class="product-title">NK87 Aluminum Edition Nebula Pink x GMK WoB</h2>
-          <p class="product-price">5.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img
-            src="img/jan-loyde-cabrera-stonbjkc-qy-unsplash-1-4.png"
-            alt="NK87 Aluminum Edition Nebula Pink x GMK WoB"
-            class="product-image"
-          />
-          <h2 class="product-title">NK87 Aluminum Edition Nebula Pink x GMK WoB</h2>
-          <p class="product-price">5.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img src="img/y2nrik6z-1-4.png" alt="MK870 x Akko Psittacus" class="product-image" />
-          <h2 class="product-title">MK870 x Akko Psittacus</h2>
-          <p class="product-price">10.499.000 IDR</p>
-        </article>
-      </section>
+            <%
+                ArrayList<Accessories> accessorieses = new ArrayList<>();
+                DBConnection db = new DBConnection();
+                Connection con = null;
+                String errorMessage = null; 
+
+                try {
+                    db.connect();
+                    con = db.getConnection();
+                    
+                    if (con == null) {
+                        throw new SQLException("Koneksi ke database gagal, objek Connection null.");
+                    }
+
+                    String sql = "SELECT * FROM katalog WHERE jenis = ?";
+                    PreparedStatement stmt = con.prepareStatement(sql);
+                    stmt.setString(1, "Accessories");
+                    ResultSet rs = stmt.executeQuery();
+
+                    while (rs.next()) {
+                        Accessories ac = new Accessories();
+                        ac.setIdProduk(rs.getInt("id_katalog"));
+                        ac.setNamaProduk(rs.getString("nama"));
+                        ac.setHarga(rs.getInt("harga"));
+                        ac.setStok(rs.getInt("stock"));
+                        ac.setGambarUrl(rs.getString("url_gambar"));
+                        accessorieses.add(ac);
+                    }
+                } catch (Exception e) {
+                    errorMessage = e.getMessage(); 
+                    e.printStackTrace();
+                } finally {
+                    if (con != null) {
+                        try {
+                            con.close();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                if (errorMessage != null) {
+            %>
+                    <div style="color: red; background-color: #ffcccc; border: 1px solid red; padding: 15px; margin: 20px;">
+                        <strong>Terjadi Error:</strong> <%= errorMessage %>
+                    </div>
+            <%
+                }
+
+                if (errorMessage == null && accessorieses.isEmpty()) {
+            %>
+                    <p>Belum ada produk accessories yang tersedia.</p>
+            <%
+                }
+
+                for (Accessories ac : accessorieses) {
+            %>
+                    <article class="product-card">
+                    <a href="tampilkanProduk.jsp?id=<%= ac.getIdProduk() %>" class="product-link">
+                        <img src="<%= ac.getGambarUrl() %>" alt="<%= ac.getNamaProduk() %>" class="product-image" />
+                        <h2 class="product-title"><%= ac.getNamaProduk() %></h2>
+                        <p class="product-price"><%= ac.getHarga() %> IDR</p>
+                    </a>
+                    </article>
+            <%
+                }
+            %>
+        </section>
     </main>
     <footer class="footer">
         <div class="footer-container">
