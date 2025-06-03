@@ -9,6 +9,7 @@ public abstract class Katalog {
     private String gambarUrl;
     private int kuantitasDiKeranjang;
 
+    public Katalog() {}   
     public Katalog(int idProduk, String namaProduk, String deskripsi, double harga, int stok, String gambarUrl) {
         this.idProduk = idProduk;
         this.namaProduk = namaProduk;

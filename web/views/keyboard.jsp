@@ -1,3 +1,7 @@
+<%@ page import="Models.Product" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +24,6 @@
             <a href="#" class="header-logo">
                 <img src="../assets/images/img-logo-sikeyboard-light.png" alt="siKeyboard Logo">
             </a>
-
 
             <nav class="navigation">
                 <ul class="nav-list">
@@ -53,102 +56,19 @@
       <br />
 
       <section class="product-grid">
+        <%
+          ArrayList<Keyboard> keyboards = (ArrayList<Keyboard>) request.getAttribute("keyboards");
+          for (Keyboard keyboard : keyboards) {
+        %>
         <article class="product-card">
-          <img src="img/5qan43j5-2-2.png" alt="Tiger 80 with PBTFans WoB" class="product-image" />
-          <h2 class="product-title">Tiger 80 with PBTFans WoB</h2>
-          <p class="product-price">3.499.000 IDR</p>
+          <img src="<%= keyboard.getGambarURL() %>" alt="<%= keyboard.getNamaProduk() %>" class="product-image" />
+          <h2 class="product-title"><%= keyboard.getNamaProduk() %></h2>
+          <p class="product-price"><%= keyboard.getHarga() %> IDR</p>
         </article>
-        <article class="product-card">
-          <img src="img/voyager68-v2-1-3.png" alt="NK87 Aluminum Edition Nebula Pink x GMK WoB" class="product-image" />
-          <h2 class="product-title">NK87 Aluminum Edition Nebula Pink x GMK WoB</h2>
-          <p class="product-price">5.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img
-            src="img/jan-loyde-cabrera-stonbjkc-qy-unsplash-1-3.png"
-            alt="NK87 Aluminum Edition Nebula Pink x GMK WoB"
-            class="product-image"
-          />
-          <h2 class="product-title">NK87 Aluminum Edition Nebula Pink x GMK WoB</h2>
-          <p class="product-price">5.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img src="img/y2nrik6z-1-3.png" alt="MK870 x Akko Psittacus" class="product-image" />
-          <h2 class="product-title">MK870 x Akko Psittacus</h2>
-          <p class="product-price">10.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img src="img/image.png" alt="Tiger 80 with PBTFans WoB" class="product-image" />
-          <h2 class="product-title">Tiger 80 with PBTFans WoB</h2>
-          <p class="product-price">3.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img src="img/voyager68-v2-1-2.png" alt="NK87 Aluminum Edition Nebula Pink x GMK WoB" class="product-image" />
-          <h2 class="product-title">NK87 Aluminum Edition Nebula Pink x GMK WoB</h2>
-          <p class="product-price">5.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img
-            src="img/jan-loyde-cabrera-stonbjkc-qy-unsplash-1-2.png"
-            alt="NK87 Aluminum Edition Nebula Pink x GMK WoB"
-            class="product-image"
-          />
-          <h2 class="product-title">NK87 Aluminum Edition Nebula Pink x GMK WoB</h2>
-          <p class="product-price">5.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img src="img/y2nrik6z-1-2.png" alt="MK870 x Akko Psittacus" class="product-image" />
-          <h2 class="product-title">MK870 x Akko Psittacus</h2>
-          <p class="product-price">10.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img src="img/5qan43j5-2.png" alt="Tiger 80 with PBTFans WoB" class="product-image" />
-          <h2 class="product-title">Tiger 80 with PBTFans WoB</h2>
-          <p class="product-price">3.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img src="img/voyager68-v2-1-4.png" alt="NK87 Aluminum Edition Nebula Pink x GMK WoB" class="product-image" />
-          <h2 class="product-title">NK87 Aluminum Edition Nebula Pink x GMK WoB</h2>
-          <p class="product-price">5.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img
-            src="img/jan-loyde-cabrera-stonbjkc-qy-unsplash-1.png"
-            alt="NK87 Aluminum Edition Nebula Pink x GMK WoB"
-            class="product-image"
-          />
-          <h2 class="product-title">NK87 Aluminum Edition Nebula Pink x GMK WoB</h2>
-          <p class="product-price">5.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img src="img/y2nrik6z-1.png" alt="MK870 x Akko Psittacus" class="product-image" />
-          <h2 class="product-title">MK870 x Akko Psittacus</h2>
-          <p class="product-price">10.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img src="img/5qan43j5-2-3.png" alt="Tiger 80 with PBTFans WoB" class="product-image" />
-          <h2 class="product-title">Tiger 80 with PBTFans WoB</h2>
-          <p class="product-price">3.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img src="img/voyager68-v2-1.png" alt="NK87 Aluminum Edition Nebula Pink x GMK WoB" class="product-image" />
-          <h2 class="product-title">NK87 Aluminum Edition Nebula Pink x GMK WoB</h2>
-          <p class="product-price">5.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img
-            src="img/jan-loyde-cabrera-stonbjkc-qy-unsplash-1-4.png"
-            alt="NK87 Aluminum Edition Nebula Pink x GMK WoB"
-            class="product-image"
-          />
-          <h2 class="product-title">NK87 Aluminum Edition Nebula Pink x GMK WoB</h2>
-          <p class="product-price">5.499.000 IDR</p>
-        </article>
-        <article class="product-card">
-          <img src="img/y2nrik6z-1-4.png" alt="MK870 x Akko Psittacus" class="product-image" />
-          <h2 class="product-title">MK870 x Akko Psittacus</h2>
-          <p class="product-price">10.499.000 IDR</p>
-        </article>
+        <%
+          }
+        %>
+
       </section>
     </main>
     <footer class="footer">
