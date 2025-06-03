@@ -35,8 +35,6 @@ public class RoleDAO {
                             rs.getString("password"));
                     return Optional.of(user);
                 }
-            } else {
-                return null;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -53,13 +51,10 @@ public class RoleDAO {
             stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
 
-            if (rs != null && rs.next()) {
-                return false;
-            } else {
-                return true;
-            }
+            return rs.next(); // true jika username ditemukan
         } catch (Exception e) {
-            return false;
+            e.printStackTrace();
+            return false; // anggap tidak ditemukan jika error
         }
     }
 
@@ -75,13 +70,10 @@ public class RoleDAO {
             stmt.setString(2, user.getUsername());
             stmt.setString(3, user.getPassword());
             stmt.setInt(4, 0);
-
-            // Eksekusi query
             stmt.executeUpdate();
 
         } catch (SQLException e) {
             System.err.println("Terjadi kesalahan saat menambahkan user! " + e.getMessage());
-            // Lemparkan kembali exception agar bisa ditangkap oleh AuthController
             throw e;
         }
     }
