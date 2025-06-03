@@ -16,7 +16,7 @@ public class KeyboardController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServtletException, IOException {
+            throws ServletException, IOException {
         HttpSession session = request.getSession();
         if (session.getAttribute("user") == null) {
             response.sendRedirect("index.jsp");
