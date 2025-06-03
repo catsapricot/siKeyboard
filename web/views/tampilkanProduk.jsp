@@ -28,8 +28,8 @@
               Shop<i class="fas fa-chevron-down"></i>
             </button>
             <div id="shopDropdown" class="dropdown-content">
-              <a href="#">Keyboard</a>
-              <a href="#">Accessories</a>
+              <a href="keyboard.jsp">Keyboard</a>
+              <a href="accessories.jsp">Accessories</a>
             </div>
           </div>
 

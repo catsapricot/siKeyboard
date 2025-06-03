@@ -7,18 +7,15 @@ public abstract class Katalog {
     private double harga;
     private int stok;
     private String gambarUrl;
-    private String rating;
     private int kuantitasDiKeranjang;
 
-    public Katalog(int idProduk, String namaProduk, String deskripsi, double harga, int stok, String gambarUrl,
-            String rating) {
+    public Katalog(int idProduk, String namaProduk, String deskripsi, double harga, int stok, String gambarUrl) {
         this.idProduk = idProduk;
         this.namaProduk = namaProduk;
         this.deskripsi = deskripsi;
         this.harga = harga;
         this.stok = stok;
         this.gambarUrl = gambarUrl;
-        this.rating = rating;
     }
 
     public int getIdProduk() {
@@ -69,21 +66,13 @@ public abstract class Katalog {
         this.gambarUrl = gambarUrl;
     }
 
-    public String getRating() {
-        return rating;
-    }
-
-    public void setRating(String rating) {
-        this.rating = rating;
-    }
-
     public int getKuantitas() {
         return kuantitasDiKeranjang;
     }
 
     public void setKuantitas(int kuantitas) {
         if (kuantitas < 0) {
-            this.kuantitasDiKeranjang = 0; 
+            this.kuantitasDiKeranjang = 0;
         } else {
             this.kuantitasDiKeranjang = kuantitas;
         }

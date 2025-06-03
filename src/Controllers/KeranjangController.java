@@ -13,7 +13,7 @@ import java.util.Optional;
 
 import Models.*;
 import Services.PasswordService;
-/* 
+
 @WebServlet("/keranjang")
 public class KeranjangController extends HttpServlet {
 
@@ -49,23 +49,24 @@ public class KeranjangController extends HttpServlet {
         HttpSession session = request.getSession();
         Pengguna pengguna = (Pengguna) session.getAttribute("user");
         String action = request.getParameter("action");
-        List<Katalog> keranjang = pengguna.getKeranjang();
-        if (keranjang != null) {
-            switch (action) {
-                case "update":
-                    handleUpdateKeranjang(keranjang, request, response);
-                    return;
-                case "remove":
+        if (action == null) {
+            action = "";
+        }
 
-            }
+        switch (action) {
+            case "update" -> handleUpdateKeranjang(pengguna, request, response);
+            case "remove" -> handleRemoveKeranjang(pengguna, request, response);
+            default -> response.sendRedirect(request.getContextPath() + "/keranjang");
         }
 
     }
 
-    private void handleUpdateKeranjang(List<Katalog> keranjang, HttpServletRequest request,
-            HttpServletResponse response) throws SQLException {
+    private void handleUpdateKeranjang(Pengguna pengguna, HttpServletRequest request,
+            HttpServletResponse response) throws IOException {
+
         try {
-            int productId = request.getParameter("productId");
+            int productId = Integer.parseInt(request.getParameter("productId"));
+            List<Katalog> keranjang = pengguna.getKeranjang();
             int kuantitasBaru = Integer.parseInt(request.getParameter("quantity"));
             if (keranjang != null) {
                 boolean itemFound = false;
@@ -77,14 +78,37 @@ public class KeranjangController extends HttpServlet {
                             item.setKuantitas(kuantitasBaru);
                         }
                         itemFound = true;
+                    }
+                    if (itemFound) {
                         break;
                     }
                 }
             }
-        } catch (NumberFormatException e) {
+            response.sendRedirect(request.getContextPath() + "/keranjang");
+        } catch (Exception e) {
             e.printStackTrace();
+            response.sendRedirect(request.getContextPath() + "/keranjang");
         }
-    } 
-   
+    }
+
+    private void handleRemoveKeranjang(Pengguna pengguna, HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        try {
+            int productId = Integer.parseInt(request.getParameter("productId"));
+            List<Katalog> keranjang = pengguna.getKeranjang();
+            if (keranjang != null) {
+                for (Katalog item : keranjang) {
+                    if (item.getIdProduk() == productId) {
+                        item.setKuantitas(0);
+                        keranjang.remove(item);
+                    }
+                }
+            }
+            response.sendRedirect(request.getContextPath() + "/keranjang");
+        } catch (Exception e) {
+            response.sendRedirect(request.getContextPath() + "/keranjang");
+        }
+
+    }
+
 }
-*/
