@@ -1,13 +1,12 @@
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 	<head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>siKeyboard - Keranjang</title>
-        <%-- Menghubungkan ke file CSS. Pastikan path-nya benar sesuai struktur proyek Anda. --%>
         <link rel="stylesheet" href="../assets/style/keranjangStyle.css">
         <link rel="stylesheet" href="../assets/style/tampilkanProduk.css">
-        <%-- Menghubungkan ke FontAwesome untuk ikon --%>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet" />
         <link href="https://fonts.cdnfonts.com/css/queensides" rel="stylesheet">
@@ -54,7 +53,7 @@
                             <button class="option-button">JWK Black T1</button>
                             <button class="option-button">JWK Black</button>
                             </div>
-                            <button class="add-to-cart">Tambah ke keranjang</button>
+                            <button class="add-to-cart" >Tambah ke keranjang</button>
                         </div>
                         </div>
                     </div>

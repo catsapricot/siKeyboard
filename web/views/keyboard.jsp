@@ -1,5 +1,7 @@
-<%@ page import="Models.Product" %>
+<%@ page import="Models.Keyboard" %>
+<%@ page import="Services.DBConnection" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.sql.*" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
@@ -55,21 +57,76 @@
       <br />
       <br />
 
-      <section class="product-grid">
-        <%
-          ArrayList<Keyboard> keyboards = (ArrayList<Keyboard>) request.getAttribute("keyboards");
-          for (Keyboard keyboard : keyboards) {
-        %>
-        <article class="product-card">
-          <img src="<%= keyboard.getGambarURL() %>" alt="<%= keyboard.getNamaProduk() %>" class="product-image" />
-          <h2 class="product-title"><%= keyboard.getNamaProduk() %></h2>
-          <p class="product-price"><%= keyboard.getHarga() %> IDR</p>
-        </article>
-        <%
-          }
-        %>
+        <section class="product-grid">
+            <%
+                ArrayList<Keyboard> keyboards = new ArrayList<>();
+                DBConnection db = new DBConnection();
+                Connection con = null;
+                String errorMessage = null; 
 
-      </section>
+                try {
+                    db.connect();
+                    con = db.getConnection();
+                    
+                    if (con == null) {
+                        throw new SQLException("Koneksi ke database gagal, objek Connection null.");
+                    }
+
+                    String sql = "SELECT * FROM katalog WHERE jenis = ?";
+                    PreparedStatement stmt = con.prepareStatement(sql);
+                    stmt.setString(1, "Keyboard");
+                    ResultSet rs = stmt.executeQuery();
+
+                    while (rs.next()) {
+                        Keyboard kb = new Keyboard();
+                        kb.setIdProduk(rs.getInt("id_katalog"));
+                        kb.setNamaProduk(rs.getString("nama"));
+                        kb.setHarga(rs.getInt("harga"));
+                        kb.setStok(rs.getInt("stock"));
+                        kb.setLayout(rs.getString("layout_keyboard"));
+                        kb.setSwitch(rs.getString("switch_type"));
+                        kb.setGambarUrl(rs.getString("url_gambar"));
+                        keyboards.add(kb);
+                    }
+                } catch (Exception e) {
+                    errorMessage = e.getMessage(); 
+                    e.printStackTrace();
+                } finally {
+                    if (con != null) {
+                        try {
+                            con.close();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                if (errorMessage != null) {
+            %>
+                    <div style="color: red; background-color: #ffcccc; border: 1px solid red; padding: 15px; margin: 20px;">
+                        <strong>Terjadi Error:</strong> <%= errorMessage %>
+                    </div>
+            <%
+                }
+
+                if (errorMessage == null && keyboards.isEmpty()) {
+            %>
+                    <p>Belum ada produk keyboard yang tersedia.</p>
+            <%
+                }
+
+                for (Keyboard kb : keyboards) {
+            %>
+                    <article class="product-card">
+                    <a href="tampilkanProduk.jsp?id=<%= kb.getIdProduk() %>" class="product-link">
+                        <img src="<%= kb.getGambarUrl() %>" alt="<%= kb.getNamaProduk() %>" class="product-image" />
+                        <h2 class="product-title"><%= kb.getNamaProduk() %></h2>
+                        <p class="product-price"><%= kb.getHarga() %> IDR</p>
+                    </a>
+                    </article>
+            <%
+                }
+            %>
+        </section>
     </main>
     <footer class="footer">
         <div class="footer-container">

@@ -1,21 +1,22 @@
 package Controllers;
 
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import Models.Keyboard;
+import Services.DBConnection;
+import java.util.ArrayList;
 
 @WebServlet("/keyboard")
 public class KeyboardController extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServtletException, IOException {
         HttpSession session = request.getSession();
         if (session.getAttribute("user") == null) {
             response.sendRedirect("index.jsp");
@@ -23,16 +24,14 @@ public class KeyboardController extends HttpServlet {
         }
 
         ArrayList<Keyboard> keyboards = new ArrayList<>();
-        String url = "jdbc:mysql://localhost:3306/sikeyboard";
-        String user = "root";
-        String pass = "";
+        DBConnection db = new DBConnection();
+        ResultSet rs = null;
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(url, user, pass);
-            String sql = "SELECT * FROM katalog WHERE jenis = 'Keyboard'";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
+            String sql = "SELECT * FROM katalog WHERE jenis = ?";
+            PreparedStatement pstmt = db.getConnection().prepareStatement(sql);
+            pstmt.setString(1, "Keyboard");
+            rs = pstmt.executeQuery();
 
             while (rs.next()) {
                 Keyboard kb = new Keyboard();
@@ -45,16 +44,21 @@ public class KeyboardController extends HttpServlet {
                 kb.setGambarUrl(rs.getString("url_gambar"));
                 keyboards.add(kb);
             }
-
-            rs.close();
-            stmt.close();
-            conn.close();
-            
         } catch (Exception e) {
             e.printStackTrace();
+            request.setAttribute("errorMessage", "An error occurred while retrieving keyboards.");
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            db.disconnect();
         }
 
         request.setAttribute("keyboards", keyboards);
-        request.getRequestDispatcher("../views/Keyboard.jsp").forward(request, response);
+        request.getRequestDispatcher("/web/views/Keyboard.jsp").forward(request, response);
     }
 }
