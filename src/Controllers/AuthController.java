@@ -29,10 +29,10 @@ public class AuthController extends HttpServlet {
             if (session != null) {
                 session.invalidate();
             }
-            response.sendRedirect(request.getContextPath() + "views/login.jsp");
+            response.sendRedirect(request.getContextPath() + "/views/login.jsp");
             return;
         }
-        request.getRequestDispatcher("views/login.jsp").forward(request, response);
+        request.getRequestDispatcher("/views/login.jsp").forward(request, response);
     }
 
     @Override
