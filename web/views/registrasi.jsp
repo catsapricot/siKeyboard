@@ -25,7 +25,7 @@
                 <p class="welcome-subtitle">Masukkan detail anda</p>
             </div>
 
-            <form method="post" class="form-section" action="<%= request.getContextPath()%>/auth">
+            <form method="POST" class="form-section" action="<%= request.getContextPath()%>/auth">
                 <input type="hidden" name="action" value="register"/>
                 <div class="input-group">
                     <label for="name" class="input-label">Nama</label>

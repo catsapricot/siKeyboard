@@ -14,5 +14,4 @@ public class PasswordService {
         }
         return BCrypt.checkpw(password, hashedPassword);
     }
-
 }

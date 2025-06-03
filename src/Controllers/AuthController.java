@@ -119,11 +119,14 @@ public class AuthController extends HttpServlet {
     }
 
     private void register(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
         String nama = request.getParameter("nama");
         String username = request.getParameter("user");
         String password = request.getParameter("pass");
+        System.out.println("NAMA: " + nama);
+        System.out.println("USERNAME: " + username);
+        System.out.println("PASSWORD: " + password);
         try {
+
             if (nama == null || nama.isEmpty() || username == null || username.isEmpty() || password == null
                     || password.isEmpty()) {
                 response.sendRedirect(request.getContextPath() + "/views/registrasi.jsp?error=1");

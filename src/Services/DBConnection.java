@@ -66,17 +66,10 @@ public class DBConnection {
     public ResultSet getData(String query) {
         ResultSet rs = null;
         connect();
-        if (isConnected) {
-            try {
-                rs = stmt.executeQuery(query);
-                message = "Data berhasil diambil dari database.";
-                System.out.println(message);
-            } catch (SQLException e) {
-                message = "Terjadi kesalahan saat mengambil data dari database: " + e.getMessage();
-                System.err.println(message);
-            }
-        } else {
-            message = "Terjadi kesalahan saat menjalankan query. Koneksi dengan database terputus/gagal.";
+        try {
+            rs = stmt.executeQuery(query);
+        } catch (SQLException e) {
+            message = "Terjadi kesalahan saat mengambil data dari database: " + e.getMessage();
             System.err.println(message);
         }
         return rs;
