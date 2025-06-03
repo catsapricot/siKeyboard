@@ -7,7 +7,7 @@
     <title>siKeyboard - Keranjang</title>
     <%-- Menghubungkan ke file CSS. Pastikan path-nya benar sesuai struktur proyek Anda. --%>
     <link rel="stylesheet" href="../assets/style/keranjangStyle.css">
-    <link rel="stylesheet" href="../assets/style/keyboardStyle.css">
+    <link rel="stylesheet" href="../assets/style/aksesorisStyle.css">
     <%-- Menghubungkan ke FontAwesome untuk ikon --%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet" />
@@ -20,7 +20,6 @@
             <a href="#" class="header-logo">
                 <img src="../assets/images/img-logo-sikeyboard-light.png" alt="siKeyboard Logo">
             </a>
-
 
             <nav class="navigation">
                 <ul class="nav-list">
@@ -37,18 +36,18 @@
 
             <div class="header-icons">
                 <a href="profile.jsp"><i class="fa-regular fa-user"></i></a>
-                <a href="keranjang.jsp"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
             </div>
         </div>
     </header>
     <main class="container">
-      <div class="container">
-          <header class="title-desc">
-              <h1 class="main-title">Keyboard? Get on Board King</h1>
-              <p class="subtitle">Pilih keyboard dan jadikkan milikmu sendiri!</p>
-          </header>
-      </div>
-      
+        <div class="container">
+            <header class="title-desc">
+                <h1 class="main-title">Accesorries? No Worries</h1>
+                <p class="subtitle">Hias keyboardmu sampai dunia tahu itu milikimu!</p>
+            </header>
+        </div>
+
       <br />
       <br />
 

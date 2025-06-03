@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +12,74 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.cdnfonts.com/css/queensides" rel="stylesheet">
+    <style>
+        .catalog-settings-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 60vh;
+            background: #f9f9f9;
+        }
+        .catalog-settings {
+            background: #fff;
+            padding: 2rem 3rem;
+            border-radius: 16px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .catalog-settings h2 {
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 1.5rem;
+        }
+        .catalog-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+        .catalog-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #3a3a3a;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+        .catalog-btn:hover {
+            background: #222;
+        }
+        .catalog-search-form {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .catalog-search-form input[type="text"] {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        .catalog-search-form button {
+            background: #3a3a3a;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+        .catalog-search-form button:hover {
+            background: #222;
+        }
+    </style>
 </head>
 
 <body>
@@ -21,7 +88,14 @@
             <a href="#" class="header-logo">
                 <img src="../assets/images/img-logo-sikeyboard-light.png" alt="siKeyboard Logo">
             </a>
-          
+            <form class="search-bar" action="<%= request.getContextPath() %>/cart" method="POST">
+                <input type="hidden" name="action" value="search"/>
+                <input type="text" name="query" placeholder="Search" aria-label="Search"/>
+                <button type="submit" aria-label="Submit search">
+                    <img src="../assets/images/img-icon-search.png" alt="Search" width="28" height="28" />
+                </button>
+            </form>
+
             <nav class="navigation">
                 <ul class="nav-list">
                     <li><a href="dashboard.jsp">Home</a></li>
@@ -37,28 +111,22 @@
 
             <div class="header-icons">
                 <a href="profile.jsp"><i class="fa-regular fa-user"></i></a>
-                <a href="keranjang.jsp"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
             </div>
         </div>
     </header>
-    <main class="ctn">
-        <div class="bgr">
-            
-            <section class="cs">
-            <h1 class="mh">
-                Rancang<br />
-                Rakit<br />
-                Rasakan
-            </h1>
-            <p class="description">
-                Disini keyboard bukan sekadar alat, jadikan keyboard bagian dari dirimu!<br />
-                Rancang keyboard sesuai seleramu, rakit dengan tanganmu sendiri, dan rasakan hasilnya.
-            </p>
-            </section>
-            <section class="is">
-            <img src="../assets/images/gambarDashboard.png" alt="Decorative background image" />
-            </section>
-        </div>
+    <main class="catalog-settings-container">
+        <section class="catalog-settings">
+            <h2>Pengaturan Katalog</h2>
+            <div class="catalog-actions">
+                <a href="editKatalog.jsp" class="catalog-btn"><i class="fa-solid fa-pen-to-square"></i> Edit Katalog</a>
+                <a href="tambahKatalog.jsp" class="catalog-btn"><i class="fa-solid fa-plus"></i> Tambah Katalog</a>
+                <form action="cariKatalog.jsp" method="get" class="catalog-search-form">
+                    <input type="text" name="query" placeholder="Cari Katalog..." required>
+                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i> Cari</button>
+                </form>
+            </div>
+        </section>
     </main>
     <footer class="footer">
     <div class="footer-container">
@@ -104,7 +172,7 @@
                 }
             });
         };   
-    
     </script>
+</main>
 </body>
 </html>
