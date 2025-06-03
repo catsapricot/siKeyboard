@@ -23,17 +23,7 @@ public class AuthController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String action = request.getParameter("action");
-        if ("logout".equals(action)) {
-            HttpSession session = request.getSession(false);
-            if (session != null) {
-                session.invalidate();
-            }
-            response.sendRedirect(request.getContextPath() + "/views/login.jsp");
-            
-            return;
-        }
-        request.getRequestDispatcher("/views/login.jsp").forward(request, response);
+        response.sendRedirect(request.getContextPath() + "/views/login.jsp");
     }
 
     @Override
@@ -48,6 +38,12 @@ public class AuthController extends HttpServlet {
             securityVerification(request, response);
         } else if ("register".equals(action)) {
             register(request, response);
+        } else if ("logout".equals(action)) {
+            HttpSession session = request.getSession(false);
+            if (session != null) {
+                session.invalidate();
+            }
+            response.sendRedirect(request.getContextPath() + "/views/login.jsp");
         } else {
             response.sendRedirect(request.getContextPath() + "/views/login.jsp");
         }
