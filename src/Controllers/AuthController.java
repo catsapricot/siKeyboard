@@ -45,7 +45,7 @@ public class AuthController extends HttpServlet {
             loginAwal(request, response);
         } else if (action.equals("securityKey")) {
             securityVerification(request, response);
-        } else if (action.equals("register")) {
+        } else if ("register".equals(action)) {
             register(request, response);
         } else {
             response.sendRedirect(request.getContextPath() + "/views/login.jsp");
@@ -121,22 +121,21 @@ public class AuthController extends HttpServlet {
     private void register(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         String nama = request.getParameter("nama");
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        if (nama == null || nama.isEmpty() || username == null || username.isEmpty() || password == null
-                || password.isEmpty()) {
-            response.sendRedirect(request.getContextPath() + "/registrasi.jsp?error=1");
-            return;
-        }
-
-        if (password.length() < 8) {
-            response.sendRedirect(request.getContextPath() + "/registrasi.jsp?error=2");
-            return;
-        }
-
+        String username = request.getParameter("user");
+        String password = request.getParameter("pass");
         try {
-            if (roleDao.findByUsername(username).isPresent()) {
-                response.sendRedirect(request.getContextPath() + "/registrasi.jsp?error=3");
+            if (nama == null || nama.isEmpty() || username == null || username.isEmpty() || password == null
+                    || password.isEmpty()) {
+                response.sendRedirect(request.getContextPath() + "/views/registrasi.jsp?error=1");
+                return;
+            }
+
+            if (password.length() < 8) {
+                response.sendRedirect(request.getContextPath() + "/views/registrasi.jsp?error=2");
+                return;
+            }
+            if (roleDao.findUsername(username)) {
+                response.sendRedirect(request.getContextPath() + "/views/registrasi.jsp?error=3");
                 return;
             }
 
@@ -145,7 +144,8 @@ public class AuthController extends HttpServlet {
             roleDao.simpanNewUser(user);
             response.sendRedirect(request.getContextPath() + "/views/registrasi.jsp?status=sukses");
         } catch (SQLException e) {
-            response.sendRedirect(request.getContextPath() + "/registrasi.jsp?error=4");
+            e.printStackTrace();
+            response.sendRedirect(request.getContextPath() + "/views/registrasi.jsp?error=4");
         }
     }
 }

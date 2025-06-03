@@ -6,7 +6,7 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-
+/* 
 import models.Keyboard;
 import java.util.ArrayList;
 @WebServlet("/keyboard")
@@ -15,7 +15,7 @@ public class KeyboardServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        dbController = new keyboardController();
+        dbController = new KeyboardController();
     }
 
     @Override
@@ -91,4 +91,6 @@ public class KeyboardServlet extends HttpServlet {
         // Redirect ke halaman view.jsp
         response.sendRedirect("keyboard?menu=view");
     }
+        
 }
+    */

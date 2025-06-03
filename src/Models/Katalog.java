@@ -1,15 +1,17 @@
 package Models;
 
 public abstract class Katalog {
-    private String idProduk;
+    private int idProduk;
     private String namaProduk;
     private String deskripsi;
     private double harga;
     private int stok;
     private String gambarUrl;
     private String rating;
+    private int kuantitasDiKeranjang;
 
-    public Katalog(String idProduk, String namaProduk, String deskripsi, double harga, int stok, String gambarUrl, String rating) {
+    public Katalog(int idProduk, String namaProduk, String deskripsi, double harga, int stok, String gambarUrl,
+            String rating) {
         this.idProduk = idProduk;
         this.namaProduk = namaProduk;
         this.deskripsi = deskripsi;
@@ -19,11 +21,11 @@ public abstract class Katalog {
         this.rating = rating;
     }
 
-    public String getIdProduk() {
+    public int getIdProduk() {
         return idProduk;
     }
 
-    public void setIdProduk(String idProduk) {
+    public void setIdProduk(int idProduk) {
         this.idProduk = idProduk;
     }
 
@@ -74,5 +76,16 @@ public abstract class Katalog {
     public void setRating(String rating) {
         this.rating = rating;
     }
-}
 
+    public int getKuantitas() {
+        return kuantitasDiKeranjang;
+    }
+
+    public void setKuantitas(int kuantitas) {
+        if (kuantitas < 0) {
+            this.kuantitasDiKeranjang = 0; 
+        } else {
+            this.kuantitasDiKeranjang = kuantitas;
+        }
+    }
+}
