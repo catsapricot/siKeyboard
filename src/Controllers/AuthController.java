@@ -103,7 +103,7 @@ public class AuthController extends HttpServlet {
                     session.removeAttribute("pending_admin_username");
                     session.removeAttribute("pending_admin_password");
 
-                    response.sendRedirect(request.getContextPath() + "/views/admin/dashboardAdmin.jsp");
+                    response.sendRedirect(request.getContextPath() + "/views/dashboardAdmin.jsp");
                     return;
                 }
 
