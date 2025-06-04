@@ -18,6 +18,24 @@
                     <img src="../assets/images/img-logo-sikeyboard-light.png" alt="siKeyboard Logo">
                 </a>
 
+                <nav class="navigation">
+                    <ul class="nav-list">
+                        <li><a href="dashboard.jsp">Home</a></li>
+                        <li class="nav-shop">
+                            <a href="#" id="shop-link">Shop <i class="fa-solid fa-caret-down"></i></a>
+                            <div class="dropdown-menu" id="shop-dropdown">
+                                <a href="keyboard.jsp">Keyboard</a>
+                                <a href="accessories.jsp">Accessories</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="header-icons">
+                    <a href="profile.jsp"><i class="fa-regular fa-user"></i></a>
+                    <a href="keranjang.jsp"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="<%= request.getContextPath() %>/auth?action=logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+                </div>
             </div>
         </header>
 

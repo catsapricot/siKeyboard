@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-    --bg-color: #f8f9fa;
+    --bg-color: #faf7f0;
     --main-bg: #ffffff;
     --footer-bg: #111111;
     --text-color: #111111;
@@ -95,7 +95,7 @@ body {
     align-items: center;
     list-style: none;
     margin: auto;
-    margin-right: 900px;
+    margin-right: 950px;
     gap: 30px;
 }
 
