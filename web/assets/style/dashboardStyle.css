@@ -53,3 +53,9 @@
     left: 0;
     display: flex;
 }
+
+.add_form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
