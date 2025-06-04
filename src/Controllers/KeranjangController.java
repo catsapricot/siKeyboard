@@ -12,9 +12,8 @@ import java.util.List;
 import java.util.Optional;
 
 import Models.*;
-// import Services.PasswordService;
 
-@WebServlet("/keranjang")
+@WebServlet(name = "KeranjangController", urlPatterns = { "/keranjang" })
 public class KeranjangController extends HttpServlet {
 
     @Override
@@ -56,6 +55,7 @@ public class KeranjangController extends HttpServlet {
         switch (action) {
             case "update" -> handleUpdateKeranjang(pengguna, request, response);
             case "remove" -> handleRemoveKeranjang(pengguna, request, response);
+            case "add" -> response.sendRedirect(request.getContextPath() + "/keranjang");
             default -> response.sendRedirect(request.getContextPath() + "/keranjang");
         }
 

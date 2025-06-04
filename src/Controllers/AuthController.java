@@ -13,9 +13,8 @@ import java.util.Optional;
 
 import DAO.RoleDAO;
 import Models.*;
-// import Services.PasswordService;
 
-@WebServlet("/auth")
+@WebServlet(name = "AuthController", urlPatterns = {"/auth"})
 public class AuthController extends HttpServlet {
     private RoleDAO roleDao = new RoleDAO();
 

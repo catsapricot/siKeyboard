@@ -11,7 +11,7 @@ import Models.Keyboard;
 import Services.DBConnection;
 import java.util.ArrayList;
 
-@WebServlet("/keyboard")
+@WebServlet(name = "KeyboardController", urlPatterns = {"/keyboard"})
 public class KeyboardController extends HttpServlet {
 
     @Override
