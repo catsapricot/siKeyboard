@@ -42,20 +42,19 @@
             <div class="header-icons">
                 <a href="profile.jsp"><i class="fa-regular fa-user"></i></a>
                 <a href="keranjang.jsp"><i class="fa-solid fa-cart-shopping"></i></a>
-                <a href="<%= request.getContextPath() %>/auth?action=logout"><i class="fa-solid fa-right-from-bracket"></i></a>
             </div>
         </div>
     </header>
     <main class="container">
-      <div class="container">
-          <header class="title-desc">
-              <h1 class="main-title">Keyboard? Get on Board King</h1>
-              <p class="subtitle">Pilih keyboard dan jadikkan milikmu sendiri!</p>
-          </header>
-      </div>
+        <div class="container">
+            <header class="title-desc">
+                <h1 class="main-title">Keyboard? Get on Board King</h1>
+                <p class="subtitle">Pilih keyboard dan jadikkan milikmu sendiri!</p>
+            </header>
+        </div>
       
-      <br />
-      <br />
+        <br />
+        <br />
 
         <section class="product-grid">
             <%
@@ -128,6 +127,7 @@
             %>
         </section>
     </main>
+    
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-column">

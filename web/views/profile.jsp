@@ -6,6 +6,7 @@
         <title>siKeyboard - Keranjang</title>
         <%-- Menghubungkan ke file CSS. Pastikan path-nya benar sesuai struktur proyek Anda. --%>
         <link rel="stylesheet" href="../assets/style/keranjangStyle.css">
+        <link rel="stylesheet" href="../assets/style/profile.css">
         <%-- Menghubungkan ke FontAwesome untuk ikon --%>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet" />
@@ -34,12 +35,22 @@
                 <div class="header-icons">
                     <a href="profile.jsp"><i class="fa-regular fa-user"></i></a>
                     <a href="keranjang.jsp"><i class="fa-solid fa-cart-shopping"></i></a>
-                    <a href="<%= request.getContextPath() %>/auth?action=logout"><i class="fa-solid fa-right-from-bracket"></i></a>
                 </div>
             </div>
         </header>
 
         <div class="main-content">
+            <section class="ai">
+                <h1>Account</h1>
+                <div class="logout">
+                    <a href="<%= request.getContextPath() %>/auth?action=logout"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+                </div>
+            </section>
+                <section class="ai">
+                    <h2>Account details</h2>
+                    <p>Muhammad Nazriel Ihram</p>
+                    <p>nazriel005</p>
+            </section>
         </div>
 
         <footer class="footer">

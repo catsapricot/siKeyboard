@@ -44,7 +44,6 @@
             <div class="header-icons">
                 <a href="profile.jsp"><i class="fa-regular fa-user"></i></a>
                 <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
-                <a href="<%= request.getContextPath() %>/auth?action=logout"><i class="fa-solid fa-right-from-bracket"></i></a>
             </div>
         </div>
     </header>
