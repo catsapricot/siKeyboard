@@ -116,7 +116,7 @@
                 for (Accessories ac : accessories) {
             %>
                     <article class="product-card">
-                    <a href="tampilkanProduk.jsp?id=<%= ac.getIdProduk() %>" class="product-link">
+                    <a href="tampilkanAksesoris.jsp?id=<%= ac.getIdProduk() %>"~ class="product-link">
                         <img src="<%= ac.getGambarUrl() %>" alt="<%= ac.getNamaProduk() %>" class="product-image" />
                         <h2 class="product-title"><%= ac.getNamaProduk() %></h2>
                         <p class="product-price"><%= ac.getHarga() %> IDR</p>

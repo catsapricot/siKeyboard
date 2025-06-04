@@ -6,6 +6,7 @@ public abstract class Katalog {
     private String deskripsi;
     private double harga;
     private int stok;
+    private String jenis;
     private String gambarUrl;
     private int kuantitasDiKeranjang;
 
@@ -41,6 +42,13 @@ public abstract class Katalog {
 
     public void setDeskripsi(String deskripsi) {
         this.deskripsi = deskripsi;
+    }
+
+    public void setJenis(String jenis) {
+        this.jenis = jenis;
+    }
+    public String getJenis() {
+        return jenis;
     }
 
     public double getHarga() {
