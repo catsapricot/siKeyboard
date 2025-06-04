@@ -98,11 +98,12 @@ body {
 
 .navigation .nav-list {
     display: flex;
+    align-items: center;
     list-style: none;
+    margin: auto;
+    margin-right: 950px;
     gap: 30px;
-    padding: 0;
 }
-
 .navigation .nav-list a {
     text-decoration: none;
     color: white;

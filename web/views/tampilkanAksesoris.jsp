@@ -1,11 +1,11 @@
-<%@ page import="Models.Keyboard" %>
+<%@ page import="Models.Accessories" %>
 <%@ page import="Services.DBConnection" %>
 <%@ page import="java.sql.*" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 
 <%
     String productIdStr = request.getParameter("id");
-    Keyboard product = null;
+    Accessories product = null;
     String errorMessagePage = null;
     int productId = 0;
 
@@ -36,19 +36,17 @@
                 throw new SQLException("Koneksi ke database gagal, objek Connection null.");
             }
 
-            String sql = "SELECT * FROM katalog WHERE id_katalog = ? AND jenis = 'Keyboard'";
+            String sql = "SELECT * FROM katalog WHERE id_katalog = ? AND jenis = 'Accessories'";
             stmt = con.prepareStatement(sql);
             stmt.setInt(1, productId);
             rs = stmt.executeQuery();
 
             if (rs.next()) {
-                product = new Keyboard();
+                product = new Accessories();
                 product.setIdProduk(rs.getInt("id_katalog"));
                 product.setNamaProduk(rs.getString("nama"));
                 product.setHarga(rs.getInt("harga"));
                 product.setStok(rs.getInt("stock"));
-                product.setLayout(rs.getString("layout_keyboard"));
-                product.setSwitch(rs.getString("switch_type"));
                 product.setGambarUrl(rs.getString("url_gambar"));
             } else {
                 errorMessagePage = "Produk dengan ID " + productId + " tidak ditemukan atau bukan Keyboard.";
@@ -80,6 +78,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>siKeyboard - <%= (product != null ? product.getNamaProduk() : "Detail Produk") %></title>
 
+    
     <link rel="stylesheet" href="../assets/style/tampilkanProduk.css"> <%-- Pastikan CSS baru ada di file ini --%>
     <link rel="stylesheet" href="../assets/style/keranjangStyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
@@ -121,13 +120,13 @@
                     <p><a href="keyboard.jsp" style="color: blue; text-decoration: underline;">Kembali ke daftar produk</a></p>
                 </div>
             <% } else if (product != null) { %>
-                <h1 style="margin-left: 140px; margin-top: 5px; margin-bottom: 20px;">Informasi Produk</h1>
+                <h1 style="margin-left: 140px; margin-top: 20px; margin-bottom: 20px;">Informasi Produk</h1>
                 <div class="product-info">
-                    <div class="product-image">
+                    <div class="product-image"> <%-- Class diubah agar konsisten dengan CSS --%>
                         <img 
                             src="<%= product.getGambarUrl() %>" 
                             alt="<%= product.getNamaProduk() %>" 
-                            /> 
+                            /> <%-- Inline style dihapus, diatur via CSS eksternal --%>
                     </div>
                     <div class="product-details">
                         <div>
@@ -136,36 +135,15 @@
                                 <span>Stock: <%= product.getStok() %></span>
                             </div>
                             <div class="product-price-detail"><%= product.getHarga() %> IDR</div>
-                            <div class="product-spec">
-                                <p><strong>Layout Keyboard:</strong> <%= (product.getLayout() != null && !product.getLayout().isEmpty() ? product.getLayout() : "N/A") %></p>
-                                <p><strong>Tipe Switch:</strong> <%= (product.getSwitch() != null && !product.getSwitch().isEmpty() ? product.getSwitch() : "N/A") %></p>
-                            </div>
-                            <form action="${pageContext.request.contextPath}/keranjang" method="POST">
-                                <input type="hidden" name="action" value="add">
-                                <input type="hidden" name="id" value="<%= product.getIdProduk() %>">
-                                <input type="hidden" name="qty" value="1">
-                                <button type="submit" class="add-to-cart">Tambah ke keranjang</button>
-                            </form>
+                            
+                            <%-- Tombol "Tambah ke Keranjang" yang sudah diperbaiki --%>
+                            <a href="keranjang.jsp?action=add&id=<%= product.getIdProduk() %>&qty=1" class="add-to-cart">Tambah ke keranjang</a>
                         </div>
                     </div>
                 </div>
-            <% 
-                String status = request.getParameter("status");
-                if ("sukses".equals(status)) {
-            %>
-                <div style="color: green; background-color: #d4edda; border: 1px solid green; padding: 15px; margin: 20px;">
-                    <strong>Berhasil menambahkan produk ke Keranjang</strong>
-                </div>
-            <% 
-                } else if ("gagal".equals(status)) { 
-            %>
-                <div style="color: red; background-color: #f8d7da; border: 1px solid red; padding: 15px; margin: 20px;">
-                    <strong>Tidak dapat menambahkan produk ke Keranjang</strong> 
-                </div>
-            <% 
-                }
-            }
-            %>
+            <% } else { %>
+                <p style="text-align:center; margin-top: 20px;">Produk tidak dapat ditampilkan. <a href="keyboard.jsp">Kembali ke daftar produk</a></p>
+            <% } %>
         </main>
     </div>
 
