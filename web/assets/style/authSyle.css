@@ -49,7 +49,7 @@ body {
 .logo-section {
     display: flex;
     align-items: center;
-    margin-bottom: 155px;
+    margin-bottom: 60px;
 }
 
 .logo {
@@ -149,7 +149,7 @@ body {
     font-family: "Montserrat", sans-serif;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
 }
 
 .login-button:hover {
