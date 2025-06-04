@@ -77,7 +77,7 @@ public class AuthController extends HttpServlet {
                     session.setAttribute("user", userRole);
                     session.setMaxInactiveInterval(60 * 60);
 
-                    response.sendRedirect(request.getContextPath() + "/views/dashboard.jsp");
+                    response.sendRedirect(request.getContextPath() + "/views/admin/dashboardAdmin.jsp");
                     return;
                 }
             }
@@ -103,7 +103,7 @@ public class AuthController extends HttpServlet {
                     session.removeAttribute("pending_admin_username");
                     session.removeAttribute("pending_admin_password");
 
-                    response.sendRedirect(request.getContextPath() + "/views/admin/dashboard.jsp");
+                    response.sendRedirect(request.getContextPath() + "/views/admin/dashboardAdmin.jsp");
                     return;
                 }
 
