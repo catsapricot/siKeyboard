@@ -7,7 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import DAO.KatalogDAO;
+
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +19,7 @@ import Models.*;
 
 @WebServlet(name = "KeranjangController", urlPatterns = { "/keranjang" })
 public class KeranjangController extends HttpServlet {
+    private KatalogDAO katalogDao = new KatalogDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -26,20 +31,22 @@ public class KeranjangController extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/views/login.jsp");
             return;
         }
+
         List<Katalog> keranjang = pengguna.getKeranjang();
-        double totalHarga = 0.0;
         if (keranjang == null) {
-            response.sendRedirect(request.getContextPath() + "/views/keranjang.jsp?");
-            return;
-        } else {
-            for (Katalog items : keranjang) {
-                totalHarga += (items.getHarga() * items.getKuantitas());
-            }
+            keranjang = new ArrayList<>();
+            pengguna.setKeranjang(keranjang);
+        }
+
+        double totalHarga = 0.0;
+        for (Katalog item : keranjang) {
+            totalHarga += (item.getHarga() * item.getKuantitas());
         }
 
         request.setAttribute("totalHarga", totalHarga);
         request.setAttribute("keranjang", keranjang);
-        request.getRequestDispatcher("views/keranjang.jsp").forward(request, response);
+
+        request.getRequestDispatcher("/views/keranjang.jsp").forward(request, response);
     }
 
     @Override
@@ -55,7 +62,7 @@ public class KeranjangController extends HttpServlet {
         switch (action) {
             case "update" -> handleUpdateKeranjang(pengguna, request, response);
             case "remove" -> handleRemoveKeranjang(pengguna, request, response);
-            case "add" -> response.sendRedirect(request.getContextPath() + "/keranjang");
+            case "add" -> handleAddToKeranjang(pengguna, request, response);
             default -> response.sendRedirect(request.getContextPath() + "/keranjang");
         }
 
@@ -84,6 +91,7 @@ public class KeranjangController extends HttpServlet {
                     }
                 }
             }
+            request.getSession().setAttribute("user", pengguna);
             response.sendRedirect(request.getContextPath() + "/keranjang");
         } catch (Exception e) {
             e.printStackTrace();
@@ -104,11 +112,60 @@ public class KeranjangController extends HttpServlet {
                     }
                 }
             }
+            request.getSession().setAttribute("user", pengguna);
             response.sendRedirect(request.getContextPath() + "/keranjang");
         } catch (Exception e) {
             response.sendRedirect(request.getContextPath() + "/keranjang");
         }
 
+    }
+
+    private void handleAddToKeranjang(Pengguna pengguna, HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        int productId = Integer.parseInt(request.getParameter("id"));
+        try {
+            int quantity = Integer.parseInt(request.getParameter("qty"));
+
+            Optional<Katalog> optionalProduk = katalogDao.findById(productId);
+
+            if (optionalProduk.isEmpty()) {
+                response.sendRedirect(request.getContextPath() + "/views/tampilkanProduk.jsp?id=" + productId);
+                return;
+            }
+
+            Katalog produk = optionalProduk.get();
+
+            List<Katalog> keranjang = pengguna.getKeranjang();
+            if (keranjang == null) {
+                keranjang = new ArrayList<>();
+                pengguna.setKeranjang(keranjang);
+            }
+
+            boolean itemDitemukan = false;
+            for (Katalog item : keranjang) {
+                if (item.getIdProduk() == productId) {
+                    item.setKuantitas(item.getKuantitas() + quantity);
+                    itemDitemukan = true;
+                    break;
+                }
+            }
+
+            if (!itemDitemukan) {
+                produk.setKuantitas(quantity);
+                keranjang.add(produk);
+            }
+
+            request.getSession().setAttribute("user", pengguna);
+            request.setAttribute("status", "sukses");
+            response.sendRedirect(
+                    request.getContextPath() + "/views/tampilkanProduk.jsp?id=" + productId + "&status=sukses");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("status", "gagal");
+            response.sendRedirect(
+                    request.getContextPath() + "/views/tampilkanProduk.jsp?id=" + productId + "&status=gagal");
+        }
     }
 
 }

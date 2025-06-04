@@ -10,4 +10,8 @@ public class Accessories extends Katalog {
         super(idProduk, namaProduk, deskripsi, harga, stok, gambarUrl);
     }
 
+    public Accessories(int idProduk, String namaProduk, double harga, int stok, String gambarUrl) {
+        super(idProduk, namaProduk, harga, stok, gambarUrl);
+    }
+
 }

@@ -23,6 +23,10 @@ public class Pengguna extends Role {
         return this.keranjang;
     }
 
+    public void setKeranjang(List<Katalog> keranjang) {
+        this.keranjang = keranjang;
+    }
+
     @Override
     public boolean login(String passwordInp, String storedPassword, String securityKey) {
         boolean isValid = false;

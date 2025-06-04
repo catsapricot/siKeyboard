@@ -59,8 +59,8 @@
     <main class="main-content">
         <div class="cart-container">
             <% 
-
                 List<Katalog> keranjang = (List<Katalog>) request.getAttribute("keranjang");
+                Double totalHarga = (Double) request.getAttribute("totalHarga");
                 if (keranjang != null && !keranjang.isEmpty()) { 
             %>
                     <h1>Your cart</h1>
@@ -117,9 +117,7 @@
                     <div class="cart-summary">
                         <div class="grand-total">
                             <span>Total</span>
-                            <%
-                                double totalHarga = (double) request.getAttribute("totalHarga");
-                            %>
+                            
                             <span id="grand-total-price">IDR <%= totalHarga %></span>
                         </div>
                         <a href="<%= request.getContextPath() %>/checkout.jsp" class="checkout-button">Checkout</a>

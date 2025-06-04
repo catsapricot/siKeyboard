@@ -1,6 +1,10 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ page import="Models.Pengguna" %>
 <!DOCTYPE html>
 <html lang="en">
+<%
+    Pengguna pengguna = (Pengguna) session.getAttribute("user");
+%>
 
 <head>
     <meta charset="UTF-8">
@@ -13,7 +17,7 @@
     <link href="https://fonts.cdnfonts.com/css/queensides" rel="stylesheet">
 </head>
 
-<body>
+<body>  
     <header class="header">
         <div class="header-container">
             <a href="#" class="header-logo">

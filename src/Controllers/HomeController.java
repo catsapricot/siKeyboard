@@ -15,6 +15,6 @@ public class HomeController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        response.sendRedirect("views/dashboard.jsp");
+        response.sendRedirect("views/login.jsp");
     }
 }
