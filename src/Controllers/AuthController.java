@@ -77,7 +77,7 @@ public class AuthController extends HttpServlet {
                     session.setAttribute("user", userRole);
                     session.setMaxInactiveInterval(60 * 60);
 
-                    response.sendRedirect(request.getContextPath() + "/views/admin/dashboardAdmin.jsp");
+                    response.sendRedirect(request.getContextPath() + "/views/dashboard.jsp");
                     return;
                 }
             }
