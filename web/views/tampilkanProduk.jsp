@@ -80,8 +80,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>siKeyboard - <%= (product != null ? product.getNamaProduk() : "Detail Produk") %></title>
 
-    <link rel="stylesheet" href="../assets/style/keranjangStyle.css">
     <link rel="stylesheet" href="../assets/style/tampilkanProduk.css"> <%-- Pastikan CSS baru ada di file ini --%>
+    <link rel="stylesheet" href="../assets/style/keranjangStyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.cdnfonts.com/css/queensides" rel="stylesheet">
@@ -121,7 +121,7 @@
                     <p><a href="keyboard.jsp" style="color: blue; text-decoration: underline;">Kembali ke daftar produk</a></p>
                 </div>
             <% } else if (product != null) { %>
-                <h1 style="margin-left: 140px; margin-top: 20px; margin-bottom: 20px;">Informasi Produk</h1>
+                <h1 style="margin-left: 140px; margin-top: 5px; margin-bottom: 20px;">Informasi Produk</h1>
                 <div class="product-info">
                     <div class="product-image"> <%-- Class diubah agar konsisten dengan CSS --%>
                         <img 
