@@ -15,10 +15,10 @@ public class KatalogDAO {
 
     public void tambahKeKeranjangDatabase(int userId, int idProduk, int jumlah) {
         String sql = """
-            INSERT INTO keranjang (id_user, id_katalog, jumlah)
-            VALUES (?, ?, ?)
-            ON DUPLICATE KEY UPDATE jumlah = jumlah + VALUES(jumlah)
-        """;
+                    INSERT INTO keranjang (id_user, id_katalog, jumlah)
+                    VALUES (?, ?, ?)
+                    ON DUPLICATE KEY UPDATE jumlah = jumlah + VALUES(jumlah)
+                """;
 
         try {
             db.connect();
@@ -156,6 +156,20 @@ public class KatalogDAO {
         } catch (SQLException e) {
             System.err.println("Error occurred while adding user: " + e.getMessage());
             throw e;
+        }
+    }
+
+    public void checkout(int productId) {
+        String sql = "UPDATE katalog SET stock = stock - 1 WHERE id_katalog = ?";
+
+        try {
+            db.connect();
+            try (Connection con = db.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
+                stmt.setInt(1, productId);
+                stmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }
