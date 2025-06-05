@@ -75,6 +75,7 @@ public class AuthController extends HttpServlet {
                 }
 
                 if (userRole.login(password, storedPassword, "")) {
+                    session.setAttribute("userId", userRole.getId());
                     session.setAttribute("user", userRole);
                     session.setAttribute("nama", userRole.getNama());
                     session.setMaxInactiveInterval(60 * 60);

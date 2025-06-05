@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 import Models.*;
+import Services.DBConnection;
 
 @WebServlet(name = "KeranjangController", urlPatterns = { "/keranjang" })
 public class KeranjangController extends HttpServlet {
@@ -26,26 +27,15 @@ public class KeranjangController extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Pengguna pengguna = (Pengguna) session.getAttribute("user");
-
+        int userId = (int) session.getAttribute("userId");
         if (pengguna == null) {
             response.sendRedirect(request.getContextPath() + "/views/login.jsp");
             return;
         }
+        System.out.println("ID PENGGUNA DI KERANJANG CONTROLLER (doGet): " + userId);
+        List<Katalog> keranjang = katalogDao.getKeranjangByUserId(userId);
 
-        List<Katalog> keranjang = pengguna.getKeranjang();
-        if (keranjang == null) {
-            keranjang = new ArrayList<>();
-            pengguna.setKeranjang(keranjang);
-        }
-
-        double totalHarga = 0.0;
-        for (Katalog item : keranjang) {
-            totalHarga += (item.getHarga() * item.getKuantitas());
-        }
-
-        request.setAttribute("totalHarga", totalHarga);
         request.setAttribute("keranjang", keranjang);
-
         request.getRequestDispatcher("/views/keranjang.jsp").forward(request, response);
     }
 
@@ -122,50 +112,13 @@ public class KeranjangController extends HttpServlet {
 
     private void handleAddToKeranjang(Pengguna pengguna, HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-        int productId = Integer.parseInt(request.getParameter("id"));
-        try {
-            int quantity = Integer.parseInt(request.getParameter("qty"));
-
-            Optional<Katalog> optionalProduk = katalogDao.findById(productId);
-
-            if (optionalProduk.isEmpty()) {
-                response.sendRedirect(request.getContextPath() + "/views/tampilkanProduk.jsp?id=" + productId);
-                return;
-            }
-
-            Katalog produk = optionalProduk.get();
-
-            List<Katalog> keranjang = pengguna.getKeranjang();
-            if (keranjang == null) {
-                keranjang = new ArrayList<>();
-                pengguna.setKeranjang(keranjang);
-            }
-
-            boolean itemDitemukan = false;
-            for (Katalog item : keranjang) {
-                if (item.getIdProduk() == productId) {
-                    item.setKuantitas(item.getKuantitas() + quantity);
-                    itemDitemukan = true;
-                    break;
-                }
-            }
-
-            if (!itemDitemukan) {
-                produk.setKuantitas(quantity);
-                keranjang.add(produk);
-            }
-
-            request.getSession().setAttribute("user", pengguna);
-            request.setAttribute("status", "sukses");
-            response.sendRedirect(
-                    request.getContextPath() + "/views/tampilkanProduk.jsp?id=" + productId + "&status=sukses");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            request.setAttribute("status", "gagal");
-            response.sendRedirect(
-                    request.getContextPath() + "/views/tampilkanProduk.jsp?id=" + productId + "&status=gagal");
-        }
+        /*
+         * int productId = Integer.parseInt(request.getParameter("id"));
+         * DBConnection db = new DBConnection();
+         * try {
+         * String
+         * }
+         */
     }
 
 }

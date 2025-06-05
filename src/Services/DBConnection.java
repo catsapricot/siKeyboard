@@ -9,7 +9,7 @@ public class DBConnection {
     public DBConnection() {
         this.message = "Koneksi belum diinisialisasi.";
         try {
-            Class.forName("com.mysql.jdbc.Driver"); 
+            Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             System.err.println("Terjadi kesalahan saat. Driver Tidak ditemukan. Error: " + e.getMessage());
         }

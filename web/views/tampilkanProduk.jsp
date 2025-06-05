@@ -140,7 +140,7 @@
                                 <p><strong>Layout Keyboard:</strong> <%= (product.getLayout() != null && !product.getLayout().isEmpty() ? product.getLayout() : "N/A") %></p>
                                 <p><strong>Tipe Switch:</strong> <%= (product.getSwitch() != null && !product.getSwitch().isEmpty() ? product.getSwitch() : "N/A") %></p>
                             </div>
-                            <form action="${pageContext.request.contextPath}/keranjang" method="POST">
+                            <form action="${pageContext.request.contextPath}/keranjang" method="post">
                                 <input type="hidden" name="action" value="add">
                                 <input type="hidden" name="id" value="<%= product.getIdProduk() %>">
                                 <input type="hidden" name="qty" value="1">

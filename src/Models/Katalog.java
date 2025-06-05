@@ -57,6 +57,7 @@ public abstract class Katalog {
     public void setJenis(String jenis) {
         this.jenis = jenis;
     }
+
     public String getJenis() {
         return jenis;
     }

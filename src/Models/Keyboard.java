@@ -24,6 +24,11 @@ public class Keyboard extends Katalog {
         this.switchType = switchType;
     }
 
+    public Keyboard(int idProduk, String namaProduk, double harga, int stok, String gambarUrl) {
+        super(idProduk, namaProduk, harga, stok, gambarUrl);
+
+    }
+
     public String getLayout() {
         return layout;
     }

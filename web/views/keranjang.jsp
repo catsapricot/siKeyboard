@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="DAO.KatalogDAO" %>
 <%@ page import="Models.Pengguna" %>
 <%@ page import="Models.Katalog" %>
 <%@ page import="Models.Keyboard" %>
@@ -22,7 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>siKeyboard - Keranjang</title>
     <%-- Menghubungkan ke file CSS. Pastikan path-nya benar sesuai struktur proyek Anda. --%>
-    <link rel="stylesheet" href="../assets/style/keranjangStyle.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/style/keranjangStyle.css">
     <%-- Menghubungkan ke FontAwesome untuk ikon --%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet" />
@@ -33,24 +34,24 @@
     <header class="header">
         <div class="header-container">
             <a href="#" class="header-logo">
-                <img src="../assets/images/img-logo-sikeyboard-light.png" alt="siKeyboard Logo">
+                <img src="<%= request.getContextPath() %>/assets/images/img-logo-sikeyboard-light.png" alt="siKeyboard Logo">
             </a>
 
             <nav class="navigation">
                 <ul class="nav-list">
-                    <li><a href="dashboard.jsp">Home</a></li>
+                    <li><a href="<%= request.getContextPath() %>/views/dashboard.jsp">Home</a></li>
                     <li class="nav-shop">
                         <a href="#" id="shop-link">Shop <i class="fa-solid fa-caret-down"></i></a>
                         <div class="dropdown-menu" id="shop-dropdown">
-                            <a href="keyboard.jsp">Keyboard</a>
-                            <a href="accessories.jsp">Accessories</a>
+                            <a href="<%= request.getContextPath() %>/views/keyboard.jsp">Keyboard</a>
+                            <a href="<%= request.getContextPath() %>/views/accessories.jsp">Accessories</a>
                         </div>
                     </li>
                 </ul>
             </nav>
 
             <div class="header-icons">
-                <a href="profile.jsp"><i class="fa-regular fa-user"></i></a>
+                <a href="<%= request.getContextPath() %>/views/profile.jsp"><i class="fa-regular fa-user"></i></a>
                 <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
             </div>
         </div>
@@ -59,8 +60,9 @@
     <main class="main-content">
         <div class="cart-container">
             <% 
-                List<Katalog> keranjang = (List<Katalog>) request.getAttribute("keranjang");
-                Double totalHarga = (Double) request.getAttribute("totalHarga");
+                KatalogDAO kdao = new KatalogDAO();
+                // int userid = (int) session.getAttribute("userId");
+                List<Katalog> keranjang = kdao.getKeranjangByUserId(5);
                 if (keranjang != null && !keranjang.isEmpty()) { 
             %>
                     <h1>Your cart</h1>
@@ -73,6 +75,7 @@
 
                     <div class="cart-items-container">
                         <% 
+                            double totalHarga = 0;
                             for (Katalog katalogItem : keranjang) {
                         %>
                                 <div class="cart-item" data-price="<%= katalogItem.getHarga() %>">
@@ -112,7 +115,10 @@
                                         <span class="item-total-price">IDR <%= katalogItem.getHarga() * katalogItem.getKuantitas() %></span>
                                     </div>
                                 </div>
-                        <%  } %>    
+                        <%  
+                                totalHarga += (katalogItem.getHarga() * katalogItem.getKuantitas());
+                            } 
+                        %>    
                     </div>
                     <div class="cart-summary">
                         <div class="grand-total">
