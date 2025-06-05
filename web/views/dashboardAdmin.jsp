@@ -19,6 +19,20 @@
                 width: 100%;
                 max-width: 350px;
             }
+            .tablean {
+                width: 100%;
+                max-width: 1000px;
+                margin: 10px;
+            }
+            label {
+                display: block;
+                margin-top: 1rem;
+            }
+            .dalem_tombol {
+                display: flex;
+                gap: 10px;
+                margin-left: 10px;
+            }
         </style>
 </head>
 
@@ -52,10 +66,12 @@
         <section class="container_tampilan">
             <h2>Kelola Katalog Keyboard</h2>
             <div class="tombol">
-                <input type="text" id="searchInput" class="input-bar" placeholder="Cari katalog..." />
-                <button class="btn btn-primary" onclick="searchKatalog()">Cari</button>
-                <button class="btn btn-primary" onclick="showAddForm()">Tambah Katalog</button>
-                <button class="btn btn-primary" onclick="showAddForm()">Tambah Aksesoris</button>
+                <input type="text" id="searchInput" class="input-bar input-group" placeholder="Cari katalog..." />
+                <div class="dalem_tombol">
+                    <button class="btn btn-primary" onclick="searchKatalog()">Cari</button>
+                    <button class="btn btn-primary" onclick="showAddForm()">Tambah Katalog</button>
+                    <button class="btn btn-primary" onclick="showAddForm()">Tambah Aksesoris</button>
+                </div>
             </div>
             <table class="table table-bordered" id="catalogTable">
                 <thead>
@@ -74,47 +90,45 @@
                     <!-- Data katalog akan diisi di sini -->
                 </tbody>
             </table>
-            <form class="add-form" id="addForm" style="display:none;" onsubmit="addKatalog(event)">
+            <form class="add-form tablean" id="addForm" style="display:none;" onsubmit="addKatalog(event)">
                 <h3>Tambah Katalog Baru</h3>
                 <label for="nama">Nama Keyboard</label>
-                <input type="text" class="input-bar" id="nama" required /></br>
+                <input type="text" class="input-bar input-group" id="nama" required /></br>
                 <label for="jenis">Jenis</label>
-                <input type="text" class="input-bar"  id="jenis" required /></br>
+                <input type="text" class="input-bar input-group"  id="jenis" required /></br>
                 <label for="layout">Layout</label>
-                <input type="text" class="input-bar"  id="layout" required /></br>
+                <input type="text" class="input-bar input-group"  id="layout" required /></br>
                 <label for="Switch">Switch</label>
-                <input type="text" class="input-bar"  id="Switch" required /></br>
+                <input type="text" class="input-bar input-group"  id="Switch" required /></br>
                 <label for="harga">Harga</label>
-                <input type="text" class="input-bar"  id="harga" required /></br>
+                <input type="text" class="input-bar input-group"  id="harga" required /></br>
                 <label for="stock">Stock</label>
-                <input type="text" class="input-bar"  id="stock" required /></br>
+                <input type="text" class="input-bar input-group"  id="stock" required /></br>
                 <label for="gambar">Gambar (URL)</label>
-                <input type="text" class="input-bar"  id="gambar" required /></br>
-                <div class="tombol">
-                    <button class="btn btn-primary"  type="submit">Simpan</button>
-                    <button class="btn btn-primary"  type="button" onclick="hideAddForm()">Batal</button>
-                </div>
+                <input type="text" class="input-bar input-group"  id="gambar" required /></br>
+                <button class="btn btn-primary"  type="submit">Simpan</button>
+                <button class="btn btn-primary"  type="button" onclick="hideAddForm()">Batal</button>
             </form>
             
             <form class="add-form" id="editForm" style="display:none;" onsubmit="saveEdit(event)">
-                <h3>Edit Katalog</h3>
-                <input type="hidden" class="input-bar"  id="editIndex" />
-                <label for="editNama">Nama Keyboard</label>
-                <input type="text" class="input-bar"  id="editNama" required />
-                <label for="editJenis">Jenis</label>
-                <input type="text" class="input-bar"  id="editJenis" required />
-                <label for="editLayout">Layout</label>
-                <input type="text" class="input-bar"  id="editLayout" required />
-                <label for="editSwitch">Switch</label>
-                <input type="text" class="input-bar"  id="editSwitch" required />
-                <label for="editHarga">Harga</label>
-                <input type="text" class="input-bar"  id="editHarga" required />
-                <label for="editStock">Stock</label>
-                <input type="text" class="input-bar"  id="editStock" required />
-                <label for="editGambar">Gambar (URL)</label>
-                <input type="text" class="input-bar"  id="editGambar" required />
-                <button class="btn btn-primary" type="submit">Simpan Perubahan</button>
-                <button class="btn btn-primary" type="button" onclick="hideEditForm()" style="background:#ccc;color:#000;margin-left:1rem;">Batal</button>
+                    <h3>Edit Katalog</h3>
+                    <input type="hidden" class="input-bar input-group"  id="editIndex" />
+                    <label for="editNama">Nama Keyboard</label>
+                    <input type="text" class="input-bar input-group"  id="editNama" required />
+                    <label for="editJenis">Jenis</label>
+                    <input type="text" class="input-bar input-group"  id="editJenis" required />
+                    <label for="editLayout">Layout</label>
+                    <input type="text" class="input-bar input-group"  id="editLayout" required />
+                    <label for="editSwitch">Switch</label>
+                    <input type="text" class="input-bar input-group"  id="editSwitch" required />
+                    <label for="editHarga">Harga</label>
+                    <input type="text" class="input-bar input-group"  id="editHarga" required />
+                    <label for="editStock">Stock</label>
+                    <input type="text" class="input-bar input-group"  id="editStock" required />
+                    <label for="editGambar">Gambar (URL)</label>
+                    <input type="text" class="input-bar input-group"  id="editGambar" required />
+                    <button class="btn btn-primary" type="submit">Simpan Perubahan</button>
+                    <button class="btn btn-primary" type="button" onclick="hideEditForm()" style="background:#ccc;color:#000;margin-left:1rem;">Batal</button>
             </form>
         </section>
     </main>
@@ -186,7 +200,11 @@
         function addKatalog(e) {
             e.preventDefault();
             const nama = document.getElementById('nama').value;
+            const jenis = document.getElementById('jenis').value;
             const layout = document.getElementById('layout').value;
+            const switchType = document.getElementById('Switch').value;
+            const harga = document.getElementById('harga').value;
+            const stock = document.getElementById('stock').value;
             const gambar = document.getElementById('gambar').value;
             katalog.push({ nama, layout, gambar });
             renderKatalog();
@@ -196,7 +214,11 @@
         function editKatalog(idx) {
             document.getElementById('editIndex').value = idx;
             document.getElementById('editNama').value = katalog[idx].nama;
+            document.getElementById('editJenis').value = katalog[idx].jenis;
             document.getElementById('editLayout').value = katalog[idx].layout;
+            document.getElementById('editSwitch').value = katalog[idx].switch;
+            document.getElementById('editHarga').value = katalog[idx].harga;
+            document.getElementById('editStock').value = katalog[idx].stock;
             document.getElementById('editGambar').value = katalog[idx].gambar;
             document.getElementById('editForm').style.display = 'block';
         }
@@ -210,7 +232,11 @@
             e.preventDefault();
             const idx = document.getElementById('editIndex').value;
             katalog[idx].nama = document.getElementById('editNama').value;
+            katalog[idx].jenis = document.getElementById('editJenis').value;
             katalog[idx].layout = document.getElementById('editLayout').value;
+            katalog[idx].switch = document.getElementById('editSwitch').value;
+            katalog[idx].harga = document.getElementById('editHarga').value;
+            katalog[idx].stock = document.getElementById('editStock').value;
             katalog[idx].gambar = document.getElementById('editGambar').value;
             renderKatalog();
             hideEditForm();
