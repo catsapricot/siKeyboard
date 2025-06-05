@@ -8,12 +8,25 @@ public class Keyboard extends Katalog {
     public Keyboard() {
         super();
     }
+
     public Keyboard(int idProduk, String namaProduk, String deskripsi, double harga, int stok, String gambarUrl,
             String layout, String switchType, String warna) {
         super(idProduk, namaProduk, deskripsi, harga, stok, gambarUrl);
         this.layout = layout;
         this.switchType = switchType;
         this.warna = warna;
+    }
+
+    public Keyboard(int idProduk, String namaProduk, double harga, int stok, String gambarUrl, String layout,
+            String switchType) {
+        super(idProduk, namaProduk, harga, stok, gambarUrl);
+        this.layout = layout;
+        this.switchType = switchType;
+    }
+
+    public Keyboard(int idProduk, String namaProduk, double harga, int stok, String gambarUrl) {
+        super(idProduk, namaProduk, harga, stok, gambarUrl);
+
     }
 
     public String getLayout() {

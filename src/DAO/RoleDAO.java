@@ -9,37 +9,38 @@ public class RoleDAO {
     DBConnection db = new DBConnection();
 
     public Optional<Role> findByUsername(String username) {
+        db.connect();
+        try (Connection con = db.getConnection(); // Asumsi db.connect() mengembalikan Connection
+                PreparedStatement stmt = con.prepareStatement("SELECT * FROM users WHERE username = ?")) {
 
-        try {
-            db.connect();
-            Connection con = db.getConnection();
-            PreparedStatement stmt = con.prepareStatement("SELECT * FROM users WHERE username = ?");
             stmt.setString(1, username);
-            ResultSet rs = stmt.executeQuery();
 
-            if (rs.next()) {
-                int isAdmin = rs.getInt("is_admin");
-                if (isAdmin == 1) {
-                    Admin admin = new Admin(
-                            rs.getInt("id_user"),
-                            rs.getString("username"),
-                            rs.getString("password"));
-
-                    admin.setSecurity(rs.getString("security_key"));
-                    return Optional.of(admin);
-                } else if (isAdmin == 0) {
-                    Pengguna user = new Pengguna(
-                            rs.getInt("id_user"),
-                            rs.getString("nama"),
-                            rs.getString("username"),
-                            rs.getString("password"));
-                    return Optional.of(user);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    int isAdmin = rs.getInt("is_admin");
+                    if (isAdmin == 1) {
+                        Admin admin = new Admin(
+                                rs.getInt("id_user"),
+                                rs.getString("username"),
+                                rs.getString("password"));
+                        admin.setSecurity(rs.getString("security_key"));
+                        return Optional.of(admin);
+                    } else { // isAdmin == 0
+                        Pengguna user = new Pengguna(
+                                rs.getInt("id_user"),
+                                rs.getString("nama"),
+                                rs.getString("username"),
+                                rs.getString("password"));
+                        // Pastikan constructor Pengguna menyimpan semua nilai ini dengan benar.
+                        return Optional.of(user);
+                    }
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            System.err.println("Terjadi error saat query!");
+            System.err.println("Terjadi error saat query findByUsername!");
         }
+        // Jika tidak ada user ditemukan atau terjadi error, kembalikan Optional kosong.
         return Optional.empty();
     }
 

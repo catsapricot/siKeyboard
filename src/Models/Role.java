@@ -7,6 +7,8 @@ public abstract class Role {
     private String password;
 
     public Role(int id, String nama, String username, String password) {
+        this.id = id;
+        this.nama = nama;
         this.username = username;
         this.password = password;
     }

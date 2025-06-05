@@ -123,11 +123,11 @@
             <% } else if (product != null) { %>
                 <h1 style="margin-left: 140px; margin-top: 5px; margin-bottom: 20px;">Informasi Produk</h1>
                 <div class="product-info">
-                    <div class="product-image"> <%-- Class diubah agar konsisten dengan CSS --%>
+                    <div class="product-image">
                         <img 
                             src="<%= product.getGambarUrl() %>" 
                             alt="<%= product.getNamaProduk() %>" 
-                            /> <%-- Inline style dihapus, diatur via CSS eksternal --%>
+                            /> 
                     </div>
                     <div class="product-details">
                         <div>
@@ -136,20 +136,36 @@
                                 <span>Stock: <%= product.getStok() %></span>
                             </div>
                             <div class="product-price-detail"><%= product.getHarga() %> IDR</div>
-                            
                             <div class="product-spec">
                                 <p><strong>Layout Keyboard:</strong> <%= (product.getLayout() != null && !product.getLayout().isEmpty() ? product.getLayout() : "N/A") %></p>
                                 <p><strong>Tipe Switch:</strong> <%= (product.getSwitch() != null && !product.getSwitch().isEmpty() ? product.getSwitch() : "N/A") %></p>
                             </div>
-                            
-                            <%-- Tombol "Tambah ke Keranjang" yang sudah diperbaiki --%>
-                            <a href="keranjang.jsp?action=add&id=<%= product.getIdProduk() %>&qty=1" class="add-to-cart">Tambah ke keranjang</a>
+                            <form action="${pageContext.request.contextPath}/keranjang" method="post">
+                                <input type="hidden" name="action" value="add">
+                                <input type="hidden" name="id" value="<%= product.getIdProduk() %>">
+                                <input type="hidden" name="qty" value="1">
+                                <button type="submit" class="add-to-cart">Tambah ke keranjang</button>
+                            </form>
                         </div>
                     </div>
                 </div>
-            <% } else { %>
-                <p style="text-align:center; margin-top: 20px;">Produk tidak dapat ditampilkan. <a href="keyboard.jsp">Kembali ke daftar produk</a></p>
-            <% } %>
+            <% 
+                String status = request.getParameter("status");
+                if ("sukses".equals(status)) {
+            %>
+                <div style="color: green; background-color: #d4edda; border: 1px solid green; padding: 15px; margin: 20px;">
+                    <strong>Berhasil menambahkan produk ke Keranjang</strong>
+                </div>
+            <% 
+                } else if ("gagal".equals(status)) { 
+            %>
+                <div style="color: red; background-color: #f8d7da; border: 1px solid red; padding: 15px; margin: 20px;">
+                    <strong>Tidak dapat menambahkan produk ke Keranjang</strong> 
+                </div>
+            <% 
+                }
+            }
+            %>
         </main>
     </div>
 

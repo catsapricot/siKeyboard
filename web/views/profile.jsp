@@ -1,3 +1,6 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="Models.Pengguna" %>
+<%@ page import="javax.servlet.http.HttpSession" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -47,9 +50,13 @@
                 </div>
             </section>
                 <section class="ai">
-                    <h2>Account details</h2>
-                    <p>Muhammad Nazriel Ihram</p>
-                    <p>nazriel005</p>
+                <%
+                    Pengguna pengguna = (Pengguna) session.getAttribute("user");
+                    if (pengguna != null) { %>
+                    <p> Nama    : <%= session.getAttribute("nama")%></p>
+                    <p> Username:<%= pengguna.getUsername()%></p>
+
+                <%  }%>
             </section>
         </div>
 

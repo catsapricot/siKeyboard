@@ -7,40 +7,36 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import DAO.KatalogDAO;
+
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import Models.*;
-// import Services.PasswordService;
+import Services.DBConnection;
 
-@WebServlet("/keranjang")
+@WebServlet(name = "KeranjangController", urlPatterns = { "/keranjang" })
 public class KeranjangController extends HttpServlet {
+    private KatalogDAO katalogDao = new KatalogDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Pengguna pengguna = (Pengguna) session.getAttribute("user");
-
+        int userId = (int) session.getAttribute("userId");
         if (pengguna == null) {
             response.sendRedirect(request.getContextPath() + "/views/login.jsp");
             return;
         }
-        List<Katalog> keranjang = pengguna.getKeranjang();
-        double totalHarga = 0.0;
-        if (keranjang == null) {
-            response.sendRedirect(request.getContextPath() + "/views/keranjang.jsp?");
-            return;
-        } else {
-            for (Katalog items : keranjang) {
-                totalHarga += (items.getHarga() * items.getKuantitas());
-            }
-        }
+        System.out.println("ID PENGGUNA DI KERANJANG CONTROLLER (doGet): " + userId);
+        List<Katalog> keranjang = katalogDao.getKeranjangByUserId(userId);
 
-        request.setAttribute("totalHarga", totalHarga);
         request.setAttribute("keranjang", keranjang);
-        request.getRequestDispatcher("views/keranjang.jsp").forward(request, response);
+        request.getRequestDispatcher("/views/keranjang.jsp").forward(request, response);
     }
 
     @Override
@@ -56,6 +52,7 @@ public class KeranjangController extends HttpServlet {
         switch (action) {
             case "update" -> handleUpdateKeranjang(pengguna, request, response);
             case "remove" -> handleRemoveKeranjang(pengguna, request, response);
+            case "add" -> handleAddToKeranjang(pengguna, request, response);
             default -> response.sendRedirect(request.getContextPath() + "/keranjang");
         }
 
@@ -84,6 +81,7 @@ public class KeranjangController extends HttpServlet {
                     }
                 }
             }
+            request.getSession().setAttribute("user", pengguna);
             response.sendRedirect(request.getContextPath() + "/keranjang");
         } catch (Exception e) {
             e.printStackTrace();
@@ -104,11 +102,23 @@ public class KeranjangController extends HttpServlet {
                     }
                 }
             }
+            request.getSession().setAttribute("user", pengguna);
             response.sendRedirect(request.getContextPath() + "/keranjang");
         } catch (Exception e) {
             response.sendRedirect(request.getContextPath() + "/keranjang");
         }
 
+    }
+
+    private void handleAddToKeranjang(Pengguna pengguna, HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        /*
+         * int productId = Integer.parseInt(request.getParameter("id"));
+         * DBConnection db = new DBConnection();
+         * try {
+         * String
+         * }
+         */
     }
 
 }

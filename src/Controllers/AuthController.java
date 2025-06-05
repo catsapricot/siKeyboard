@@ -13,9 +13,8 @@ import java.util.Optional;
 
 import DAO.RoleDAO;
 import Models.*;
-// import Services.PasswordService;
 
-@WebServlet("/auth")
+@WebServlet(name = "AuthController", urlPatterns = { "/auth" })
 public class AuthController extends HttpServlet {
     private RoleDAO roleDao = new RoleDAO();
 
@@ -41,6 +40,8 @@ public class AuthController extends HttpServlet {
         } else if ("logout".equals(action)) {
             HttpSession session = request.getSession(false);
             if (session != null) {
+                session.removeAttribute("status");
+                session.removeAttribute("user");
                 session.invalidate();
             }
             response.sendRedirect(request.getContextPath() + "/views/login.jsp");
@@ -74,7 +75,9 @@ public class AuthController extends HttpServlet {
                 }
 
                 if (userRole.login(password, storedPassword, "")) {
+                    session.setAttribute("userId", userRole.getId());
                     session.setAttribute("user", userRole);
+                    session.setAttribute("nama", userRole.getNama());
                     session.setMaxInactiveInterval(60 * 60);
 
                     response.sendRedirect(request.getContextPath() + "/views/dashboard.jsp");
