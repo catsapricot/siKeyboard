@@ -137,13 +137,32 @@
                             <div class="product-price-detail"><%= product.getHarga() %> IDR</div>
                             
                             <%-- Tombol "Tambah ke Keranjang" yang sudah diperbaiki --%>
-                            <a href="keranjang.jsp?action=add&id=<%= product.getIdProduk() %>&qty=1" class="add-to-cart">Tambah ke keranjang</a>
+                            <form action="${pageContext.request.contextPath}/keranjang" method="post">
+                                <input type="hidden" name="action" value="add">
+                                <input type="hidden" name="id" value="<%= product.getIdProduk() %>">
+                                <input type="hidden" name="qty" value="1">
+                                <button type="submit" class="add-to-cart">Tambah ke keranjang</button>
+                            </form>
                         </div>
                     </div>
                 </div>
-            <% } else { %>
-                <p style="text-align:center; margin-top: 20px;">Produk tidak dapat ditampilkan. <a href="keyboard.jsp">Kembali ke daftar produk</a></p>
-            <% } %>
+            <% 
+                String status = request.getParameter("status");
+                if ("sukses".equals(status)) {
+            %>
+                <div style="color: green; background-color: #d4edda; border: 1px solid green; padding: 15px; margin: 20px;">
+                    <strong>Berhasil menambahkan produk ke Keranjang</strong>
+                </div>
+            <% 
+                } else if ("gagal".equals(status)) { 
+            %>
+                <div style="color: red; background-color: #f8d7da; border: 1px solid red; padding: 15px; margin: 20px;">
+                    <strong>Tidak dapat menambahkan produk ke Keranjang</strong> 
+                </div>
+            <% 
+                }
+            }
+            %>
         </main>
     </div>
 
