@@ -13,6 +13,26 @@ public class KatalogDAO {
     public KatalogDAO() {
     }
 
+    public void tambahKeKeranjangDatabase(int userId, int idProduk, int jumlah) {
+        String sql = """
+            INSERT INTO keranjang (id_user, id_katalog, jumlah)
+            VALUES (?, ?, ?)
+            ON DUPLICATE KEY UPDATE jumlah = jumlah + VALUES(jumlah)
+        """;
+
+        try {
+            db.connect();
+            try (Connection con = db.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
+                stmt.setInt(1, userId);
+                stmt.setInt(2, idProduk);
+                stmt.setInt(3, jumlah);
+                stmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Optional<Katalog> findById(int id) {
         try {
             db.connect();
@@ -27,12 +47,20 @@ public class KatalogDAO {
                 String nama = rs.getString("nama");
                 double harga = rs.getDouble("harga");
                 int stock = rs.getInt("stock");
+                String jenis = rs.getString("jenis");
                 String urlGambar = rs.getString("url_gambar");
 
                 // Buat objek Katalog dasar
-                Katalog katalog = new Accessories(idProduk, nama, harga, stock, urlGambar);
+                if ("Keyboard".equals(jenis)) {
+                    String layout = rs.getString("layout_keyboard");
+                    String switchType = rs.getString("switch_type");
+                    Katalog katalog = new Keyboard(idProduk, nama, harga, stock, urlGambar, layout, switchType);
+                    return Optional.of(katalog);
+                } else if ("Accessories".equals(jenis)) {
+                    Katalog katalog = new Accessories(idProduk, nama, harga, stock, urlGambar);
+                    return Optional.of(katalog);
+                }
 
-                return Optional.of(katalog);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -44,7 +72,7 @@ public class KatalogDAO {
     public List<Katalog> getKeranjangByUserId(int userId) {
         List<Katalog> keranjang = new ArrayList<>();
 
-        String sql = "SELECT p.*, k.kuantitas FROM keranjang k JOIN katalog p ON k.id_katalog = p.id_katalog WHERE k.id_user = ?";
+        String sql = "SELECT p.*, k.jumlah FROM keranjang k JOIN katalog p ON k.id_katalog = p.id_katalog WHERE k.id_user = ?";
 
         try {
             db.connect();
