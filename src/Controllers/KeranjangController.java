@@ -160,6 +160,14 @@ public class KeranjangController extends HttpServlet {
 
             request.getSession().setAttribute("user", pengguna);
             request.setAttribute("status", "sukses");
+            String jenis = katalogDao.getJenisById(productId);
+            if (jenis.equals("Keyboard")) {
+                response.sendRedirect(
+                request.getContextPath() + "/views/tampilkanProduk.jsp?id=" + productId + "&status=sukses");
+            } else {
+                response.sendRedirect(
+                request.getContextPath() + "/views/tampilkanAksesoris.jsp?id=" + productId + "&status=sukses");
+            }
             response.sendRedirect(
                     request.getContextPath() + "/views/tampilkanProduk.jsp?id=" + productId + "&status=sukses");
 

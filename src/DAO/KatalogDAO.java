@@ -159,6 +159,27 @@ public class KatalogDAO {
         }
     }
 
+
+    public String getJenisById(int id) {
+        String jenis = null;
+        try {
+            db.connect();
+            Connection con = db.getConnection();
+            PreparedStatement stmt = con.prepareStatement("SELECT jenis FROM katalog WHERE id_katalog = ?");
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                jenis = rs.getString("jenis");
+            }
+            rs.close();
+            stmt.close();
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return jenis;
+    }
+
     public void checkout(int productId) {
         String sql = "UPDATE katalog SET stock = stock - 1 WHERE id_katalog = ?";
 
@@ -172,4 +193,5 @@ public class KatalogDAO {
             e.printStackTrace();
         }
     }
+
 }
