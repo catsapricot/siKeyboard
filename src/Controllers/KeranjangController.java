@@ -38,10 +38,10 @@ public class KeranjangController extends HttpServlet {
         List<Katalog> keranjang = katalogDao.getKeranjangByUserId(userId);
 
         // Simpan ke request, bukan ke session
+
         request.setAttribute("keranjang", keranjang);
         request.getRequestDispatcher("/views/keranjang.jsp").forward(request, response);
     }
-
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -62,6 +62,7 @@ public class KeranjangController extends HttpServlet {
             case "update" -> handleUpdateKeranjang(pengguna, request, response);
             case "remove" -> handleRemoveKeranjang(pengguna, request, response);
             case "add" -> handleAddToKeranjang(pengguna, request, response);
+            case "checkout" -> handleCheckout(pengguna, request, response);
             default -> response.sendRedirect(request.getContextPath() + "/keranjang");
         }
 
@@ -100,8 +101,8 @@ public class KeranjangController extends HttpServlet {
 
     private void handleRemoveKeranjang(Pengguna pengguna, HttpServletRequest request, HttpServletResponse response)
             throws IOException {
+        int productId = Integer.parseInt(request.getParameter("id"));
         try {
-            int productId = Integer.parseInt(request.getParameter("productId"));
             List<Katalog> keranjang = pengguna.getKeranjang();
             if (keranjang != null) {
                 for (Katalog item : keranjang) {
@@ -167,12 +168,33 @@ public class KeranjangController extends HttpServlet {
                 response.sendRedirect(
                 request.getContextPath() + "/views/tampilkanAksesoris.jsp?id=" + productId + "&status=sukses");
             }
+            response.sendRedirect(
+                    request.getContextPath() + "/views/tampilkanProduk.jsp?id=" + productId + "&status=sukses");
 
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("status", "gagal");
             response.sendRedirect(
                     request.getContextPath() + "/views/tampilkanProduk.jsp?id=" + productId + "&status=gagal");
+        }
+    }
+
+    private void handleCheckout(Pengguna pengguna, HttpServletRequest request,
+            HttpServletResponse response) throws IOException {
+        try {
+            List<Katalog> keranjang = pengguna.getKeranjang();
+            if (keranjang != null) {
+                KatalogDAO kdao = new KatalogDAO();
+                for (Katalog item : keranjang) {
+                    kdao.checkout(item.getIdProduk());
+                }
+                
+            }
+            response.sendRedirect(
+                    request.getContextPath() + "/views/checkout.jsp?status=sukses");
+        } catch (Exception e) {
+            response.sendRedirect(
+                    request.getContextPath() + "/views/checkout.jsp?status=sukses");
         }
     }
 

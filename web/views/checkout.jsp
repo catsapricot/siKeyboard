@@ -112,10 +112,13 @@
                     <!-- Transaction Summary -->
                     <div class="summary-section">
                         <h3 class="summary-title">Ringkasan Transaksi</h3>
-                        
+                        <% 
+                            String totalHarga = request.getParameter("total");
+                            double total = Double.parseDouble(totalHarga);
+                        %>
                         <div class="summary-row">
-                            <span class="summary-label">Total Harga (2 Barang)</span>
-                            <span class="summary-value">898.000 IDR</span>
+                            <span class="summary-label">Total Harga Barang</span>
+                            <span class="summary-value"><%= total %></span>
                         </div>
                         
                         <div class="summary-row">
@@ -125,16 +128,34 @@
                         
                         <div class="summary-row total-row">
                             <span class="total-label">Total Tagihan</span>
-                            <span class="total-value">923.000 IDR</span>
+                            <span class="total-value"><%= total + 25000 %></span>
                         </div>
                         
-                        <button class="pay-btn" onclick="processPayment()">
-                            <span class="pay-btn-text">Bayar</span>
-                        </button>
+                        <form method="post" action="<%= request.getContextPath() %>/checkout?action=checkout">
+                            <button type="submit" class="pay-btn">
+                                <span class="pay-btn-text">Bayar</span>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+        <% 
+            String status = request.getParameter("status");
+            if ("sukses".equals(status)) {
+        %>
+            <div style="color: green; background-color: #d4edda; border: 1px solid green; padding: 15px; margin: 20px;">
+                <strong>Berhasil Checkout</strong>
+            </div>
+        <% 
+            } else if ("gagal".equals(status)) { 
+        %>
+            <div style="color: red; background-color: #f8d7da; border: 1px solid red; padding: 15px; margin: 20px;">
+                <strong>Gagal Checkout</strong> 
+            </div>
+        <% 
+            }
+        %>
     </main>
 
     <footer class="footer">

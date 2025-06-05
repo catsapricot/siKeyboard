@@ -110,7 +110,7 @@
                     <span>Total</span>
                     <span>IDR <%= totalHarga %></span>
                 </div>
-                <a href="<%= request.getContextPath() %>/views/checkout.jsp" class="checkout-button">Checkout</a>
+                <a href="<%= request.getContextPath() %>/views/checkout.jsp?total=<%= totalHarga %>" class="checkout-button">Checkout</a>
             </div>
         <%
   
