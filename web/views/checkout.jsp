@@ -131,7 +131,7 @@
                             <span class="total-value"><%= total + 25000 %></span>
                         </div>
                         
-                        <form method="post" action="<%= request.getContextPath() %>/checkout?action=checkout">
+                        <form method="post" action="<%= request.getContextPath() %>/keranjang?action=checkout">
                             <button type="submit" class="pay-btn">
                                 <span class="pay-btn-text">Bayar</span>
                             </button>

@@ -62,6 +62,7 @@ public class KeranjangController extends HttpServlet {
             case "update" -> handleUpdateKeranjang(pengguna, request, response);
             case "remove" -> handleRemoveKeranjang(pengguna, request, response);
             case "add" -> handleAddToKeranjang(pengguna, request, response);
+            case "checkout" -> handleCheckout(pengguna, request, response);
             default -> response.sendRedirect(request.getContextPath() + "/keranjang");
         }
 
@@ -188,7 +189,7 @@ public class KeranjangController extends HttpServlet {
                 
             }
             response.sendRedirect(
-                    request.getContextPath() + "/views/checkout.jsp?status=sukses");
+                    request.getContextPath() + "/views/dashboard.jsp?status=sukses");
         } catch (Exception e) {
             response.sendRedirect(
                     request.getContextPath() + "/views/checkout.jsp?status=sukses");
