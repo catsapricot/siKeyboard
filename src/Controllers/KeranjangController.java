@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 import Models.*;
+import DAO.*;
 import Services.DBConnection;
 
 @WebServlet(urlPatterns = { "/keranjang" })
@@ -27,17 +28,20 @@ public class KeranjangController extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Pengguna pengguna = (Pengguna) session.getAttribute("user");
-        int userId = (int) session.getAttribute("userId");
+
         if (pengguna == null) {
             response.sendRedirect(request.getContextPath() + "/views/login.jsp");
             return;
         }
-        System.out.println("ID PENGGUNA DI KERANJANG CONTROLLER (doGet): " + userId);
+
+        int userId = (int) session.getAttribute("userId");
         List<Katalog> keranjang = katalogDao.getKeranjangByUserId(userId);
 
+        // Simpan ke request, bukan ke session
         request.setAttribute("keranjang", keranjang);
         request.getRequestDispatcher("/views/keranjang.jsp").forward(request, response);
     }
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -45,6 +49,11 @@ public class KeranjangController extends HttpServlet {
         HttpSession session = request.getSession();
         Pengguna pengguna = (Pengguna) session.getAttribute("user");
         String action = request.getParameter("action");
+        if (pengguna == null) {
+            response.sendRedirect(request.getContextPath() + "/views/login.jsp");
+            return;
+        }
+
         if (action == null) {
             action = "";
         }
@@ -145,10 +154,13 @@ public class KeranjangController extends HttpServlet {
                 keranjang.add(produk);
             }
 
+            int userId = (int) request.getSession().getAttribute("userId");
+            katalogDao.tambahKeKeranjangDatabase(userId, productId, quantity);
+
             request.getSession().setAttribute("user", pengguna);
             request.setAttribute("status", "sukses");
             response.sendRedirect(
-                    request.getContextPath() + "/views/tampilkanProduk.jsp?id=" + productId + "&status=sukses");
+                request.getContextPath() + "/views/tampilkanProduk.jsp?id=" + productId + "&status=sukses");
 
         } catch (Exception e) {
             e.printStackTrace();
