@@ -18,7 +18,7 @@ import java.util.Optional;
 import Models.*;
 import Services.DBConnection;
 
-@WebServlet(name = "KeranjangController", urlPatterns = { "/keranjang" })
+@WebServlet(urlPatterns = { "/keranjang" })
 public class KeranjangController extends HttpServlet {
     private KatalogDAO katalogDao = new KatalogDAO();
 
@@ -112,13 +112,50 @@ public class KeranjangController extends HttpServlet {
 
     private void handleAddToKeranjang(Pengguna pengguna, HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-        /*
-         * int productId = Integer.parseInt(request.getParameter("id"));
-         * DBConnection db = new DBConnection();
-         * try {
-         * String
-         * }
-         */
+        int productId = Integer.parseInt(request.getParameter("id"));
+        try {
+            int quantity = Integer.parseInt(request.getParameter("qty"));
+
+            Optional<Katalog> optionalProduk = katalogDao.findById(productId);
+
+            if (optionalProduk.isEmpty()) {
+                response.sendRedirect(request.getContextPath() + "/views/tampilkanProduk.jsp?id=" + productId);
+                return;
+            }
+
+            Katalog produk = optionalProduk.get();
+
+            List<Katalog> keranjang = pengguna.getKeranjang();
+            if (keranjang == null) {
+                keranjang = new ArrayList<>();
+                pengguna.setKeranjang(keranjang);
+            }
+
+            boolean itemDitemukan = false;
+            for (Katalog item : keranjang) {
+                if (item.getIdProduk() == productId) {
+                    item.setKuantitas(item.getKuantitas() + quantity);
+                    itemDitemukan = true;
+                    break;
+                }
+            }
+
+            if (!itemDitemukan) {
+                produk.setKuantitas(quantity);
+                keranjang.add(produk);
+            }
+
+            request.getSession().setAttribute("user", pengguna);
+            request.setAttribute("status", "sukses");
+            response.sendRedirect(
+                    request.getContextPath() + "/views/tampilkanProduk.jsp?id=" + productId + "&status=sukses");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("status", "gagal");
+            response.sendRedirect(
+                    request.getContextPath() + "/views/tampilkanProduk.jsp?id=" + productId + "&status=gagal");
+        }
     }
 
 }
