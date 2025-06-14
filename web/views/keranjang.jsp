@@ -85,14 +85,14 @@
                             <input type="hidden" name="action" value="update">
                             <input type="hidden" name="productId" value="<%= katalogItem.getIdProduk() %>">
                             <div class="quantity-control">
-                                <button type="submit" name="quantity" value="<%= katalogItem.getKuantitas() - 1 %>">-</button>
+                                <button type="submit" name="action" value="update" onclick="<%= katalogItem.getKuantitas() - 1 %>">-</button>
                                 <input type="text" value="<%= katalogItem.getKuantitas() %>" readonly>
-                                <button type="submit" name="quantity" value="<%= katalogItem.getKuantitas() + 1 %>">+</button>
+                                <button type="submit" name="action" value="update" onclick="<%= katalogItem.getKuantitas() - 1 %>">+</button>
+                                <input type="hidden" name="quantity" value="">
                             </div>
                         </form>
-                        <form action="<%= request.getContextPath() %>/keranjang" method="POST">
+                        <form action="<%= request.getContextPath() %>/keranjang?id=<%= katalogItem.getIdProduk() %>" method="POST">
                             <input type="hidden" name="action" value="remove">
-                            <input type="hidden" name="productId" value="<%= katalogItem.getIdProduk() %>">
                             <button type="submit" class="remove-item-btn"><i class="fa-regular fa-trash-can"></i></button>
                         </form>
                     </div>

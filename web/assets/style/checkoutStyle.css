@@ -104,6 +104,7 @@ body {
     margin-right: 950px;
     gap: 30px;
 }
+
 .navigation .nav-list a {
     text-decoration: none;
     color: white;
@@ -168,7 +169,7 @@ body {
 }
 
 /* ================= MAIN CONTENT ================= */
-/* Main Content */
+
 .main-content {
     padding: 65px 136px 0;
     max-width: 1280px;
@@ -199,7 +200,6 @@ body {
     width: 252px;
 }
 
-/* Address Section */
 .address-section {
     border: 1px solid #000000;
     border-radius: 25px;
@@ -246,7 +246,6 @@ body {
     color: #3c3c43;
 }
 
-/* Shipping Method Section */
 .shipping-section {
     border: 1px solid #000000;
     border-radius: 25px;
@@ -297,7 +296,6 @@ body {
     cursor: pointer;
 }
 
-/* Payment Section */
 .payment-section {
     border: 1px solid #000000;
     border-radius: 25px;
@@ -338,7 +336,6 @@ body {
     height: 14px;
 }
 
-/* Transaction Summary */
 .summary-section {
     padding-top: 10px;
     border-top: 1px solid #c7c7cc;
@@ -387,7 +384,6 @@ body {
     color: #000000;
 }
 
-/* Pay Button */
 .pay-btn {
     background-color: #000000;
     border-radius: 10px;
@@ -413,6 +409,80 @@ body {
 
 .pay-btn:active {
     transform: translateY(0);
+}
+
+.confirmation-container {
+    background: white;
+    padding: 40px 50px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transform: scale(0.9);
+    animation: scaleIn 0.3s ease-out forwards;
+}
+
+@keyframes scaleIn {
+    to {
+        transform: scale(1);
+    }
+}
+
+.checkmark-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #28a745;
+    margin: 0 auto 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: circleAnimation 0.5s ease-out forwards;
+}
+
+@keyframes circleAnimation {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.checkmark {
+    width: 30px;
+    height: 50px;
+    border: solid white;
+    border-width: 0 10px 10px 0;
+    transform: rotate(45deg);
+    animation: checkmarkAnimation 0.3s 0.3s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes checkmarkAnimation {
+    from {
+        height: 0;
+        width: 0;
+        opacity: 0;
+    }
+
+    to {
+        height: 50px;
+        width: 30px;
+        opacity: 1;
+    }
+}
+
+.confirmation-container h1 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.confirmation-container p {
+    color: #666;
+    font-size: 1.1em;
 }
 
 /* ================= FOOTER ================= */

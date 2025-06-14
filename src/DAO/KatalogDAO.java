@@ -42,7 +42,6 @@ public class KatalogDAO {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                // Ambil semua kolom dasar
                 int idProduk = rs.getInt("id_katalog");
                 String nama = rs.getString("nama");
                 double harga = rs.getDouble("harga");
@@ -50,7 +49,6 @@ public class KatalogDAO {
                 String jenis = rs.getString("jenis");
                 String urlGambar = rs.getString("url_gambar");
 
-                // Buat objek Katalog dasar
                 if ("Keyboard".equals(jenis)) {
                     String layout = rs.getString("layout_keyboard");
                     String switchType = rs.getString("switch_type");
@@ -159,7 +157,6 @@ public class KatalogDAO {
         }
     }
 
-
     public String getJenisById(int id) {
         String jenis = null;
         try {
@@ -180,13 +177,14 @@ public class KatalogDAO {
         return jenis;
     }
 
-    public void checkout(int productId) {
-        String sql = "UPDATE katalog SET stock = stock - 1 WHERE id_katalog = ?";
+    public void checkout(int userId) {
+        String sqlDeleteKeranjangUser = "DELETE FROM keranjang WHERE id_user = ?";
 
         try {
             db.connect();
-            try (Connection con = db.getConnection(); PreparedStatement stmt = con.prepareStatement(sql)) {
-                stmt.setInt(1, productId);
+            try (Connection con = db.getConnection();
+                    PreparedStatement stmt = con.prepareStatement(sqlDeleteKeranjangUser)) {
+                stmt.setInt(1, userId);
                 stmt.executeUpdate();
             }
         } catch (SQLException e) {

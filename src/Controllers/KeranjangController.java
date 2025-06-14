@@ -42,7 +42,6 @@ public class KeranjangController extends HttpServlet {
         request.getRequestDispatcher("/views/keranjang.jsp").forward(request, response);
     }
 
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
@@ -73,28 +72,24 @@ public class KeranjangController extends HttpServlet {
 
         try {
             int productId = Integer.parseInt(request.getParameter("productId"));
-            List<Katalog> keranjang = pengguna.getKeranjang();
             int kuantitasBaru = Integer.parseInt(request.getParameter("quantity"));
-            if (keranjang != null) {
-                boolean itemFound = false;
+            List<Katalog> keranjang = pengguna.getKeranjang();
+
+            if (kuantitasBaru < 1) {
+                keranjang.removeIf(item -> item.getIdProduk() == productId);
+            } else {
                 for (Katalog item : keranjang) {
                     if (item.getIdProduk() == productId) {
-                        if (kuantitasBaru <= 0) {
-                            keranjang.remove(item);
-                        } else {
-                            item.setKuantitas(kuantitasBaru);
-                        }
-                        itemFound = true;
-                    }
-                    if (itemFound) {
+                        item.setKuantitas(kuantitasBaru);
                         break;
                     }
                 }
             }
-            request.getSession().setAttribute("user", pengguna);
+
+            request.getSession().setAttribute("cartItems", keranjang);
             response.sendRedirect(request.getContextPath() + "/keranjang");
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (NumberFormatException e) {
+            System.err.println("Parameter quantity tidak valid: " + e.getMessage());
             response.sendRedirect(request.getContextPath() + "/keranjang");
         }
     }
@@ -102,13 +97,14 @@ public class KeranjangController extends HttpServlet {
     private void handleRemoveKeranjang(Pengguna pengguna, HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         try {
-            int productId = Integer.parseInt(request.getParameter("productId"));
+            int productId = Integer.parseInt(request.getParameter("id"));
             List<Katalog> keranjang = pengguna.getKeranjang();
             if (keranjang != null) {
                 for (Katalog item : keranjang) {
                     if (item.getIdProduk() == productId) {
                         item.setKuantitas(0);
                         keranjang.remove(item);
+                        break;
                     }
                 }
             }
@@ -117,7 +113,6 @@ public class KeranjangController extends HttpServlet {
         } catch (Exception e) {
             response.sendRedirect(request.getContextPath() + "/keranjang");
         }
-
     }
 
     private void handleAddToKeranjang(Pengguna pengguna, HttpServletRequest request, HttpServletResponse response)
@@ -163,10 +158,10 @@ public class KeranjangController extends HttpServlet {
             String jenis = katalogDao.getJenisById(productId);
             if (jenis.equals("Keyboard")) {
                 response.sendRedirect(
-                request.getContextPath() + "/views/tampilkanProduk.jsp?id=" + productId + "&status=sukses");
+                        request.getContextPath() + "/views/tampilkanProduk.jsp?id=" + productId + "&status=sukses");
             } else {
                 response.sendRedirect(
-                request.getContextPath() + "/views/tampilkanAksesoris.jsp?id=" + productId + "&status=sukses");
+                        request.getContextPath() + "/views/tampilkanAksesoris.jsp?id=" + productId + "&status=sukses");
             }
 
         } catch (Exception e) {
@@ -176,23 +171,22 @@ public class KeranjangController extends HttpServlet {
                     request.getContextPath() + "/views/tampilkanProduk.jsp?id=" + productId + "&status=gagal");
         }
     }
-    
+
     private void handleCheckout(Pengguna pengguna, HttpServletRequest request,
             HttpServletResponse response) throws IOException {
         try {
             List<Katalog> keranjang = pengguna.getKeranjang();
             if (keranjang != null) {
                 KatalogDAO kdao = new KatalogDAO();
-                for (Katalog item : keranjang) {
-                    kdao.checkout(item.getIdProduk());
-                }
-                
+                kdao.checkout(pengguna.getId());
+                keranjang.removeAll(keranjang);
             }
+            request.getSession().setAttribute("user", pengguna);
             response.sendRedirect(
-                    request.getContextPath() + "/views/dashboard.jsp?status=sukses");
+                    request.getContextPath() + "/views/checkout-status.jsp?status=sukses");
         } catch (Exception e) {
             response.sendRedirect(
-                    request.getContextPath() + "/views/checkout.jsp?status=sukses");
+                    request.getContextPath() + "/views/checkout.jsp?status=gagal");
         }
     }
 
